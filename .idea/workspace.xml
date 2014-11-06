@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f0e6bde3-5de8-481b-8d77-b00cde9a79f3" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx9/Assets/train/Train.babylon" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx9/Assets/train/Train.babylon" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx9/Export/html5/bin/assets/train/Train.babylon" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx9/Export/html5/bin/assets/train/Train.babylon" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/mesh/AbstractMesh.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/mesh/AbstractMesh.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/mesh/AbstractMesh_.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/mesh/AbstractMesh_.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/animations/Animation.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/animations/Animation.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/animations/Animation.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/animations/Animation.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx3/Export/html5/haxe/ApplicationMain.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx3/Export/html5/haxe/ApplicationMain.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx4/Export/html5/haxe/ApplicationMain.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx4/Export/html5/haxe/ApplicationMain.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx5/Export/html5/haxe/ApplicationMain.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx5/Export/html5/haxe/ApplicationMain.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx6/Export/html5/haxe/ApplicationMain.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx6/Export/html5/haxe/ApplicationMain.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx7/Export/html5/haxe/ApplicationMain.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx7/Export/html5/haxe/ApplicationMain.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx8/Export/html5/haxe/ApplicationMain.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx8/Export/html5/haxe/ApplicationMain.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx9/Export/html5/haxe/ApplicationMain.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx9/Export/html5/haxe/ApplicationMain.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/cameras/ArcRotateCamera.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/cameras/ArcRotateCamera.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/cameras/ArcRotateCamera.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/cameras/ArcRotateCamera.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx3/Export/html5/bin/BabylonHx.js" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx3/Export/html5/bin/BabylonHx.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx4/Export/html5/bin/BabylonHx.js" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx4/Export/html5/bin/BabylonHx.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx9/Export/html5/bin/BabylonHx.js" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx9/Export/html5/bin/BabylonHx.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/materials/textures/BaseTexture.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/materials/textures/BaseTexture.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/materials/textures/BaseTexture.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/materials/textures/BaseTexture.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/postprocess/BlackAndWhitePostProcess.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/postprocess/BlackAndWhitePostProcess.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/postprocess/BlackAndWhitePostProcess.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/postprocess/BlackAndWhitePostProcess.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/postprocess/BlurPostProcess.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/postprocess/BlurPostProcess.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/postprocess/BlurPostProcess.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/postprocess/BlurPostProcess.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/bones/Bone.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/bones/Bone.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/bones/Bone.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/bones/Bone.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/culling/BoundingBox.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/culling/BoundingBox.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/culling/BoundingBox.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/culling/BoundingBox.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/rendering/BoundingBoxRenderer.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/rendering/BoundingBoxRenderer.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/culling/BoundingInfo.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/culling/BoundingInfo.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/culling/BoundingInfo.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/culling/BoundingInfo.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/culling/BoundingSphere.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/culling/BoundingSphere.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/culling/BoundingSphere.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/culling/BoundingSphere.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/cameras/Camera.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/cameras/Camera.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/cameras/Camera.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/cameras/Camera.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/collisions/Collider.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/collisions/Collider.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/collisions/Collider.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/collisions/Collider.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/collisions/CollisionPlane.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/collisions/CollisionPlane.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/collisions/CollisionPlane.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/collisions/CollisionPlane.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/tools/math/Color3.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/tools/math/Color3.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/tools/math/Color3.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/tools/math/Color3.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/tools/math/Color4.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/tools/math/Color4.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/tools/math/Color4.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/tools/math/Color4.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/postprocess/ConvolutionPostProcess.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/postprocess/ConvolutionPostProcess.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/postprocess/ConvolutionPostProcess.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/postprocess/ConvolutionPostProcess.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/materials/textures/CubeTexture.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/materials/textures/CubeTexture.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/materials/textures/CubeTexture.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/materials/textures/CubeTexture.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx3/Export/html5/haxe/DefaultAssetLibrary.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx3/Export/html5/haxe/DefaultAssetLibrary.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx4/Export/html5/haxe/DefaultAssetLibrary.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx4/Export/html5/haxe/DefaultAssetLibrary.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx5/Export/html5/haxe/DefaultAssetLibrary.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx5/Export/html5/haxe/DefaultAssetLibrary.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx6/Export/html5/haxe/DefaultAssetLibrary.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx6/Export/html5/haxe/DefaultAssetLibrary.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx7/Export/html5/haxe/DefaultAssetLibrary.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx7/Export/html5/haxe/DefaultAssetLibrary.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx8/Export/html5/haxe/DefaultAssetLibrary.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx8/Export/html5/haxe/DefaultAssetLibrary.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx9/Export/html5/haxe/DefaultAssetLibrary.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx9/Export/html5/haxe/DefaultAssetLibrary.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/lights/DirectionalLight.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/lights/DirectionalLight.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/lights/DirectionalLight.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/lights/DirectionalLight.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/materials/textures/DynamicTexture.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/materials/textures/DynamicTexture.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/materials/Effect.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/materials/Effect.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/materials/Effect.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/materials/Effect.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/Engine.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/Engine.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/Engine.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/Engine.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/cameras/FreeCamera.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/cameras/FreeCamera.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/cameras/FreeCamera.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/cameras/FreeCamera.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/tools/math/Frustum.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/tools/math/Frustum.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/tools/math/Frustum.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/tools/math/Frustum.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/postprocess/FxaaPostProcess.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/postprocess/FxaaPostProcess.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/postprocess/FxaaPostProcess.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/postprocess/FxaaPostProcess.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/mesh/Geometry.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/mesh/Geometry.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/lights/HemisphericLight.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/lights/HemisphericLight.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/lights/HemisphericLight.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/lights/HemisphericLight.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/mesh/InstancedMesh.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/mesh/InstancedMesh.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/layer/Layer.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/layer/Layer.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/layer/Layer.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/layer/Layer.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/lensflare/LensFlare.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/lensflare/LensFlare.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/lensflare/LensFlare.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/lensflare/LensFlare.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/lensflare/LensFlareSystem.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/lensflare/LensFlareSystem.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/lensflare/LensFlareSystem.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/lensflare/LensFlareSystem.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/lights/Light.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/lights/Light.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/lights/Light.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/lights/Light.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/Source/Main.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/Source/Main.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx2/Source/Main.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx2/Source/Main.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx3/Source/Main.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx3/Source/Main.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx4/Source/Main.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx4/Source/Main.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx5/Source/Main.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx5/Source/Main.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx6/Source/Main.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx6/Source/Main.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx7/Source/Main.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx7/Source/Main.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx8/Source/Main.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx8/Source/Main.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx9/Source/Main.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx9/Source/Main.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/materials/Material.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/materials/Material.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/materials/Material.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/materials/Material.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/tools/math/Matrix.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/tools/math/Matrix.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/tools/math/Matrix.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/tools/math/Matrix.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/mesh/Mesh.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/mesh/Mesh.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/mesh/Mesh.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/mesh/Mesh.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/materials/textures/MirrorTexture.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/materials/textures/MirrorTexture.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/materials/textures/MirrorTexture.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/materials/textures/MirrorTexture.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/materials/MultiMaterial.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/materials/MultiMaterial.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/materials/MultiMaterial.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/materials/MultiMaterial.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx3/Export/html5/haxe/NMEPreloader.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx3/Export/html5/haxe/NMEPreloader.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx4/Export/html5/haxe/NMEPreloader.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx4/Export/html5/haxe/NMEPreloader.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx5/Export/html5/haxe/NMEPreloader.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx5/Export/html5/haxe/NMEPreloader.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx6/Export/html5/haxe/NMEPreloader.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx6/Export/html5/haxe/NMEPreloader.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx7/Export/html5/haxe/NMEPreloader.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx7/Export/html5/haxe/NMEPreloader.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx8/Export/html5/haxe/NMEPreloader.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx8/Export/html5/haxe/NMEPreloader.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx9/Export/html5/haxe/NMEPreloader.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx9/Export/html5/haxe/NMEPreloader.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/Node.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/Node.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/Node.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/Node.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/culling/octrees/Octree.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/culling/octrees/Octree.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/culling/octrees/Octree.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/culling/octrees/Octree.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/culling/octrees/OctreeBlock.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/culling/octrees/OctreeBlock.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/culling/octrees/OctreeBlock.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/culling/octrees/OctreeBlock.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/particles/Particle.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/particles/Particle.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/particles/Particle.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/particles/Particle.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/particles/ParticleSystem.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/particles/ParticleSystem.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/particles/ParticleSystem.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/particles/ParticleSystem.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/postprocess/PassPostProcess.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/postprocess/PassPostProcess.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/postprocess/PassPostProcess.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/postprocess/PassPostProcess.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/collisions/PickingInfo.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/collisions/PickingInfo.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/collisions/PickingInfo.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/collisions/PickingInfo.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/tools/math/Plane.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/tools/math/Plane.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/tools/math/Plane.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/tools/math/Plane.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/lights/PointLight.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/lights/PointLight.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/lights/PointLight.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/lights/PointLight.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/postprocess/PostProcess.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/postprocess/PostProcess.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/postprocess/PostProcess.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/postprocess/PostProcess.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/postprocess/PostProcessManager.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/postprocess/PostProcessManager.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/postprocess/PostProcessManager.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/postprocess/PostProcessManager.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/mesh/Primitives.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/mesh/Primitives.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/tools/math/Quaternion.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/tools/math/Quaternion.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/tools/math/Quaternion.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/tools/math/Quaternion.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/tools/math/Ray.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/tools/math/Ray.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/tools/math/Ray.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/tools/math/Ray.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/postprocess/RefractionPostProcess.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/postprocess/RefractionPostProcess.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/postprocess/RefractionPostProcess.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/postprocess/RefractionPostProcess.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/materials/textures/RenderTargetTexture.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/materials/textures/RenderTargetTexture.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/materials/textures/RenderTargetTexture.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/materials/textures/RenderTargetTexture.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/rendering/RenderingGroup.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/rendering/RenderingGroup.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/rendering/RenderingGroup.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/rendering/RenderingGroup.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/rendering/RenderingManager.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/rendering/RenderingManager.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/rendering/RenderingManager.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/rendering/RenderingManager.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/Scene.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/Scene.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/Scene.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/Scene.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/tools/SceneLoader.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/tools/SceneLoader.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/tools/SceneLoader.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/tools/SceneLoader.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/materials/ShaderMaterial.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/materials/ShaderMaterial.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/lights/shadows/ShadowGenerator.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/lights/shadows/ShadowGenerator.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/lights/shadows/ShadowGenerator.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/lights/shadows/ShadowGenerator.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/bones/Skeleton.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/bones/Skeleton.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/bones/Skeleton.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/bones/Skeleton.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/tools/SmartArray.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/tools/SmartArray.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/tools/SmartArray.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/tools/SmartArray.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/lights/SpotLight.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/lights/SpotLight.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/lights/SpotLight.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/lights/SpotLight.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/sprites/Sprite.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/sprites/Sprite.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/sprites/Sprite.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/sprites/Sprite.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/sprites/SpriteManager.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/sprites/SpriteManager.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/sprites/SpriteManager.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/sprites/SpriteManager.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/materials/StandardMaterial.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/materials/StandardMaterial.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/materials/StandardMaterial.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/materials/StandardMaterial.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx3/Source/net/hires/debug/Stats.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx3/Source/net/hires/debug/Stats.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx4/Source/net/hires/debug/Stats.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx4/Source/net/hires/debug/Stats.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx5/Source/net/hires/debug/Stats.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx5/Source/net/hires/debug/Stats.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx6/Source/net/hires/debug/Stats.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx6/Source/net/hires/debug/Stats.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx7/Source/net/hires/debug/Stats.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx7/Source/net/hires/debug/Stats.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx8/Source/net/hires/debug/Stats.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx8/Source/net/hires/debug/Stats.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx9/Source/net/hires/debug/Stats.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx9/Source/net/hires/debug/Stats.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/mesh/SubMesh.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/mesh/SubMesh.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/mesh/SubMesh.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/mesh/SubMesh.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/materials/textures/Texture.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/materials/textures/Texture.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/materials/textures/Texture.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/materials/textures/Texture.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/tools/Tools.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/tools/Tools.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/tools/Tools.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/tools/Tools.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/cameras/TouchCamera.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/cameras/TouchCamera.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/cameras/TouchCamera.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/cameras/TouchCamera.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/tools/math/Vector2.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/tools/math/Vector2.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/tools/math/Vector2.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/tools/math/Vector2.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/tools/math/Vector3.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/tools/math/Vector3.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/tools/math/Vector3.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/tools/math/Vector3.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/mesh/VertexBuffer.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/mesh/VertexBuffer.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/mesh/VertexBuffer.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/mesh/VertexBuffer.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/mesh/VertexData.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/mesh/VertexData.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/tools/math/Viewport.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/tools/math/Viewport.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/tools/math/Viewport.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/tools/math/Viewport.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/animations/_Animatable.hx" afterPath="$PROJECT_DIR$/com/gamestudiohx/babylonhx/animations/_Animatable.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/animations/_Animatable.hx" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/com/gamestudiohx/babylonhx/animations/_Animatable.hx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx3/Export/html5/haxe/debug.hxml" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx3/Export/html5/haxe/debug.hxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx4/Export/html5/haxe/debug.hxml" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx4/Export/html5/haxe/debug.hxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx3/Export/html5/haxe/final.hxml" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx3/Export/html5/haxe/final.hxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx4/Export/html5/haxe/final.hxml" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx4/Export/html5/haxe/final.hxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx3/Export/html5/bin/index.html" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx3/Export/html5/bin/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx4/Export/html5/bin/index.html" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx4/Export/html5/bin/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx5/Export/html5/bin/index.html" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx5/Export/html5/bin/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx6/Export/html5/bin/index.html" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx6/Export/html5/bin/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx7/Export/html5/bin/index.html" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx7/Export/html5/bin/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx8/Export/html5/bin/index.html" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx8/Export/html5/bin/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx9/Export/html5/bin/index.html" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx9/Export/html5/bin/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx9/Export/html5/bin/manifest" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx9/Export/html5/bin/manifest" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx1/project.xml" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx1/project.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx2/project.xml" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx2/project.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx3/project.xml" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx3/project.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx4/project.xml" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx4/project.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx5/project.xml" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx5/project.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx6/project.xml" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx6/project.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx7/project.xml" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx7/project.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx8/project.xml" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx8/project.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx9/project.xml" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx9/project.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx3/Export/html5/haxe/release.hxml" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx3/Export/html5/haxe/release.hxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/ds.babylonHxEx4/Export/html5/haxe/release.hxml" afterPath="$PROJECT_DIR$/samples/ds.babylonHxEx4/Export/html5/haxe/release.hxml" />
+    </list>
+    <ignored path="BabylonHx.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="BabylonHx" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="Engine.hx" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/com/gamestudiohx/babylonhx/Engine.hx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.38062283" vertical-offset="0" max-vertical-offset="19890">
+              <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="true" />
+    </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/samples/ds.babylonHxEx9/Source/Main.hx" />
+        <option value="$PROJECT_DIR$/com/gamestudiohx/babylonhx/Engine.hx" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="299" />
+    <option name="y" value="235" />
+    <option name="width" value="1400" />
+    <option name="height" value="1000" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BabylonHx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BabylonHx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BabylonHx" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BabylonHx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BabylonHx" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="samples" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BabylonHx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BabylonHx" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="samples" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ds.babylonHxEx9" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BabylonHx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BabylonHx" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="samples" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ds.babylonHxEx9" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Source" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="LayoutCode.rearrangeEntriesHaxe" value="false" />
+    <property name="FullScreen" value="false" />
+    <property name="LayoutCode.rearrangeEntries" value="false" />
+    <property name="options.lastSelected" value="preferences.sourceCode.Haxe" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <method />
+    </configuration>
+    <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
+      <module name="" />
+      <option name="TESTING_TYPE" value="0" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
+      <module name="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="DEPLOY" value="true" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
+      <method />
+    </configuration>
+    <list size="0" />
+    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
+      <Host>localhost</Host>
+      <Port>5050</Port>
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f0e6bde3-5de8-481b-8d77-b00cde9a79f3" name="Default" comment="" />
+      <created>1407614691058</created>
+      <updated>1407614691058</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="299" y="235" width="1400" height="1000" extended-state="0" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2496318" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="myTodoPanelSettings">
+      <TodoPanelSettings />
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/com/gamestudiohx/babylonhx/Engine.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="20010">
+          <caret line="17" column="56" selection-start-line="17" selection-start-column="56" selection-end-line="17" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/com/gamestudiohx/babylonhx/Engine.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="9435" max-vertical-offset="20010">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/com/gamestudiohx/babylonhx/Engine.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="9435" max-vertical-offset="19065">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/samples/ds.babylonHxEx9/Source/Main.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1860">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/com/gamestudiohx/babylonhx/Engine.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.38062283" vertical-offset="0" max-vertical-offset="19890">
+          <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
+
