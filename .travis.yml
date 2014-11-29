@@ -1,8 +1,10 @@
 language: java
 
 env: 
+  - LD_LIBRARY_PATH=/usr/lib/neko
   - TARGET=neko
   - TARGET=html5
+
 matrix:
   allow_failures:
     - env: "TARGET=neko"
