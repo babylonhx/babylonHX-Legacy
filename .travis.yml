@@ -8,11 +8,10 @@ matrix:
     - env: "TARGET=neko"
 
 before_install:
-  - sudo apt-get update
+  - sudo apt-get update -y
   - sudo apt-get upgrade -y
   - sudo apt-get install software-properties-common -y
   - sudo apt-get install apt-file -y
-  - sudo apt-file update -y
   - sudo apt-get install libgc-dev libzip-dev libpcre3-dev -y 
   - sudo add-apt-repository ppa:eyecreate/haxe -y      # add the ubuntu ppa that contains haxe
   - sudo apt-get update                                # pull info from ppa
@@ -25,8 +24,9 @@ before_install:
   - haxelib -notimeout install lime
   - haxelib -notimeout install openfl
   - haxelib git babylonhx https://github.com/babylonhx/babylonHX.git
-
-
 script:
   - cd ./tests
   - haxe compile.hxml
+  branches:
+      only:
+          - master
