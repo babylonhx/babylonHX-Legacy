@@ -31,6 +31,7 @@ before_install:
 script:
   - cd ./tests
   - haxe compile.hxml
+
   branches:
       only:
           - master
