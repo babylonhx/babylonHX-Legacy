@@ -14,6 +14,7 @@ class TouchCamera extends FreeCamera {
     public var _offsetX:Float;
     public var _offsetY:Float;
     public var _pointerCount:Int = 0;
+    public var _pointerPressed:Array<Dynamic>;
 
     public function new(name:String, position:Vector3, scene:Scene) {
         super(name, position, scene);

@@ -3,4 +3,4 @@
 --remap flash:openfl
 -lib lime
 -lib openfl
--lib babylonhx
+-lib Babylonhx

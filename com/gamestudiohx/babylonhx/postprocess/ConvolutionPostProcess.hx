@@ -23,7 +23,7 @@ class ConvolutionPostProcess extends PostProcess {
         this.kernelMatrix = kernelMatrix;
 
         this.onApply = function(effect:Effect):Void {
-            effect.setMatrix("kernelMatrix", that.kernelMatrix);
+            effect.setMatrix("kernelMatrix", this.kernelMatrix);
         };
 
     }
