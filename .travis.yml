@@ -26,7 +26,6 @@ before_install:
   - mkdir -p ~/haxelib
   - haxelib setup ~/haxelib
   - haxelib -notimeout install swf
-  - haxelib -notimeout install neko
   - haxelib -notimeout install lime
   - haxelib -notimeout install openfl
   - haxelib git babylonhx https://github.com/babylonhx/babylonHX.git
