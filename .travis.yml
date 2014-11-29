@@ -3,7 +3,6 @@ language: java
 env: 
   - TARGET=neko
   - TARGET=html5
-  
 matrix:
   allow_failures:
     - env: "TARGET=neko"
@@ -16,8 +15,9 @@ before_install:
   - mkdir ~/haxelib
   - haxelib -notimeout setup ~/haxelib 
   - haxelib -notimeout install swf
-  - haxelib -notimeout install lime > /dev/null
-  - haxelib -notimeout run lime install openfl > /dev/null
+  - haxelib -notimeout install neko
+  - haxelib -notimeout install lime
+  - haxelib -notimeout run lime install openfl
   - haxelib git babylonhx https://github.com/babylonhx/babylonHX.git
 
 
