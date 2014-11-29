@@ -14,7 +14,7 @@ import com.gamestudiohx.babylonhx.tools.math.Matrix;
 class ConvolutionPostProcess extends PostProcess {
 
     public var kernelMatrix:Matrix;
-    public var onApply:Effect -> Void;
+    //public var onApply:Effect -> Void;
 
 
     public function new(name:String, kernelMatrix:Matrix, ratio:Float, camera:Camera, samplingMode:Int = 1) {

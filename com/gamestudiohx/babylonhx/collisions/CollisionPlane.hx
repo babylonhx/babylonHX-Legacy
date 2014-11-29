@@ -34,7 +34,8 @@ class CollisionPlane {
         return (dot <= epsilon);
     }
 
-    public function signedDistanceTo(point:Vector3):Vector3 {
+    // vector3?
+    public function signedDistanceTo(point:Vector3):Float {
         return Vector3.Dot(point, this.normal) + this.equation[3];
     }
 
