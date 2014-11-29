@@ -1,6 +1,8 @@
+-cmd echo "----------------------------------------testing----------------------------------------"
 -main TestMain
 -neko unit.n
 --remap flash:openfl
 -lib lime
 -lib openfl
--lib Babylonhx
+-lib babylonhx
+-cmd echo "----------------------------------------end----------------------------------------"
