@@ -1,5 +1,7 @@
 BabylonHx
 =========
+<img src="https://api.travis-ci.org/babylonhx/babylonHX.svg?branch=master" />
+
 WIP
 Update this version BabylonHx is under rapid development so if you download this and want to use it as a lib for one of the examples it will break. 
 But all Examples except Ex3 have a stable version of BabylonHx.  That being said if you want to help please do.
