@@ -13,8 +13,13 @@ I am trying to get this version to catch up to the new version of BabylonJS.  Co
 BabylonHx is a direct port of BabylonJs engine to Haxe/OpenFL. 
 It supports (almost) all features of the original.
 
-**IMPORTANT:** Use this settings in your application.xml file for mobile targets to work (thanks @labe-me):<br/>
+Right now openGLES 3 devices have a huge speed increase they run at around 120 fps although openGLES 2 devices run around 7 fps and that is abysmal performance so I am tring to track down the reason for the performance issues but if you are using an openGLES3 + device you will be able to achieve 60+ fps.
+
+**IMPORTANT:** 
+This was orginally authored by @vujadin this is a forked version of https://github.com/vujadin/BabylonHx I am trying to update this version to be as close as possible to the current version of babylonJS.
+Use this settings in your application.xml file for mobile targets to work (thanks @labe-me):<br/>
 ***&lt;window require-shaders="true" hardware="true" depth-buffer="true" /&gt;***
+
 
 *Not supported features:*
 
@@ -61,5 +66,6 @@ Visit http://babylonjs.com/ for more info about the engine.
   * ~~Update 'Matrix' class to use Float32Array for JavaScript target~~
   * Code refactor - remove reflections from critical places and general code cleanup ***
   * Keep up with BabylonJs! 
+
 
 
