@@ -21,6 +21,7 @@ import com.gamestudiohx.babylonhx.culling.BoundingInfo;
 import com.gamestudiohx.babylonhx.particles.ParticleSystem;
 import com.gamestudiohx.babylonhx.mesh.Geometry;
 import com.gamestudiohx.babylonhx.mesh.VertexData;
+import com.gamestudiohx.babylonhx.culling.octrees.Octree;
 import openfl.display.BitmapData;
 import haxe.io.BufferInput;
 
@@ -118,6 +119,8 @@ class AbstractMesh extends Node {
     public var parentId(get, null):String;
     public var showSubMeshesBoundingBox = false;
 
+    public var _submeshesOctree:Dynamic;
+
 
     public function new(name:String, scene:Scene) {
         super(scene);
@@ -140,6 +143,7 @@ class AbstractMesh extends Node {
 
         this._indices = new Array<Int>();
         this.subMeshes = new Array<SubMesh>();
+        this._submeshesOctree = null;
 
         this._renderId = 0;
 
@@ -675,22 +679,22 @@ class AbstractMesh extends Node {
 
         return Vector3.TransformCoordinates(this.position, invWorldMatrix);
     }
-    /*
-	inline public function createOrUpdateSubmeshesOctree(maxCapacity = 64, maxDepth = 2): Array<SubMesh> {
+   
+	inline public function createOrUpdateSubmeshesOctree(maxCapacity = 64, maxDepth = 2): Array<AbstractMesh> {
 		   //Todo
-		   
+		    trace(this.position);
             if (this._submeshesOctree == null) {
-                this._submeshesOctree = new Octree<SubMesh>(Octree.CreationFuncForSubMeshes, maxCapacity, maxDepth);
+                this._submeshesOctree = new Octree(maxCapacity);
             }
 
             this.computeWorldMatrix(true);            
 
             // Update octree
             var bbox = this.getBoundingInfo().boundingBox;
-            this._submeshesOctree.update(bbox.minimumWorld, bbox.maximumWorld, this.subMeshes);
+            this._submeshesOctree.update(bbox.minimumWorld, bbox.maximumWorld, cast this.subMeshes);
 
             return this._submeshesOctree;
-    }*/
+    }
 
     inline public function intersectsMesh(mesh:Mesh, precise:Bool):Bool {
         var ret = false;
@@ -710,7 +714,7 @@ class AbstractMesh extends Node {
         return ret;
     }
 
-    public function intersects(ray:Ray, fastCheck:Bool):PickingInfo {
+    public function intersects(ray:Ray, fastCheck:Bool = false):PickingInfo {
         var pickingInfo = new PickingInfo();
 
         if (this._boundingInfo == null || !ray.intersectsSphere(this._boundingInfo.boundingSphere) || !ray.intersectsBox(this._boundingInfo.boundingBox)) {
