@@ -884,9 +884,9 @@ class Mesh extends AbstractMesh implements IGetSetVerticesData {
 
     // Cylinder and
 
-    public static function CreateCylinder(name:String, height:Int, diameterTop:Float, diameterBottom:Float, tessellation:Int, scene:Scene, ?updatable:Bool):Mesh {
+    public static function CreateCylinder(name:String, height:Int, diameterTop:Float, diameterBottom:Float, tessellation:Int,subdivisions:Int, scene:Scene, ?updatable:Bool):Mesh {
         var cylinder = new Mesh(name, scene);
-        var vertexData = VertexData.CreateCylinder(height, diameterTop, diameterBottom, tessellation);
+        var vertexData = VertexData.CreateCylinder(height, diameterTop, diameterBottom, tessellation, subdivisions);
 
         vertexData.applyToMesh(cylinder, updatable);
 
@@ -924,8 +924,8 @@ class Mesh extends AbstractMesh implements IGetSetVerticesData {
         return plane;
     }
 
-    /*
-        public static function CreateGround(name:String, width:Float, height:Float, subdivisions:Float, scene:Scene, ?updatable:Bool ) : Mesh {
+   
+    public static function CreateGround(name:String, width:Float, height:Float, subdivisions:Float, scene:Scene, ?updatable:Bool ) : Mesh {
             var ground = new GroundMesh(name, scene);
             ground._setReady(false);
             ground._subdivisions = subdivisions;
@@ -937,9 +937,9 @@ class Mesh extends AbstractMesh implements IGetSetVerticesData {
             ground._setReady(true);
 
             return ground;
-        }
+    }
 
-        
+         /*        
         public static function CreateGroundFromHeightMap(name:String, url:String, width:Float, height:Float, subdivisions:Float, minHeight:Float, maxHeight:Float, scene:Scene, ?updatable:Bool ) : Mesh {
           //Todo
           trace('todo');

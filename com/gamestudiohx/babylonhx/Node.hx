@@ -20,6 +20,7 @@ class Node {
     public var _isEnabled:Bool;
     public var _scene:Scene;
     public var _currentRenderId:Int;
+    public var onReady:Node->Void;
     //public var results:Array<Node>;
 
     public var _cache:Dynamic;
@@ -151,6 +152,22 @@ class Node {
         this._getDescendants(cast this._scene.lights, results);
         this._getDescendants(cast this._scene.cameras, results);
         return results;
+    }
+
+    public function _setReady(state:Bool):Void {
+            if (state == this._isReady) {
+                return;
+            }
+
+            if (!state) {
+                this._isReady = false;
+                return;
+            }
+
+            this._isReady = true;
+            if (this.onReady != null) {
+                this.onReady(this);
+            }
     }
 
 }

@@ -42,6 +42,7 @@ import com.gamestudiohx.babylonhx.mesh.Geometry;
 import com.gamestudiohx.babylonhx.mesh.InstancedMesh;
 import com.gamestudiohx.babylonhx.mesh.Mesh;
 import com.gamestudiohx.babylonhx.mesh.VertexBuffer;
+import com.gamestudiohx.babylonhx.mesh.GroundMesh;
 import com.gamestudiohx.babylonhx.mesh.VertexData;
 import com.gamestudiohx.babylonhx.particles.Particle;
 import com.gamestudiohx.babylonhx.particles.ParticleSystem;

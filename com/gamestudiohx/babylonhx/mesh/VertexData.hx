@@ -480,13 +480,14 @@ class VertexData {
         return vertexData;
     }
 
-    public static function CreateCylinder(height:Float = 1, diameterTop:Float = 0.5, diameterBottom:Float = 1, tessellation:Float = 16):VertexData {
+    public static function CreateCylinder(height:Float = 1, diameterTop:Float = 0.5, diameterBottom:Float = 1, tessellation:Float = 16, subdivisions:Int = 1):VertexData {
         var radiusTop = diameterTop / 2;
         var radiusBottom = diameterBottom / 2;
         var indices = new Array<Int>();
         var positions = new Array<Float>();
         var normals = new Array<Float>();
         var uvs = new Array<Float>();
+        //var subdivisions = subdivisions;
 
         /*
             height = height || 1;
@@ -514,115 +515,116 @@ class VertexData {
                 return;
             }
 
-            // Create cap indices.
-            var i = 0;
-            while (i < tessellation - 2) {
-                var i1 = (i + 1) % tessellation;
-                var i2 = (i + 2) % tessellation;
+            var vbase = positions.length / 3;
+
+                var offset = new Vector3(0, height / 2, 0);
+                var textureScale = new Vector2(0.5, 0.5);
 
                 if (!isTop) {
-                    var tmp = i1;
-                    i1 = i2;
-                    i2 = tmp;
+                    offset.scaleInPlace(-1);
+                    textureScale.x = -textureScale.x;
                 }
 
-                var vbase = positions.length / 3;
-                indices.push(Std.int(vbase));
-                indices.push(Std.int(vbase + i1));
-                indices.push(Std.int(vbase + i2));
-                i++;
+                // Positions, normals & uvs
+                var i:Int = 0;
+                while(i < tessellation) {
+                    var circleVector = getCircleVector(i);
+                    var position = circleVector.scale(radius).add(offset);
+                    var textureCoordinate = new Vector2(
+                        circleVector.x * textureScale.x + 0.5,
+                        circleVector.z * textureScale.y + 0.5
+                        );
 
+                    positions.push(position.x);
+                    positions.push(position.y);
+                    positions.push(position.z);
+                    uvs.push(textureCoordinate.x);
+                    uvs.push(textureCoordinate.y);
+                    i++;
+                }
+
+                // Indices
+                var i:Int = 0;
+                while(i < tessellation - 2) {
+                    if (!isTop) {
+                        indices.push(Std.int(vbase));
+                        indices.push(Std.int(vbase + (i + 2) % tessellation));
+                        indices.push(Std.int(vbase + (i + 1) % tessellation));
+                    } else {
+                        indices.push(Std.int(vbase));
+                        indices.push(Std.int(vbase + (i + 1) % tessellation));
+                        indices.push(Std.int(vbase + (i + 2) % tessellation));
+                    }
+                    i++;
+                }
             }
 
-            // Which end of the cylinder is this?
-            var normal = new Vector3(0, -1, 0);
-            var textureScale = new Vector2(-0.5, -0.5);
+            var base = new Vector3(0, -1, 0).scale(height / 2);
+            var offset = new Vector3(0, 1, 0).scale(height / subdivisions);
+            var stride = tessellation + 1;
 
-            if (!isTop) {
-                normal = normal.scale(-1);
-                textureScale.x = -textureScale.x;
-            }
-
-            // Create cap vertices.
-            i = 0;
-            while (i < tessellation) {
+            // Positions, normals & uvs
+            var i:Int = 0;
+            while(i <= tessellation) {
                 var circleVector = getCircleVector(i);
-                var position = circleVector.scale(radius).add(normal.scale(height));
-                var textureCoordinate = new Vector2(circleVector.x * textureScale.x + 0.5, circleVector.z * textureScale.y + 0.5);
+                var textureCoordinate = new Vector2(i / tessellation, 0);
+                var position, radius = radiusBottom;
+                var s:Int = 0;
+                while(s <= subdivisions) {
+                    // Update variables
+                    position = circleVector.scale(radius);
+                    position.addInPlace(base.add(offset.scale(s)));
+                    textureCoordinate.y += 1 / subdivisions;
+                    radius += (radiusTop - radiusBottom) / subdivisions;
 
-                positions.push(position.x);
-                positions.push(position.y);
-                positions.push(position.z);
-                normals.push(normal.x);
-                normals.push(normal.y);
-                normals.push(normal.z);
-
-                uvs.push(textureCoordinate.x);
-                uvs.push(textureCoordinate.y);
+                    // Push in arrays
+                    positions.push(position.x);
+                    positions.push(position.y);
+                    positions.push(position.z);
+                    uvs.push(textureCoordinate.x);
+                    uvs.push(textureCoordinate.y);
+                    
+                    s++;
+                }
                 i++;
-
             }
-        };
 
-        height /= 2;
+            subdivisions += 1;
+            // Indices
+            var s:Int = 0;
+            while(s < subdivisions - 1) {
+                var i:Int = 0 ;
+                while(i <= tessellation) {
+                    indices.push(Std.int(i * subdivisions + s));
+                    indices.push(Std.int((i * subdivisions + (s + subdivisions)) % (stride * subdivisions)));
+                    indices.push(Std.int(i * subdivisions + (s + 1)));
 
-        var topOffset = new Vector3(0, 1, 0).scale(height);
+                    indices.push(Std.int(i * subdivisions + (s + 1)));
+                    indices.push(Std.int((i * subdivisions + (s + subdivisions)) % (stride * subdivisions)));
+                    indices.push(Std.int((i * subdivisions + (s + subdivisions + 1)) % (stride * subdivisions)));
+                    
+                    i++;
+                }
+                s++;
+            }
 
-        var stride = tessellation + 1;
+            // Create flat triangle fan caps to seal the top and bottom.
+            createCylinderCap(true);
+            createCylinderCap(false);
 
-        // Create a ring of triangles around the outside of the cylinder.
-        var i = 0;
-        while (i <= tessellation) {
-            var normal = getCircleVector(i);
-            var sideOffsetBottom = normal.scale(radiusBottom);
-            var sideOffsetTop = normal.scale(radiusTop);
-            var textureCoordinate = new Vector2(i / tessellation, 0);
+            // Normals
+            VertexData.ComputeNormals(positions, indices, normals);
 
-            var position = sideOffsetBottom.add(topOffset);
-            positions.push(position.x);
-            positions.push(position.y);
-            positions.push(position.z);
-            normals.push(normal.x);
-            normals.push(normal.y);
-            normals.push(normal.z);
-            uvs.push(textureCoordinate.x);
-            uvs.push(textureCoordinate.y);
+            // Result
+            var vertexData = new VertexData();
 
-            position = sideOffsetTop.subtract(topOffset);
-            textureCoordinate.y += 1;
-            positions.push(position.x);
-            positions.push(position.y);
-            positions.push(position.z);
-            normals.push(normal.x);
-            normals.push(normal.y);
-            normals.push(normal.z);
-            uvs.push(textureCoordinate.x);
-            uvs.push(textureCoordinate.y);
+            vertexData.indices = indices;
+            vertexData.positions = positions;
+            vertexData.normals = normals;
+            vertexData.uvs = uvs;
 
-            indices.push(Std.int(i * 2));
-            indices.push(Std.int((i * 2 + 2) % (stride * 2)));
-            indices.push(Std.int(i * 2 + 1));
-
-            indices.push(Std.int(i * 2 + 1));
-            indices.push(Std.int((i * 2 + 2) % (stride * 2)));
-            indices.push(Std.int((i * 2 + 3) % (stride * 2)));
-            i++;
-
-        }
-
-        // Create flat triangle fan caps to seal the top and bottom.
-        createCylinderCap(true);
-        createCylinderCap(false);
-
-        // Result
-        var vertexData = new VertexData();
-
-        vertexData.indices = indices;
-        vertexData.positions = positions;
-        vertexData.normals = normals;
-        vertexData.uvs = uvs;
-
-        return vertexData;
+            return vertexData;
+            
     }
 
     public static function CreateTorus(diameter:Float = 1, thickness:Float = 0.5, tessellation:Float = 16):VertexData {
