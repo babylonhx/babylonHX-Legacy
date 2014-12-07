@@ -23,11 +23,13 @@ class DirectionalLight extends Light {
 
     public function new(name:String, direction:Vector3, scene:Scene) {
         super(name, scene);
-
         this.position = direction.scale(-1);
         this.direction = direction;
-        this.diffuse = new Color3(1.0, 1.0, 1.0);
-        this.specular = new Color3(1.0, 1.0, 1.0);
+    }
+
+    public function setDirectionToTarget(target: Vector3): Vector3 {
+            this.direction = Vector3.Normalize(target.subtract(this.position));
+            return this.direction;
     }
 
     inline public function _computeTransformedPosition():Bool {
@@ -52,9 +54,10 @@ class DirectionalLight extends Light {
 
             Vector3.TransformNormalToRef(this.direction, this.parent.getWorldMatrix(), this._transformedDirection);
             effect.setFloat4(directionUniformName, this._transformedDirection.x, this._transformedDirection.y, this._transformedDirection.z, 1);
-        } else {
-            effect.setFloat4(directionUniformName, this.direction.x, this.direction.y, this.direction.z, 1);
+            return;
         }
+        effect.setFloat4(directionUniformName, this.direction.x, this.direction.y, this.direction.z, 1);
+        
     }
 
     override inline public function _getWorldMatrix():Matrix {

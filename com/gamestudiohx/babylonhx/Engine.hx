@@ -182,8 +182,13 @@ class Engine {
 
         this._compiledEffects = new Map();
 
-        GL.enable(GL.DEPTH_TEST);
-        GL.depthFunc(GL.LEQUAL);
+        // Depth buffer
+        this.setDepthBuffer(true);
+        this.setDepthFunctionToLessOrEqual();
+        this.setDepthWrite(true);
+
+        //GL.enable(GL.DEPTH_TEST);
+        //GL.depthFunc(GL.LEQUAL);
 
         // Fullscreen
         this.isFullscreen = false;
@@ -329,6 +334,7 @@ class Engine {
     // color can be Color4 or Color3
 
     public function clear(color:Dynamic, backBuffer:Bool, depthStencil:Bool) {
+
         if (Std.is(color, Color4)) {
             GL.clearColor(color.r, color.g, color.b, color.a);
         } else {
@@ -343,9 +349,14 @@ class Engine {
         if (backBuffer)
             mode |= GL.COLOR_BUFFER_BIT;
 
+
+        //trace(mode);
+
         if (depthStencil && this._depthMask)
             mode |= GL.DEPTH_BUFFER_BIT;
 
+        //trace(mode);
+        
         GL.clear(mode);
     }
 
@@ -638,7 +649,7 @@ class Engine {
         GL.attachShader(shaderProgram, fragmentShader);
         GL.linkProgram(shaderProgram);
         var error:String = GL.getProgramInfoLog(shaderProgram);
-        if (error != "" && error.indexOf('Link was successful.') == -1) {
+        if (error != "" && error.indexOf('Link was successful.') == -1 && error.indexOf('WARNING:') == -1) {
 
             throw(error);
         }
@@ -810,6 +821,7 @@ class Engine {
         switch (mode) {
             case Engine.ALPHA_DISABLE:
                 this.setDepthWrite(true);
+
             //GL.blendFuncSeparate(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA, GL.ZERO, GL.ONE);
             //GL.disable(GL.BLEND);
             case Engine.ALPHA_COMBINE:
@@ -1105,6 +1117,43 @@ class Engine {
         GL.TEXTURE_CUBE_MAP_POSITIVE_X, GL.TEXTURE_CUBE_MAP_POSITIVE_Y, GL.TEXTURE_CUBE_MAP_POSITIVE_Z, GL.TEXTURE_CUBE_MAP_NEGATIVE_X, GL.TEXTURE_CUBE_MAP_NEGATIVE_Y, GL.TEXTURE_CUBE_MAP_NEGATIVE_Z
         ];
 
+
+        /*
+
+        var extension = rootUrl.substr(rootUrl.length - 4, 4).toLowerCase();
+            var isDDS = this.getCaps().s3tc && (extension === ".dds");
+
+            if (isDDS) {
+                BABYLON.Tools.LoadFile(rootUrl, data => {
+                    var info = BABYLON.Internals.DDSTools.GetDDSInfo(data);
+
+                    var loadMipmap = (info.isRGB || info.isLuminance || info.mipmapCount > 1) && !noMipmap;
+
+                    gl.bindTexture(gl.TEXTURE_CUBE_MAP, texture);
+                    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1);
+
+                    Internals.DDSTools.UploadDDSLevels(this._gl, this.getCaps().s3tc, data, info, loadMipmap, 6);
+
+                    if (!noMipmap && !info.isFourCC && info.mipmapCount == 1) {
+                        gl.generateMipmap(gl.TEXTURE_CUBE_MAP);
+                    }
+
+                    gl.texParameteri(gl.TEXTURE_CUBE_MAP, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+                    gl.texParameteri(gl.TEXTURE_CUBE_MAP, gl.TEXTURE_MIN_FILTER, loadMipmap ? gl.LINEAR_MIPMAP_LINEAR : gl.LINEAR);
+                    gl.texParameteri(gl.TEXTURE_CUBE_MAP, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+                    gl.texParameteri(gl.TEXTURE_CUBE_MAP, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+
+                    gl.bindTexture(gl.TEXTURE_CUBE_MAP, null);
+
+                    this._activeTexturesCache = [];
+
+                    texture._width = info.width;
+                    texture._height = info.height;
+                    texture.isReady = true;
+                });
+            }
+
+        */
         function _setTex(imagePath:String, index:Int) {
             var img:BitmapData = Assets.getBitmapData(imagePath);
 

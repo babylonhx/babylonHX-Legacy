@@ -50,7 +50,7 @@ class Material {
         this.onDispose = null;
     }
 
-    public function isReady(mesh:Mesh = null):Bool { // to be overriden
+    public function isReady(mesh:Mesh = null, useInstances:Bool = false):Bool { // to be overriden
         return true;
     }
 

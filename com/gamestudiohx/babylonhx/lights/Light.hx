@@ -18,8 +18,8 @@ import com.gamestudiohx.babylonhx.mesh.Mesh;
 class Light extends Node {
 
     public var intensity:Float = 1.0;
-    public var diffuse:Color3;
-    public var specular:Color3;
+    public var diffuse:Color3 = new Color3(1.0, 1.0, 1.0);
+    public var specular:Color3 = new Color3(1.0, 1.0, 1.0);
     public var animations:Array<Animation>;
     public var excludedMeshes:Array<Mesh>;
 
@@ -34,14 +34,10 @@ class Light extends Node {
         this.name = name;
         this.id = name;
         this._childrenFlag = 1;
-
         this._scene = scene;
-
         _scene.lights.push(this);
-
         // Animations
         this.animations = [];
-
         // Exclusions
         this.excludedMeshes = [];
     }
@@ -54,12 +50,13 @@ class Light extends Node {
         return this._shadowGenerator;
     }
 
-    public function transferToEffect(effect:Effect, positionUniformName:String = "", directionUniformName:String = ""):Void {
+    public function transferToEffect(effect:Effect, positionUniformName:String = "", ?directionUniformName:String):Void {
 
     }
 
     public function _getWorldMatrix():Matrix {
-        return Matrix.Zero();
+        return Matrix.Identity();
+        //return Matrix.Zero();
     }
 
     override public function getWorldMatrix():Matrix {

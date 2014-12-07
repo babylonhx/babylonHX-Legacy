@@ -50,7 +50,7 @@ class RenderTargetTexture extends Texture {
         this._texture = this._scene.getEngine().createRenderTargetTexture(size, generateMipMaps);
     }
 
-    public function render() {
+    public function render(useCameraPostProcess:Bool = false) {
         if (this.onBeforeRender != null) {
             this.onBeforeRender();
         }

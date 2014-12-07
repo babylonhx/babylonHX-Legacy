@@ -144,7 +144,7 @@ class ShaderMaterial extends Material {
         return this;
     }
 
-    override public function isReady(mesh:Mesh = null):Bool {
+    override public function isReady(mesh:Mesh = null, useInstances:Bool = false):Bool {
         var engine:Engine = this._scene.getEngine();
         this._effect = engine.createEffect(this._shaderPath, this._options.attributes, this._options.uniforms, this._options.samplers, "", null);
         if (!this._effect.isReady()) {

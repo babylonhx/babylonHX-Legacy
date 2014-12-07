@@ -251,7 +251,8 @@ class SceneLoader {
     }
 
     public static function parseShadowGenerator(parsedShadowGenerator:Dynamic, scene:Scene):ShadowGenerator {
-        var light = scene.getLightByID(parsedShadowGenerator.lightId);
+        //todo investigate why I Have to cast
+        var light:DirectionalLight = cast scene.getLightByID(parsedShadowGenerator.lightId);
         var shadowGenerator = new ShadowGenerator(parsedShadowGenerator.mapSize, light);
 
         for (meshIndex in 0...parsedShadowGenerator.renderList.length) {

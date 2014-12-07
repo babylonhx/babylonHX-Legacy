@@ -604,7 +604,6 @@ class AbstractMesh extends Node {
             /*this._localPivotScalingRotation.multiplyToRef(this._localTranslation, this._localWorld);
 			var parentWorld = this.parent.getWorldMatrix();
 			this._localWorld.multiplyToRef(parentWorld, this._worldMatrix);*/
-			trace('---hit');
             this._localWorld.multiplyToRef(this.parent.getWorldMatrix(), this._worldMatrix);
         } else {
 

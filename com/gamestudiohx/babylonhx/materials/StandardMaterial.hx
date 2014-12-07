@@ -37,6 +37,7 @@ class StandardMaterial extends Material {
     public var specularColor:Color3;
     public var specularPower:Float;
     public var emissiveColor:Color3;
+    public var useAlphaFromDiffuseTexture:Bool = false;
 
     public var _cachedDefines:String;
 
@@ -49,6 +50,16 @@ class StandardMaterial extends Material {
     public var _baseColor:Color3;
     public var _scaledDiffuse:Color3;
     public var _scaledSpecular:Color3;
+
+
+    public static var DiffuseTextureEnabled = true;
+    public static var AmbientTextureEnabled = true;
+    public static var OpacityTextureEnabled = true;
+    public static var ReflectionTextureEnabled = true;
+    public static var EmissiveTextureEnabled = true;
+    public static var SpecularTextureEnabled = true;
+    public static var BumpTextureEnabled = true;
+
 
     public function new(name:String, scene:Scene) {
         super(name, scene);
@@ -73,14 +84,18 @@ class StandardMaterial extends Material {
     }
 
     override public function needAlphaBlending():Bool {
-        return (this.alpha < 1.0) || (this.opacityTexture != null);
+        return (this.alpha < 1.0) || (this.opacityTexture != null) || this._shouldUseAlphaFromDiffuseTexture();
     }
 
     override public function needAlphaTesting():Bool {
         return this.diffuseTexture != null && this.diffuseTexture.hasAlpha;
     }
 
-    override public function isReady(mesh:Mesh = null):Bool {
+    public function _shouldUseAlphaFromDiffuseTexture(): Bool {
+            return this.diffuseTexture != null && this.diffuseTexture.hasAlpha && this.useAlphaFromDiffuseTexture;
+    }
+
+    override public function isReady(mesh:Mesh = null, useInstances:Bool = false):Bool {
         if (this.checkReadyOnlyOnce) {
             if (this._wasPreviouslyReady) {
                 return true;
@@ -100,7 +115,7 @@ class StandardMaterial extends Material {
         // Textures
         if (this._scene.texturesEnabled) {
             if (this.diffuseTexture != null) {
-                if (!this.diffuseTexture.isReady()) {
+                if (!this.diffuseTexture.isReady() && StandardMaterial.DiffuseTextureEnabled) {
                     return false;
                 } else {
                     defines.push("#define DIFFUSE");
@@ -108,7 +123,7 @@ class StandardMaterial extends Material {
             }
 
             if (this.ambientTexture != null) {
-                if (!this.ambientTexture.isReady()) {
+                if (!this.ambientTexture.isReady() && StandardMaterial.AmbientTextureEnabled) {
                     return false;
                 } else {
                     defines.push("#define AMBIENT");
@@ -116,14 +131,14 @@ class StandardMaterial extends Material {
             }
 
             if (this.opacityTexture != null) {
-                if (!this.opacityTexture.isReady()) {
+                if (!this.opacityTexture.isReady() && StandardMaterial.OpacityTextureEnabled) {
                     return false;
                 } else {
                     defines.push("#define OPACITY");
                 }
             }
             if (this.reflectionTexture != null) {
-                if (!this.reflectionTexture.isReady()) {
+                if (!this.reflectionTexture.isReady() && StandardMaterial.ReflectionTextureEnabled) {
                     return false;
                 } else {
                     defines.push("#define REFLECTION");
@@ -131,7 +146,7 @@ class StandardMaterial extends Material {
             }
 
             if (this.emissiveTexture != null) {
-                if (!this.emissiveTexture.isReady()) {
+                if (!this.emissiveTexture.isReady() && StandardMaterial.EmissiveTextureEnabled) {
                     return false;
                 } else {
                     defines.push("#define EMISSIVE");
@@ -139,7 +154,7 @@ class StandardMaterial extends Material {
             }
 
             if (this.specularTexture != null) {
-                if (!this.specularTexture.isReady()) {
+                if (!this.specularTexture.isReady() && StandardMaterial.SpecularTextureEnabled) {
                     return false;
                 } else {
                     defines.push("#define SPECULAR");
@@ -148,7 +163,7 @@ class StandardMaterial extends Material {
             }
         }
 
-        if (this._scene.getEngine().getCaps().standardDerivatives != null && this.bumpTexture != null) {
+        if (this._scene.getEngine().getCaps().standardDerivatives != null && this.bumpTexture != null && StandardMaterial.BumpTextureEnabled) {
             if (!this.bumpTexture.isReady()) {
                 return false;
             } else {
@@ -166,6 +181,10 @@ class StandardMaterial extends Material {
             defines.push("#define ALPHATEST");
         }
 
+        if (this._shouldUseAlphaFromDiffuseTexture()) {
+                defines.push("#define ALPHAFROMDIFFUSE");
+        }
+
         // Fog
         if (this._scene.fogMode != Scene.FOGMODE_NONE) {
             defines.push("#define FOG");
@@ -176,16 +195,20 @@ class StandardMaterial extends Material {
         var lightIndex:Int = 0;
         if (this._scene.lightsEnabled) {
             for (index in 0...this._scene.lights.length) {
-                var light:Light = this._scene.lights[index];
+                var light = this._scene.lights[index];
 
                 if (!light.isEnabled()) {
                     continue;
                 }
+                
+
+
                 if (mesh != null && Lambda.indexOf(light.excludedMeshes, mesh) != -1) {
                     continue;
                 }
 
                 defines.push("#define LIGHT" + lightIndex);
+                
 
                 if (lightIndex > 0) {
                     optionalDefines.push(defines[defines.length - 1]);
@@ -200,6 +223,7 @@ class StandardMaterial extends Material {
                     type = "#define POINTDIRLIGHT" + lightIndex;
                 }
 
+
                 defines.push(type);
                 if (lightIndex > 0) {
                     optionalDefines.push(defines[defines.length - 1]);
@@ -207,6 +231,7 @@ class StandardMaterial extends Material {
 
                 // Shadows
                 var shadowGenerator = light.getShadowGenerator();
+                //trace(shadowGenerator);
                 if (mesh != null && mesh.receiveShadows && shadowGenerator != null) {
                     defines.push("#define SHADOW" + lightIndex);
 
@@ -225,13 +250,26 @@ class StandardMaterial extends Material {
                             optionalDefines.push(defines[defines.length - 1]);
                         }
                     }
+
+                    /*
+                    if (shadowGenerator.usePoissonSampling) {
+                            defines.push("#define SHADOWPCF" + lightIndex);
+                            if (lightIndex > 0) {
+                                optionalDefines.push(defines[defines.length - 1]);
+                            }
+                    }
+                    */
+
                 }
 
                 lightIndex++;
-                if (lightIndex == 4)
+                // 4
+                if (lightIndex == 6)
                     break;
             }
         }
+        //trace(lightIndex);
+        //trace(defines);
 
         var attribs:Array<String> = [VertexBuffer.PositionKind, VertexBuffer.NormalKind];
         if (mesh != null) {
@@ -251,9 +289,18 @@ class StandardMaterial extends Material {
                 attribs.push(VertexBuffer.MatricesIndicesKind);
                 attribs.push(VertexBuffer.MatricesWeightsKind);
                 defines.push("#define BONES");
-                defines.push("#define BonesPerMesh " + mesh.skeleton.bones.length);
+                defines.push("#define BonesPerMesh " + mesh.skeleton.bones.length + 1);
                 defines.push("#define BONES4");
                 optionalDefines.push(defines[defines.length - 1]);
+            }
+
+            // todo
+            if(useInstances){
+                    defines.push("#define INSTANCES");
+                    attribs.push("world0");
+                    attribs.push("world1");
+                    attribs.push("world2");
+                    attribs.push("world3");
             }
         }
 
@@ -262,11 +309,13 @@ class StandardMaterial extends Material {
         if (this._cachedDefines != join) {
             this._cachedDefines = join;
 
-            // IE patch
+            // Legacy browser patch
             var shaderName:String = "default";
+            if (!this._scene.getEngine().getCaps().standardDerivatives) {
+                    shaderName = "legacydefault";
+            }
 
-            this._effect = this._scene.getEngine().createEffect(shaderName, attribs, ["world", "view", "viewProjection", "vEyePosition", "vLightsType", "vAmbientColor", "vDiffuseColor", "vSpecularColor", "vEmissiveColor", "vLightData0", "vLightDiffuse0", "vLightSpecular0", "vLightDirection0", "vLightGround0", "lightMatrix0", "vLightData1", "vLightDiffuse1", "vLightSpecular1", "vLightDirection1", "vLightGround1", "lightMatrix1", "vLightData2", "vLightDiffuse2", "vLightSpecular2", "vLightDirection2", "vLightGround2", "lightMatrix2", "vLightData3", "vLightDiffuse3", "vLightSpecular3", "vLightDirection3", "vLightGround3", "lightMatrix3", "vFogInfos", "vFogColor", "vDiffuseInfos", "vAmbientInfos", "vOpacityInfos", "vReflectionInfos", "vEmissiveInfos", "vSpecularInfos", "vBumpInfos", "mBones", "vClipPlane", "diffuseMatrix", "ambientMatrix", "opacityMatrix", "reflectionMatrix", "emissiveMatrix", "specularMatrix", "bumpMatrix"], ["diffuseSampler", "ambientSampler", "opacitySampler", "reflectionCubeSampler", "reflection2DSampler", "emissiveSampler", "specularSampler", "bumpSampler", "shadowSampler0", "shadowSampler1", "shadowSampler2", "shadowSampler3"
-            ], join, optionalDefines);
+            this._effect = this._scene.getEngine().createEffect(shaderName, attribs, ["world","view","viewProjection","vEyePosition","vLightsType","vAmbientColor","vDiffuseColor","vSpecularColor","vEmissiveColor","vLightData0","vLightDiffuse0","vLightSpecular0","vLightDirection0","vLightGround0","lightMatrix0","vLightData1","vLightDiffuse1","vLightSpecular1","vLightDirection1","vLightGround1","lightMatrix1","vLightData2","vLightDiffuse2","vLightSpecular2","vLightDirection2","vLightGround2","lightMatrix2","vLightData3","vLightDiffuse3","vLightSpecular3","vLightDirection3","vLightGround3","lightMatrix3","vFogInfos","vFogColor","vDiffuseInfos","vAmbientInfos","vOpacityInfos","vReflectionInfos","vEmissiveInfos","vSpecularInfos","vBumpInfos","mBones","vClipPlane","diffuseMatrix","ambientMatrix","opacityMatrix","reflectionMatrix","emissiveMatrix","specularMatrix","bumpMatrix","darkness0","darkness1","darkness2","darkness3"],["diffuseSampler","ambientSampler","opacitySampler","reflectionCubeSampler","reflection2DSampler","emissiveSampler","specularSampler","bumpSampler","shadowSampler0","shadowSampler1","shadowSampler2","shadowSampler3"], join, optionalDefines);
         }
         if (!this._effect.isReady()) {
             return false;
@@ -373,7 +422,7 @@ class StandardMaterial extends Material {
         if (this._scene.lightsEnabled) {
             var lightIndex:Int = 0;
             for (index in 0...this._scene.lights.length) {
-                var light:Light = this._scene.lights[index];
+                var light = this._scene.lights[index];
 
                 if (!light.isEnabled()) {
                     continue;
@@ -399,20 +448,22 @@ class StandardMaterial extends Material {
 
                 light.diffuse.scaleToRef(light.intensity, this._scaledDiffuse);
                 light.specular.scaleToRef(light.intensity, this._scaledSpecular);
-                this._effect.setColor3("vLightDiffuse" + lightIndex, this._scaledDiffuse);
+                //todo investigate
+                this._effect.setColor4("vLightDiffuse" + lightIndex, this._scaledDiffuse, Math.POSITIVE_INFINITY);
                 this._effect.setColor3("vLightSpecular" + lightIndex, this._scaledSpecular);
 
                 // Shadows
                 var shadowGenerator = light.getShadowGenerator();
                 if (mesh.receiveShadows && shadowGenerator != null) {
                     world.multiplyToRef(shadowGenerator.getTransformMatrix(), this._lightMatrix);
-                    this._effect.setMatrix("lightMatrix" + lightIndex, this._lightMatrix);
+                    this._effect.setMatrix("lightMatrix" + lightIndex, shadowGenerator.getTransformMatrix());
                     this._effect.setTexture("shadowSampler" + lightIndex, shadowGenerator.getShadowMap());
+                    this._effect.setFloat("darkness" + lightIndex, shadowGenerator.getDarkness());
                 }
 
                 lightIndex++;
-
-                if (lightIndex == 4)
+                //4?
+                if (lightIndex == 6)
                     break;
             }
         }

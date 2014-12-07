@@ -16,7 +16,7 @@ import com.gamestudiohx.babylonhx.tools.math.Vector3;
 class HemisphericLight extends Light {
 
     public var direction:Vector3;
-    public var groundColor:Color3;
+    public var groundColor:Color3 = new Color3(0.0, 0.0, 0.0);
 
     public var _worldMatrix:Matrix;
 
@@ -25,9 +25,15 @@ class HemisphericLight extends Light {
         super(name, scene);
 
         this.direction = direction;
+        this.direction = Vector3.Normalize(direction.subtract(Vector3.Zero()));
         this.diffuse = new Color3(1.0, 1.0, 1.0);
         this.specular = new Color3(1.0, 1.0, 1.0);
         this.groundColor = new Color3(0.0, 0.0, 0.0);
+    }
+
+    public function setDirectionToTarget(target: Vector3): Vector3 {
+            this.direction = Vector3.Normalize(target.subtract(Vector3.Zero()));
+            return this.direction;
     }
 
     override public function getShadowGenerator():ShadowGenerator {
