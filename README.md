@@ -50,22 +50,22 @@ Visit http://babylonjs.com/ for more info about the engine.
   </a><br />
 
 **TODO:**
-
-  * Fix computeWorldMatrix seems to affect parent child relationships 
-  * Fix issue with textures for some reason most examples require a texture to properly display in native devices
-  * Fix issue html5 postprocessing and lights 
-  * Create a Blender3D plugin to autogenerate a Babylon file export and have a viewer via Blender3d.
-  * Speedup the code and Optimize 
-  * Add the vertex class aka babylon.csg.ts
-  * Instanced Material Rendering
-  * Double check new draw calls for platforms
-  * Double check vertexBuffer class
-  * Fix various scene and engine bugs
-  * Mesh.clone() fix deep copy in tools as it does not work properly
-  * Fix bug with lights
-  * ~~Update 'Matrix' class to use Float32Array for JavaScript target~~
-  * Code refactor - remove reflections from critical places and general code cleanup ***
-  * Keep up with BabylonJs! 
+  
+  1. com/gamestudiohx/babylonhx/Engine.hx - evaluate native targets and images for normal maps
+  2. com/gamestudiohx/babylonhx/tools/SceneLoader.hx - evaluate parse light specifically intensity and add range
+  3. Fix computeWorldMatrix seems to affect parent child relationships 
+  4. Fix issue with textures for some reason most examples require a texture to properly display in native devices (similar to 1)
+  5. Fix issue html5 postprocessing and lights (similar to 2)
+  6. Create a Blender3D plugin to autogenerate a Babylon file export and have a viewer via Blender3d (export kha haxe style).
+  7. Speedup the code and Optimize (openGLES2 targets are slow very slow 3 is 120fps)
+  8. Add the vertex class aka babylon.csg.ts
+  9. Instanced Material Rendering
+  10. Double check new draw calls for platforms
+  12. Double check vertexBuffer class
+  13. Fix various scene and engine bugs
+  14. Mesh.clone() fix deep copy in tools as it does not work properly
+  15. Fix bug with lights (similar to 2)
+  16. Code refactor - remove reflections from critical places and general code cleanup ***
 
 
 
