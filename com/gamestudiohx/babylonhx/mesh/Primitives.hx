@@ -8,7 +8,13 @@ import com.gamestudiohx.babylonhx.mesh.AbstractMesh;
 import openfl.utils.Float32Array;
 
 
-class Primitives extends Geometry {
+/**
+ * Port of BabylonJs project - http://www.babylonjs.com/
+ * ...
+ * @author Brendon Smith #seacloud9
+ */
+
+@:expose('BABYLON.Primitives') class Primitives extends Geometry {
     private var _beingRegenerated:Bool;
     private var _canBeRegenerated:Bool;
 

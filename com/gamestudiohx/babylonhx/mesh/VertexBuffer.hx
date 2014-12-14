@@ -10,10 +10,10 @@ import openfl.utils.Float32Array;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class VertexBuffer {
+@:expose('BABYLON.VertexBuffer') class VertexBuffer {
 
     public static var PositionKind:String = "position";
     public static var NormalKind:String = "normal";

@@ -13,14 +13,13 @@ import com.gamestudiohx.babylonhx.tools.Tools;
 import com.gamestudiohx.babylonhx.materials.Material;
 import com.gamestudiohx.babylonhx.materials.MultiMaterial;
 
-
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class SubMesh {
+@:expose('BABYLON.SubMesh') class SubMesh {
 
     public var materialIndex:Int;
     public var verticesStart:Int;

@@ -12,10 +12,10 @@ import com.gamestudiohx.babylonhx.mesh.Mesh;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class Light extends Node {
+@:expose('BABYLON.Light') class Light extends Node {
 
     public var intensity:Float = 1.0;
     public var diffuse:Color3 = new Color3(1.0, 1.0, 1.0);

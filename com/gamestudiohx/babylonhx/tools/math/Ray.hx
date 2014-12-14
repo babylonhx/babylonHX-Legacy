@@ -6,10 +6,10 @@ import com.gamestudiohx.babylonhx.culling.BoundingSphere;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class Ray {
+@:expose('BABYLON.Ray') class Ray {
 
     public var origin:Vector3;
     public var direction:Vector3;

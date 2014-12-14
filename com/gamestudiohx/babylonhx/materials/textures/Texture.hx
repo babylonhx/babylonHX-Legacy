@@ -17,10 +17,10 @@ import openfl.gl.GLTexture;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class BabylonTexture {
+@:expose('BABYLON.Texture') class BabylonTexture {
 
     public var data:GLTexture;
 
@@ -122,7 +122,7 @@ class Texture extends BaseTexture {
     public var url:String;
     public var animations:Array<Animation>;
     public var _noMipmap:Bool;
-    public var _invertY:Null<Bool>;
+    public var _invertY:Bool;
 
     public function new(url:String, scene:Scene, ?noMipmap:Bool, ?invertY:Bool) {
         super(url, scene);
@@ -195,9 +195,15 @@ class Texture extends BaseTexture {
     }
 
     public function _computeTextureMatrix():Matrix {
-        var ret = this._cachedTextureMatrix;
+  
         if (!(
-            this.uOffset == this._cachedUOffset && this.vOffset == this._cachedVOffset && this.uScale == this._cachedUScale && this.vScale == this._cachedVScale && this.uAng == this._cachedUAng && this.vAng == this._cachedVAng && this.wAng == this._cachedWAng)) {
+            this.uOffset == this._cachedUOffset && 
+            this.vOffset == this._cachedVOffset && 
+            this.uScale == this._cachedUScale && 
+            this.vScale == this._cachedVScale && 
+            this.uAng == this._cachedUAng && 
+            this.vAng == this._cachedVAng && 
+            this.wAng == this._cachedWAng)) {
 
             this._cachedUOffset = this.uOffset;
             this._cachedVOffset = this.vOffset;

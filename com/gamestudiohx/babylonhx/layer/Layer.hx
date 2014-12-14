@@ -9,10 +9,10 @@ import com.gamestudiohx.babylonhx.mesh.Mesh;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class Layer {
+@:expose('BABYLON.Layer') class Layer {
 
     public var name:String;
     public var texture:Texture;

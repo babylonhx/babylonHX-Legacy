@@ -11,7 +11,13 @@ import com.gamestudiohx.babylonhx.tools.Tools;
 import openfl.utils.Float32Array;
 
 
-class Geometry implements IGetSetVerticesData {
+/**
+ * Port of BabylonJs project - http://www.babylonjs.com/
+ * ...
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
+ */
+
+@:expose('BABYLON.Geometry') class Geometry implements IGetSetVerticesData {
     //
     //public var Members
     public var id:String;

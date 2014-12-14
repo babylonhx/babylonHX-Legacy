@@ -11,10 +11,10 @@ import com.gamestudiohx.babylonhx.tools.SmartArray;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class PostProcess {
+@:expose('BABYLON.PostProcess') class PostProcess {
 
     public var name:String;
     public var _camera:Camera;

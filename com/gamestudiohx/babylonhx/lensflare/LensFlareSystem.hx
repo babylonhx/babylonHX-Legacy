@@ -14,10 +14,10 @@ import openfl.gl.GLBuffer;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class LensFlareSystem {
+@:expose('BABYLON.LensFlareSystem') class LensFlareSystem {
 
     public var name:String;
     public var borderLimit:Float;

@@ -23,7 +23,13 @@ import openfl.gl.GLBuffer;
 import openfl.utils.Float32Array;
 
 
-class InstancesBatch {
+/**
+ * Port of BabylonJs project - http://www.babylonjs.com/
+ * ...
+ * @author Brendon Smith #seacloud9
+ */
+
+@:expose('BABYLON.InstancesBatch') class InstancesBatch {
     public var mustReturn:Bool = false;
     public var visibleInstances:Array<InstancedMesh>;
     public var renderSelf:Bool = true;
@@ -31,7 +37,7 @@ class InstancesBatch {
     public function new() {}
 }
 
-class Mesh extends AbstractMesh implements IGetSetVerticesData {
+@:expose('BABYLON.Mesh') class Mesh extends AbstractMesh implements IGetSetVerticesData {
     // Members
     public var delayLoadState:Int = Engine.DELAYLOADSTATE_NONE;
     public var instances = new Array<InstancedMesh>();

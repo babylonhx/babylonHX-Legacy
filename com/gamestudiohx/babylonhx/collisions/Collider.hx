@@ -5,17 +5,17 @@ import com.gamestudiohx.babylonhx.mesh.SubMesh;
 import com.gamestudiohx.babylonhx.tools.math.Plane;
 import com.gamestudiohx.babylonhx.tools.math.Vector3;
 
-/**
- * Port of BabylonJs project - http://www.babylonjs.com/
- * ...
- * @author Krtolica Vujadin
- */
-
 typedef LowestRootResult = {
 root:Float, found:Bool
 }
 
-class Collider {
+/**
+ * Port of BabylonJs project - http://www.babylonjs.com/
+ * ...
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
+ */
+
+@:expose('BABYLON.Collider') class Collider {
 
     public var radius:Vector3;
     public var retry:Int;

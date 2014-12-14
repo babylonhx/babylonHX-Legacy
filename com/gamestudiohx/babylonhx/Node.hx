@@ -3,13 +3,14 @@ package com.gamestudiohx.babylonhx;
 import com.gamestudiohx.babylonhx.tools.math.Matrix;
 import com.gamestudiohx.babylonhx.tools.math.Vector3;
 
+
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class Node {
+@:expose('BABYLON.Node') class Node {
 
     public var name:String;
     public var id:String;

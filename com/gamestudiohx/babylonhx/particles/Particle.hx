@@ -4,13 +4,14 @@ import com.gamestudiohx.babylonhx.tools.math.Vector3;
 import com.gamestudiohx.babylonhx.tools.math.Color4;
 
 
+
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class Particle {
+@:expose('BABYLON.Particle') class Particle {
 
     public var lifeTime:Float = 1.0;
     public var age:Float = 0;

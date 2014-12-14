@@ -7,13 +7,14 @@ import com.gamestudiohx.babylonhx.tools.math.Color3;
 import com.gamestudiohx.babylonhx.tools.math.Matrix;
 import com.gamestudiohx.babylonhx.tools.math.Vector3;
 
+
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class HemisphericLight extends Light {
+@:expose('BABYLON.HemisphericLight') class HemisphericLight extends Light {
 
     public var direction:Vector3;
     public var groundColor:Color3 = new Color3(0.0, 0.0, 0.0);

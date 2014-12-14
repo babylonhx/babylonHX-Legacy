@@ -7,13 +7,14 @@ import com.gamestudiohx.babylonhx.Scene;
 import com.gamestudiohx.babylonhx.Engine;
 import com.gamestudiohx.babylonhx.tools.SmartArray;
 
+
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class RenderingGroup {
+@:expose('BABYLON.RenderingGroup') class RenderingGroup {
 
     public var index:Int;
     public var _scene:Scene;

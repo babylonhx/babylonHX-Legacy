@@ -6,13 +6,14 @@ import com.gamestudiohx.babylonhx.materials.textures.Texture;
 import com.gamestudiohx.babylonhx.tools.math.Vector2;
 
 
+
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class BlurPostProcess extends PostProcess {
+@:expose('BABYLON.BlurPostProcess') class BlurPostProcess extends PostProcess {
 
     public var direction:Vector2;
     public var blurWidth:Float;

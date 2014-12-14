@@ -8,10 +8,10 @@ import com.gamestudiohx.babylonhx.Scene;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class PostProcessManager {
+@:expose('BABYLON.PostProcessManager') class PostProcessManager {
 
     public var _scene:Scene;
     public var _vertexDeclaration:Array<Int>;

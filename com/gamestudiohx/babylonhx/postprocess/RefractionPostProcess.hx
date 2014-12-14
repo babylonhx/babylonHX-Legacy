@@ -9,10 +9,10 @@ import com.gamestudiohx.babylonhx.tools.math.Color3;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class RefractionPostProcess extends PostProcess {
+@:expose('BABYLON.RefractionPostProcess') class RefractionPostProcess extends PostProcess {
 
     public var color:Color3;
     public var depth:Float;

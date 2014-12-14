@@ -10,10 +10,10 @@ import com.gamestudiohx.babylonhx.culling.BoundingBox;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class OctreeBlock {
+@:expose('BABYLON.OctreeBlock') class OctreeBlock {
 
     public var meshes:Array<AbstractMesh>;
     public var subMeshes:Array<Array<SubMesh>>; // SubMesh;

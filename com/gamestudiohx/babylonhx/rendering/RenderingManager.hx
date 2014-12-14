@@ -13,10 +13,10 @@ import openfl.Lib;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class RenderingManager {
+@:expose('BABYLON.RenderingManager') class RenderingManager {
 
     public static var MAX_RENDERINGGROUPS:Int = 4;
 

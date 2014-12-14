@@ -6,10 +6,10 @@ import com.gamestudiohx.babylonhx.animations.Animation;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class Bone {
+@:expose('BABYLON.Bone') class Bone {
 
     public var name:String;
     public var _skeleton:Skeleton;

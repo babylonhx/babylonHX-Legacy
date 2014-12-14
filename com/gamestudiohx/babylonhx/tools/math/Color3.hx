@@ -4,10 +4,10 @@ package com.gamestudiohx.babylonhx.tools.math;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class Color3 {
+@:expose('BABYLON.Color3') class Color3 {
 
     public var r:Float;
     public var g:Float;

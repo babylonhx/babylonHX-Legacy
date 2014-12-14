@@ -1,12 +1,14 @@
 package com.gamestudiohx.babylonhx.tools;
 
+
+
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class SmartArray {
+@:expose('BABYLON.SmartArray') class SmartArray {
 
     public var data:Array<Dynamic>;
     public var length:Int;

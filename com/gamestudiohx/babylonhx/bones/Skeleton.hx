@@ -7,10 +7,10 @@ import openfl.utils.Float32Array;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class Skeleton {
+@:expose('BABYLON.Skeleton') class Skeleton {
 
     public var id:String;
     public var name:String;

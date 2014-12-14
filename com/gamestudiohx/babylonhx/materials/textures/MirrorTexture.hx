@@ -8,10 +8,10 @@ import com.gamestudiohx.babylonhx.tools.math.Plane;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class MirrorTexture extends RenderTargetTexture {
+@:expose('BABYLON.MirrorTexture') class MirrorTexture extends RenderTargetTexture {
 
     public var _transformMatrix:Matrix;
     public var _savedViewMatrix:Matrix;

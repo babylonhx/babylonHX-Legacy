@@ -16,13 +16,14 @@ import openfl.events.MouseEvent;
 import openfl.events.TouchEvent;
 import openfl.Lib;
 
+
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class FreeCamera extends Camera {
+@:expose('BABYLON.FreeCamera') class FreeCamera extends Camera {
 
     public var cameraDirection:Vector3;
     public var cameraRotation:Vector2;

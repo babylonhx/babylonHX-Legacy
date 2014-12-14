@@ -6,10 +6,10 @@ import com.gamestudiohx.babylonhx.tools.math.Vector3;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class TouchCamera extends FreeCamera {
+@:expose('BABYLON.TouchCamera') class TouchCamera extends FreeCamera {
 
     public var _offsetX:Float;
     public var _offsetY:Float;

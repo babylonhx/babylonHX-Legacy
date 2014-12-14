@@ -8,10 +8,10 @@ import openfl.display.Bitmap;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class Sprite {
+@:expose('BABYLON.Sprite') class Sprite {
 
     public var name:String;
     public var color:Color4;

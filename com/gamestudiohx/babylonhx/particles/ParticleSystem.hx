@@ -13,13 +13,14 @@ import com.gamestudiohx.babylonhx.materials.textures.Texture;
 import openfl.utils.Float32Array;
 
 
+
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class ParticleSystem {
+@:expose('BABYLON.ParticleSystem') class ParticleSystem {
 
     // Statics
     public static var BLENDMODE_ONEONE:Int = 0;

@@ -42,10 +42,10 @@ import openfl.gl.GL;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class Scene {
+@:expose('BABYLON.Scene') class Scene {
 
     public static var FOGMODE_NONE:Int = 0;
     public static var FOGMODE_EXP:Int = 1;
@@ -314,12 +314,27 @@ class Scene {
             return false;
         }
 
+        for (index in 0...this._geometries.length) {
+                var geometry = this._geometries[index];
+
+                if (geometry.delayLoadState == Engine.DELAYLOADSTATE_LOADING) {
+                    return false;
+                }
+        }
+
         for (index in 0...this.meshes.length) {
             var mesh = this.meshes[index];
             var mat = mesh.material;
-            /*if (mesh.delayLoadState == Engine.DELAYLOADSTATE_LOADING) {
+
+            /*
+            if (mesh.delayLoadState == Engine.DELAYLOADSTATE_LOADING) {
                 return false;
             }*/
+
+            if (!mesh.isReady()) {
+                    return false;
+            }
+
             if (Tools.isDebug) {
                 trace('isReady - ' + index);
             }
@@ -349,7 +364,7 @@ class Scene {
         if (Tools.isDebug) {
             trace('_addPendingData - ' + data);
         }
-
+        
         this._pendingData.push(data);
     }
 

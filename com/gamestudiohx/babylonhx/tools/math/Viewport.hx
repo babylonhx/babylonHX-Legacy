@@ -3,13 +3,14 @@ package com.gamestudiohx.babylonhx.tools.math;
 import com.gamestudiohx.babylonhx.Engine;
 
 
+
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class Viewport {
+@:expose('BABYLON.Viewport') class Viewport {
 
     public var width:Float;
     public var height:Float;

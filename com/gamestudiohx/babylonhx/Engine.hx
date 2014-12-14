@@ -54,11 +54,27 @@ culling:Null<Dynamic>
 }
 
 typedef BabylonCaps = {
-maxTexturesImageUnits:Null<Dynamic>, maxTextureSize:Null<Dynamic>, maxCubemapTextureSize:Null<Dynamic>, maxRenderTextureSize:Null<Dynamic>, standardDerivatives:Null<Dynamic>, textureFloat:Null<Dynamic>, textureAnisotropicFilterExtension:Null<Dynamic>, maxAnisotropy:Null<Dynamic>, instancedArrays:Array<InstancedMesh>
+    maxTexturesImageUnits:Null<Dynamic>, 
+    maxTextureSize:Null<Dynamic>, 
+    maxCubemapTextureSize:Null<Dynamic>, 
+    maxRenderTextureSize:Null<Dynamic>, 
+    standardDerivatives:Null<Dynamic>, 
+    textureFloat:Null<Dynamic>, 
+    textureAnisotropicFilterExtension:Null<Dynamic>, 
+    maxAnisotropy:Null<Dynamic>, 
+    instancedArrays:Array<InstancedMesh>
 
 }
 
-class Engine {
+
+
+/**
+ * Port of BabylonJs project - http://www.babylonjs.com/
+ * ...
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
+ */
+
+@:expose('BABYLON.Engine') class Engine {
 
     // GLOBAL var ...
     public static var clipPlane:Plane = null;
@@ -92,6 +108,7 @@ class Engine {
     public var _alphaTest:Bool;
     private var _depthMask:Bool = false;
     public var _runningLoop:Bool;
+    private var _vertexAttribArrays:Array<Bool>;
 
     public var _loadedTexturesCache:Array<BabylonTexture>;
     public var _activeTexturesCache:Array<Texture>;
@@ -111,6 +128,7 @@ class Engine {
     public var _renderFunction:Rectangle -> Void;
     public var _workingCanvas:BitmapData;
     public var _workingContext:OpenGLView;
+    
 
 
     public function new(canvas:Sprite, antialias:Bool) {
@@ -146,10 +164,14 @@ class Engine {
         this._caps.maxRenderTextureSize = 8192;// GL.getParameter(GL.MAX_RENDERBUFFER_SIZE);
 
 
-        // Extensions
-
+        // Extensions todo investigat this issue
+        #if html5
         this._caps.standardDerivatives = GL.getExtension('OES_standard_derivatives') != null;
         this._caps.textureFloat = GL.getExtension('OES_texture_float') != null;
+        #else
+        this._caps.standardDerivatives = true;
+        this._caps.textureFloat = true;
+        #end
 
         // TODO - this fails on desktops
         function get_EXT_texture_filter_anisotropic():Dynamic {
@@ -656,7 +678,7 @@ class Engine {
 
         GL.deleteShader(vertexShader);
         GL.deleteShader(fragmentShader);
-
+        //trace(shaderProgram);
         return shaderProgram;
     }
 
@@ -691,24 +713,32 @@ class Engine {
         if (effect == null || effect.getAttributesCount() == 0 || this._currentEffect == effect) {
             return;
         }
-
+        // todo check this throughly 
+        /*if(this._vertexAttribArrays == null){
+            this._vertexAttribArrays = [];
+        }*/
+        
         // Use program
         GL.useProgram(effect.getProgram());
 
         /*
-        for (var i in this._vertexAttribArrays) {
-                if (i > this._gl.VERTEX_ATTRIB_ARRAY_ENABLED || !this._vertexAttribArrays[i]) {
+        for (index in 0...this._vertexAttribArrays.length) {
+            
+
+                if (index > GL.VERTEX_ATTRIB_ARRAY_ENABLED || !this._vertexAttribArrays[index]) {
                     continue;
                 }
-                this._vertexAttribArrays[i] = false;
-                this._gl.disableVertexAttribArray(i);
-            }
+                this._vertexAttribArrays[index] = false;
+                GL.disableVertexAttribArray(index);
+        }
         */
+      
 
         for (index in 0...effect.getAttributesCount()) {
             // Attributes
             var order:Int = effect.getAttribute(index);
             if (order >= 0) {
+                //this._vertexAttribArrays[order] = true;
                 GL.enableVertexAttribArray(effect.getAttribute(index));
             }
         }
@@ -720,8 +750,8 @@ class Engine {
         if (uniform != null) {
             #if html5
                 GL.uniform1fv(uniform, cast array); 
-                #else
-            GL.uniform1fv(uniform, array);
+            #else
+                GL.uniform1fv(uniform, array);
             #end
 
         }
@@ -735,6 +765,12 @@ class Engine {
 
     inline public function setMatrix(uniform:GLUniformLocation = null, matrix:Matrix) {
         if (uniform != null) {
+            /*trace(new Float32Array(matrix.toArray()).getByteBuffer());
+            for( ff in Reflect.fields(new Float32Array(matrix.toArray())) ){
+                trace(ff);
+            }*/
+            
+            
             GL.uniformMatrix4fv(uniform, false, #if html5 matrix.toArray() #else new Float32Array(matrix.toArray()) #end);
         }
     }
@@ -895,6 +931,9 @@ class Engine {
                 this._workingCanvas = getScaled(img, Std.int(potWidth / 2), Std.int(potHeight / 2));
             }
 
+
+
+            // todo re-evaluate this for bump
             #if html5
 			var pixelData = this._workingCanvas.getPixels(this._workingCanvas.rect).byteView;
 			#else
@@ -904,13 +943,13 @@ class Engine {
             var pixelData = new UInt8Array(BitmapData.getRGBAPixels(this._workingCanvas));
             #end*/
 
-
+            //trace(pixelData);
             GL.bindTexture(GL.TEXTURE_2D, texture.data);
 
             // IMAGE FLIPPING IS DISABLED AS IT IS ONLY SUPPORTED IN WebGL
-            /*#if html5
+            #if html5
             GL.pixelStorei(GL.UNPACK_FLIP_Y_WEBGL, invertY != null ? 1 : 0);
-			#end*/
+			#end
 
             GL.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, this._workingCanvas.width, this._workingCanvas.height, 0, GL.RGBA, GL.UNSIGNED_BYTE, pixelData);
             GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.LINEAR);
@@ -1234,6 +1273,8 @@ class Engine {
 
         for (index in 0...samplers.length) {
             var uniform = effect.getUniform(samplers[index]);
+            //trace('in bind samplers');
+            //trace(samplers[index]);
             GL.uniform1i(uniform, index);
         }
         this._currentEffect = null;
@@ -1255,12 +1296,14 @@ class Engine {
     }
 
     public function setTexture(channel:Int, texture:Texture) {
+        //trace(channel);
         if (channel < 0) {
             return;
         }
-
+        //trace('does native make it??');
         // Not ready?
         if (texture == null || !texture.isReady()) {
+            //trace(this._activeTexturesCache[channel]);
             if (this._activeTexturesCache[channel] != null) {
                 GL.activeTexture(getGLTexture(channel));
                 GL.bindTexture(GL.TEXTURE_2D, null);
@@ -1269,6 +1312,7 @@ class Engine {
             }
             return;
         }
+
 
         // Video
         // TODO
@@ -1279,11 +1323,17 @@ class Engine {
         } else if (texture.delayLoadState == BABYLON.Engine.DELAYLOADSTATE_NOTLOADED) { // Delay loading
             texture.delayLoad();
             return;
+        }
+
+        if (texture.delayLoadState == Engine.DELAYLOADSTATE_NOTLOADED) { // Delay loading
+            texture.delayLoad();
+            return;
         }*/
 
         if (this._activeTexturesCache[channel] == texture) {
             return;
         }
+        
         this._activeTexturesCache[channel] = texture;
 
         var internalTexture:BabylonTexture = texture.getInternalTexture();

@@ -16,13 +16,14 @@ import com.gamestudiohx.babylonhx.tools.Tools;
 import com.gamestudiohx.babylonhx.materials.textures.Texture;
 import com.gamestudiohx.babylonhx.materials.textures.CubeTexture;
 
+
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class StandardMaterial extends Material {
+@:expose('BABYLON.StandardMaterial') class StandardMaterial extends Material {
 
     public var diffuseTexture:Texture = null;
     public var ambientTexture:Texture = null;
@@ -231,7 +232,6 @@ class StandardMaterial extends Material {
 
                 // Shadows
                 var shadowGenerator = light.getShadowGenerator();
-                //trace(shadowGenerator);
                 if (mesh != null && mesh.receiveShadows && shadowGenerator != null) {
                     defines.push("#define SHADOW" + lightIndex);
 
@@ -389,6 +389,7 @@ class StandardMaterial extends Material {
         }
 
         if (this.emissiveTexture != null) {
+
             this._effect.setTexture("emissiveSampler", this.emissiveTexture);
 
             this._effect.setFloat2("vEmissiveInfos", this.emissiveTexture.coordinatesIndex, this.emissiveTexture.level);
@@ -404,8 +405,9 @@ class StandardMaterial extends Material {
 
         if (this.bumpTexture != null && this._scene.getEngine().getCaps().standardDerivatives != null) {
             this._effect.setTexture("bumpSampler", this.bumpTexture);
-
             this._effect.setFloat2("vBumpInfos", this.bumpTexture.coordinatesIndex, this.bumpTexture.level);
+            //bump matrix does not work for native!!!
+            // 
             this._effect.setMatrix("bumpMatrix", this.bumpTexture._computeTextureMatrix());
         }
 

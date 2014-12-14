@@ -18,7 +18,13 @@ import openfl.gl.GLBuffer;
 import openfl.utils.Float32Array;
 
 
-class InstancedMesh extends AbstractMesh {
+/**
+ * Port of BabylonJs project - http://www.babylonjs.com/
+ * ...
+ * @author Brendon Smith #seacloud9
+ */
+
+@:expose('BABYLON.InstancedMesh') class InstancedMesh extends AbstractMesh {
     private var _sourceMesh:Mesh;
 
     public function new(name:String, source:Mesh) {

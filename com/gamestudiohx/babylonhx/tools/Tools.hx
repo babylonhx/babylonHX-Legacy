@@ -17,12 +17,6 @@ import sys.io.FileInput;
 #end
 
 
-/**
- * Port of BabylonJs project - http://www.babylonjs.com/
- * ...
- * @author Krtolica Vujadin
- */
-
 typedef BabylonMinMax = {
 minimum:Vector3, maximum:Vector3
 }
@@ -43,7 +37,14 @@ class Axis {
 }
 
 
-class Tools {
+
+/**
+ * Port of BabylonJs project - http://www.babylonjs.com/
+ * ...
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
+ */
+
+@:expose('BABYLON.Tools') class Tools {
     public static var isDebug:Bool = false;
     public static var timer:Timer;
 

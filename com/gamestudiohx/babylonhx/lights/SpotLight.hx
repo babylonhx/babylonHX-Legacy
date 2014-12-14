@@ -9,10 +9,10 @@ import com.gamestudiohx.babylonhx.tools.math.Vector3;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class SpotLight extends Light {
+@:expose('BABYLON.SpotLight') class SpotLight extends Light {
 
     public var _transformedPosition:Vector3;
     public var direction:Vector3;

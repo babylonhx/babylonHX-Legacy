@@ -7,10 +7,10 @@ import com.gamestudiohx.babylonhx.materials.textures.Texture;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class LensFlare {
+@:expose('BABYLON.LensFlare') class LensFlare {
 
     public var size:Float;
     public var position:Float;

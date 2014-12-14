@@ -17,7 +17,14 @@ import openfl.gl.GLBuffer;
 import openfl.Lib;
 
 
-class BoundingBoxRenderer {
+
+/**
+ * Port of BabylonJs project - http://www.babylonjs.com/
+ * ...
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
+ */
+
+@:expose('BABYLON.BoundingBoxRenderer') class BoundingBoxRenderer {
     public var frontColor = new Color3(1, 1, 1);
     public var backColor = new Color3(0.1, 0.1, 0.1);
     public var showBackLines = true;

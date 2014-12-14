@@ -3,13 +3,14 @@ package com.gamestudiohx.babylonhx.tools.math;
 import openfl.utils.Float32Array;
 
 
+
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class Matrix {
+@:expose('BABYLON.Matrix') class Matrix {
 
     #if html5
 	public var m:Float32Array;

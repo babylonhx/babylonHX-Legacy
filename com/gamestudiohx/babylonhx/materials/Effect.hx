@@ -19,10 +19,10 @@ import openfl.gl.GLUniformLocation;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class Effect {
+@:expose('BABYLON.Effect') class Effect {
 
     public static var ShadersStore:Map<String, String> = [
 		"anaglyphPixelShader" => "#ifdef GL_ES\nprecision mediump float;\n#endif\n\n// Samplers\nvarying vec2 vUV;\nuniform sampler2D textureSampler;\nuniform sampler2D leftSampler;\n\nvoid main(void)\n{\n    vec4 leftFrag = texture2D(leftSampler, vUV);\n    leftFrag = vec4(1.0, leftFrag.g, leftFrag.b, 1.0);\n\n\tvec4 rightFrag = texture2D(textureSampler, vUV);\n    rightFrag = vec4(rightFrag.r, 1.0, 1.0, 1.0);\n\n    gl_FragColor = vec4(rightFrag.rgb * leftFrag.rgb, 1.0);\n}",
@@ -220,7 +220,6 @@ class Effect {
                 trace(fragmentSourceCode);
                 trace('fragmentSourceCode ----------');
             }
-
             this._program = engine.createShaderProgram(vertexSourceCode, fragmentSourceCode, defines);
             this._uniforms = engine.getUniforms(this._program, this._uniformsNames);
             this._attributes = engine.getAttributes(this._program, attributesNames);
@@ -236,11 +235,9 @@ class Effect {
 				#else
                 if (sampler < 0) {
                 #end
-                
                     this._samplers.splice(index, 1);
                     index--;
                 }
-
                 index++;
             }
             engine.bindSamplers(this);
@@ -267,6 +264,9 @@ class Effect {
     }
 
     public function setTexture(channel:String, texture:Texture) {
+    	//todo investigate
+    	//trace(Lambda.indexOf(this._samplers, channel));
+    	//trace('setTexture...');
         this._engine.setTexture(Lambda.indexOf(this._samplers, channel), texture);
     }
 

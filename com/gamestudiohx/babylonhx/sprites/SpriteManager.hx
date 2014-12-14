@@ -13,10 +13,10 @@ import openfl.utils.Float32Array;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class SpriteManager {
+@:expose('BABYLON.SpriteManager') class SpriteManager {
 
     public var name:String;
     public var cellSize:Int;

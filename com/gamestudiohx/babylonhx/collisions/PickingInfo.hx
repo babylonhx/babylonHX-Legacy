@@ -6,10 +6,10 @@ import com.gamestudiohx.babylonhx.tools.math.Vector3;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class PickingInfo {
+@:expose('BABYLON.PickingInfo') class PickingInfo {
 
     public var hit:Bool = false;
     public var distance:Float;

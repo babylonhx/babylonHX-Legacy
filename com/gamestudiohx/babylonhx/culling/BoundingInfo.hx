@@ -5,17 +5,18 @@ import com.gamestudiohx.babylonhx.tools.math.Matrix;
 import com.gamestudiohx.babylonhx.tools.math.Vector3;
 import com.gamestudiohx.babylonhx.tools.math.Plane;
 
-/**
- * Port of BabylonJs project - http://www.babylonjs.com/
- * ...
- * @author Krtolica Vujadin
- */
-
 typedef BoundingInfoMinMax = {
 min:Float, max:Float
 }
 
-class BoundingInfo {
+
+/**
+ * Port of BabylonJs project - http://www.babylonjs.com/
+ * ...
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
+ */
+
+@:expose('BABYLON.BoundingInfo') class BoundingInfo {
     public var minimum:Vector3;
     public var maximum:Vector3;
     public var boundingBox:BoundingBox;

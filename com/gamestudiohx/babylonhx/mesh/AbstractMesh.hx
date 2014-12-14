@@ -28,17 +28,18 @@ import haxe.io.BufferInput;
 import openfl.gl.GLBuffer;
 import openfl.utils.Float32Array;
 
-/**
- * Port of BabylonJs project - http://www.babylonjs.com/
- * ...
- * @author Krtolica Vujadin
- */
-
 typedef MeshCache = {
 localMatrixUpdated:Null<Bool>, position:Null<Vector3>, scaling:Null<Vector3>, rotation:Null<Vector3>, rotationQuaternion:Null<Quaternion>, pivotMatrixUpdated:Null<Bool>
 }
 
-class BabylonGLBuffer {
+
+/**
+ * Port of BabylonJs project - http://www.babylonjs.com/
+ * ...
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
+ */
+
+@:expose('BABYLON.BabylonGLBuffer') class BabylonGLBuffer {
 
     public var buffer:GLBuffer;
     public var references:Int;
@@ -52,7 +53,7 @@ class BabylonGLBuffer {
 
 }
 
-class AbstractMesh extends Node {
+@:expose('BABYLON.AbstractMesh') class AbstractMesh extends Node {
 
     public static var BILLBOARDMODE_NONE:Int = 0;
     public static var BILLBOARDMODE_X:Int = 1;

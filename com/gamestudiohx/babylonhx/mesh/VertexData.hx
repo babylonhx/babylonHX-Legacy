@@ -24,7 +24,14 @@ interface IGetSetVerticesData {
 }
 
 
-class VertexData {
+
+/**
+ * Port of BabylonJs project - http://www.babylonjs.com/
+ * ...
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
+ */
+
+@:expose('BABYLON.VertexData') class VertexData {
 
     public var positions = new Array<Float>();
     public var normals = new Array<Float>();

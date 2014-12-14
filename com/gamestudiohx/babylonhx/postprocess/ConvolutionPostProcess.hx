@@ -5,16 +5,16 @@ import com.gamestudiohx.babylonhx.materials.Effect;
 import com.gamestudiohx.babylonhx.tools.math.Matrix;
 
 
+
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class ConvolutionPostProcess extends PostProcess {
+@:expose('BABYLON.ConvolutionPostProcess') class ConvolutionPostProcess extends PostProcess {
 
     public var kernelMatrix:Matrix;
-    //public var onApply:Effect -> Void;
 
 
     public function new(name:String, kernelMatrix:Matrix, ratio:Float, camera:Camera, samplingMode:Int = 1) {

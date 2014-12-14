@@ -5,15 +5,14 @@ import com.gamestudiohx.babylonhx.Engine;
 import com.gamestudiohx.babylonhx.tools.math.Matrix;
 
 
+// CubeTexture should inherit BaseTexture, not Texture - but this makes things easier (less casting involved)
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-
-// CubeTexture should inherit BaseTexture, not Texture - but this makes things easier (less casting involved)
-class CubeTexture extends Texture {
+@:expose('BABYLON.CubeTexture') class CubeTexture extends Texture {
 
     public var _textureMatrix:Matrix;
     public var _extensions:Array<String>;

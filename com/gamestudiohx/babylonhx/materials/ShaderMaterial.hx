@@ -22,10 +22,10 @@ import com.gamestudiohx.babylonhx.materials.textures.CubeTexture;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Brendon Smith
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class ShaderMaterial extends Material {
+@:expose('BABYLON.ShaderMaterial') class ShaderMaterial extends Material {
 
     private var _shaderPath:Dynamic;
     private var _options:Dynamic;

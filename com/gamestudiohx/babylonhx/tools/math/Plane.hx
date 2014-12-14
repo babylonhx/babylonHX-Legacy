@@ -4,10 +4,10 @@ package com.gamestudiohx.babylonhx.tools.math;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class Plane {
+@:expose('BABYLON.Plane') class Plane {
 
     public var normal:Vector3;
     public var d:Float;

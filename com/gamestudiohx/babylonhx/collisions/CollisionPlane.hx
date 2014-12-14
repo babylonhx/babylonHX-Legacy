@@ -5,10 +5,10 @@ import com.gamestudiohx.babylonhx.tools.math.Vector3;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class CollisionPlane {
+@:expose('BABYLON.CollisionPlane') class CollisionPlane {
 
     public var normal:Vector3;
     public var origin:Vector3;
@@ -34,7 +34,6 @@ class CollisionPlane {
         return (dot <= epsilon);
     }
 
-    // vector3?
     public function signedDistanceTo(point:Vector3):Float {
         return Vector3.Dot(point, this.normal) + this.equation[3];
     }

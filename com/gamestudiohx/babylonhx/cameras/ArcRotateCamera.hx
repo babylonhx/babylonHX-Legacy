@@ -10,11 +10,6 @@ import openfl.events.KeyboardEvent;
 import openfl.events.MouseEvent;
 import openfl.Lib;
 
-/**
- * Port of BabylonJs project - http://www.babylonjs.com/
- * ...
- * @author Krtolica Vujadin
- */
 
 /*typedef BabylonArcRotateCameraCache = {
 	alpha: Null<Float>,
@@ -23,7 +18,13 @@ import openfl.Lib;
 	target: Null<Dynamic>
 }*/
 
-class ArcRotateCamera extends Camera {
+/**
+ * Port of BabylonJs project - http://www.babylonjs.com/
+ * ...
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
+ */
+
+@:expose('BABYLON.ArcRotateCamera') class ArcRotateCamera extends Camera {
 
     public var alpha:Float;
     public var beta:Float;

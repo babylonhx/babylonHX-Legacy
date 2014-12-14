@@ -10,12 +10,6 @@ import com.gamestudiohx.babylonhx.postprocess.PostProcess;
 import com.gamestudiohx.babylonhx.tools.math.Viewport;
 import openfl.display.DisplayObject;
 
-/**
- * Port of BabylonJs project - http://www.babylonjs.com/
- * ...
- * @author Krtolica Vujadin
- */
-
 /*typedef BabylonCameraCache = {
 	position: Null<Vector3>,
 	upVector: Null<Vector3>,
@@ -35,7 +29,13 @@ import openfl.display.DisplayObject;
 	renderHeight: Null<Int>
 }*/
 
-class Camera extends Node {
+/**
+ * Port of BabylonJs project - http://www.babylonjs.com/
+ * ...
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
+ */
+
+@:expose('BABYLON.Camera') class Camera extends Node {
 
     public static var PERSPECTIVE_CAMERA:Int = 0;
     public static var ORTHOGRAPHIC_CAMERA:Int = 1;

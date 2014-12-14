@@ -10,7 +10,13 @@ import openfl.display.Bitmap;
 import openfl.display.BitmapData;
 
 
-class DynamicTexture extends Texture {
+/**
+ * Port of BabylonJs project - http://www.babylonjs.com/
+ * ...
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
+ */
+
+@:expose('BABYLON.DynamicTexture') class DynamicTexture extends Texture {
     private var _generateMipMaps:Bool;
     //private var _context : CanvasRenderingContext2D;
 

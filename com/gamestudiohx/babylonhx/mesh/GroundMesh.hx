@@ -19,7 +19,14 @@ import com.gamestudiohx.babylonhx.tools.math.Vector3;
 import com.gamestudiohx.babylonhx.Engine.BabylonCaps;
 
 
-class GroundMesh extends Mesh {
+
+/**
+ * Port of BabylonJs project - http://www.babylonjs.com/
+ * ...
+ * @author Brendon Smith #seacloud9
+ */
+
+@:expose('BABYLON.GroundMesh') class GroundMesh extends Mesh {
 
         public var generateOctree = false;
         private var _worldInverse = new Matrix();

@@ -39,10 +39,10 @@ import haxe.Json;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class SceneLoader {
+@:expose('BABYLON.SceneLoader') class SceneLoader {
 
     public static function loadCubeTexture(rootUrl:String, parsedTexture:Dynamic, scene:Scene):CubeTexture {
         var texture = new CubeTexture(rootUrl + parsedTexture.name, scene);
@@ -141,6 +141,7 @@ class SceneLoader {
         material.id = parsedMaterial.id;
         material.backFaceCulling = parsedMaterial.backFaceCulling;
 
+
         if (parsedMaterial.diffuseTexture != null) {
             material.diffuseTexture = loadTexture(rootUrl, parsedMaterial.diffuseTexture, scene);
         }
@@ -167,6 +168,7 @@ class SceneLoader {
 
         if (parsedMaterial.bumpTexture != null) {
             material.bumpTexture = loadTexture(rootUrl, parsedMaterial.bumpTexture, scene);
+
         }
 
         return material;
@@ -179,7 +181,6 @@ class SceneLoader {
                 return parseMaterial(parsedMaterial, scene, rootUrl);
             }
         }
-
         return null;
     }
 
@@ -187,7 +188,6 @@ class SceneLoader {
         var multiMaterial = new MultiMaterial(parsedMultiMaterial.name, scene);
 
         multiMaterial.id = parsedMultiMaterial.id;
-
         for (matIndex in 0...parsedMultiMaterial.materials.length) {
             var subMatId = parsedMultiMaterial.materials[matIndex];
 
@@ -305,6 +305,7 @@ class SceneLoader {
     }
 
     public static function parseLight(parsedLight:Dynamic, scene:Scene):Light {
+        //todo add light range etc..
         var light:Light = null;
 
         switch (parsedLight.type) {

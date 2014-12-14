@@ -10,10 +10,10 @@ import com.gamestudiohx.babylonhx.tools.math.Matrix;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class PointLight extends Light {
+@:expose('BABYLON.PointLight') class PointLight extends Light {
 
     public var _worldMatrix:Matrix;
     public var _transformedPosition:Vector3;

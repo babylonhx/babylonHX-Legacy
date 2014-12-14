@@ -4,10 +4,10 @@ package com.gamestudiohx.babylonhx.tools.math;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class Quaternion {
+@:expose('BABYLON.Quaternion') class Quaternion {
 
     public var x:Float;
     public var y:Float;

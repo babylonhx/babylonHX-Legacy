@@ -7,10 +7,10 @@ import com.gamestudiohx.babylonhx.tools.math.Plane;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class BoundingBox {
+@:expose('BABYLON.BoundingBox') class BoundingBox {
 
     public var minimum:Vector3;
     public var maximum:Vector3;

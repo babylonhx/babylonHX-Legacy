@@ -16,13 +16,14 @@ import com.gamestudiohx.babylonhx.tools.math.Vector3;
 import com.gamestudiohx.babylonhx.tools.SmartArray;
 
 
+
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class ShadowGenerator {
+@:expose('BABYLON.ShadowGenerator') class ShadowGenerator {
 
     public var _light:DirectionalLight;
     public var _scene:Scene;

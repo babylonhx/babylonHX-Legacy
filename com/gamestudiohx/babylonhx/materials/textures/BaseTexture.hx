@@ -6,14 +6,13 @@ import com.gamestudiohx.babylonhx.Engine;
 import openfl.display.BitmapData;
 import openfl.gl.GLTexture;
 
-
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class BaseTexture {
+@:expose('BABYLON.BaseTexture') class BaseTexture {
 
     public var _scene:Scene;
     public var delayLoadState:Int;

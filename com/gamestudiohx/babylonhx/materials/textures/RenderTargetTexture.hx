@@ -7,13 +7,14 @@ import com.gamestudiohx.babylonhx.mesh.AbstractMesh;
 import com.gamestudiohx.babylonhx.mesh.Mesh;
 import com.gamestudiohx.babylonhx.tools.SmartArray;
 
+
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class RenderTargetTexture extends Texture {
+@:expose('BABYLON.RenderTargetTexture') class RenderTargetTexture extends Texture {
 
     public var _generateMipMaps:Bool;
     public var _renderingManager:RenderingManager;

@@ -2,13 +2,14 @@ package com.gamestudiohx.babylonhx.tools.math;
 import openfl.utils.Float32Array;
 
 
+
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class Vector3 {
+@:expose('BABYLON.Vector3') class Vector3 {
 
     public var x:Float;
     public var y:Float;

@@ -1,13 +1,14 @@
 package com.gamestudiohx.babylonhx.tools.math;
 
 
+
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class Vector2 {
+@:expose('BABYLON.Vector2') class Vector2 {
 
     public var x:Float;
     public var y:Float;

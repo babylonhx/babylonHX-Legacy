@@ -9,14 +9,13 @@ import com.gamestudiohx.babylonhx.tools.math.Matrix;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class Material {
+@:expose('BABYLON.Material') class Material {
 
     public var name:String;
     public var id:String;
-
     public var _renderId:Int;
     private var _scene:Scene;
 
@@ -28,7 +27,6 @@ class Material {
     public var backFaceCulling:Bool;
     public var _effect:Effect;
     public var _wasPreviouslyReady:Bool;
-
     public var onDispose:Void -> Void;
 
     public function new(name:String, scene:Scene) {

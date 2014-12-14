@@ -9,10 +9,10 @@ import com.gamestudiohx.babylonhx.tools.SmartArray;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class Octree {
+@:expose('BABYLON.Octree') class Octree {
 
     public var blocks:Array<OctreeBlock>;
     public var _maxBlockCapacity:Int;

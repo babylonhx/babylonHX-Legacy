@@ -3,14 +3,13 @@ package com.gamestudiohx.babylonhx.materials;
 import com.gamestudiohx.babylonhx.mesh.Mesh;
 import com.gamestudiohx.babylonhx.Scene;
 
-
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class MultiMaterial {
+@:expose('BABYLON.MultiMaterial') class MultiMaterial {
 
     public var name:String;
     public var id:String;

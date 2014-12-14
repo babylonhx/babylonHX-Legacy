@@ -5,17 +5,18 @@ import com.gamestudiohx.babylonhx.tools.math.Quaternion;
 import com.gamestudiohx.babylonhx.tools.math.Vector3;
 import com.gamestudiohx.babylonhx.cameras.FreeCamera;
 
-/**
- * Port of BabylonJs project - http://www.babylonjs.com/
- * ...
- * @author Krtolica Vujadin
- */
-
 typedef BabylonFrame = {
 frame:Int, value:Dynamic // Vector3 or Quaternion or Matrix or Float
 }
 
-class Animation {
+
+/**
+ * Port of BabylonJs project - http://www.babylonjs.com/
+ * ...
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
+ */
+
+@:expose('BABYLON.Animation') class Animation {
 
     public static var ANIMATIONTYPE_FLOAT:Int = 0;
     public static var ANIMATIONTYPE_VECTOR3:Int = 1;

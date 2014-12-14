@@ -7,10 +7,10 @@ import com.gamestudiohx.babylonhx.materials.Effect;
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
  * ...
- * @author Krtolica Vujadin
+ * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-class FxaaPostProcess extends PostProcess {
+@:expose('BABYLON.FxaaPostProcess') class FxaaPostProcess extends PostProcess {
 
     public var texelWidth:Float;
     public var texelHeight:Float;
@@ -21,27 +21,15 @@ class FxaaPostProcess extends PostProcess {
         texelWidth = 0;
         texelHeight = 0;
 
-        this.onApply = function(effect:Effect):Void{
+        this.onApply = function(effect:Effect) {
             effect.setFloat2("texelSize", this.texelWidth, this.texelHeight);
         }
 
-        this.onSizeChanged = function():Void{
+        this.onSizeChanged = function(){
             this.texelWidth = 1.0 / this.width;
             this.texelHeight = 1.0 / this.height;
         }
     }
 
-    /*
-    public function onSizeChanged() {
-        this.texelWidth = 1.0 / this.width;
-        this.texelHeight = 1.0 / this.height;
-    }
-    */
-
-    /*
-    override function onApply(effect:Effect) {
-        effect.setFloat2("texelSize", this.texelWidth, this.texelHeight);
-    }
-    */
 
 }
