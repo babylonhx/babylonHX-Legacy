@@ -20,7 +20,7 @@ import openfl.gl.GLTexture;
  * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
-@:expose('BABYLON.Texture') class BabylonTexture {
+@:expose('BABYLON.BabylonTexture') class BabylonTexture {
 
     public var data:GLTexture;
 
@@ -69,7 +69,7 @@ import openfl.gl.GLTexture;
 
 }
 
-class Texture extends BaseTexture {
+@:expose('BABYLON.Texture') class Texture extends BaseTexture {
 
     // Constants
     public static var NEAREST_SAMPLINGMODE:Int = 1;
