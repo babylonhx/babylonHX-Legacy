@@ -857,11 +857,15 @@ typedef BabylonCaps = {
         switch (mode) {
             case Engine.ALPHA_DISABLE:
                 this.setDepthWrite(true);
-
+                #if html5
+                GL.blendFuncSeparate(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA, GL.ZERO, GL.ONE);
+                GL.disable(GL.BLEND);
+                #end
             //GL.blendFuncSeparate(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA, GL.ZERO, GL.ONE);
             //GL.disable(GL.BLEND);
             case Engine.ALPHA_COMBINE:
                 this.setDepthWrite(false);
+                // GL.ONE??
                 GL.blendFuncSeparate(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA, GL.ZERO, GL.ONE);
                 GL.enable(GL.BLEND);
             case Engine.ALPHA_ADD:

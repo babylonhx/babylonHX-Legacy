@@ -23,6 +23,14 @@ import com.gamestudiohx.babylonhx.materials.textures.CubeTexture;
  * @author Krtolica Vujadin / Brendon Smith #seacloud9
  */
 
+@:expose('BABYLON.FresnelParameters') class FresnelParameters {
+        public var isEnabled:Bool = true;
+        public var leftColor:Color3 = new Color3(1,1,1);
+        public var rightColor:Color3 = new Color3();
+        public var bias:Float = 0;
+        public var power:Int = 1;
+}
+
 @:expose('BABYLON.StandardMaterial') class StandardMaterial extends Material {
 
     public var diffuseTexture:Texture = null;
@@ -60,11 +68,20 @@ import com.gamestudiohx.babylonhx.materials.textures.CubeTexture;
     public static var EmissiveTextureEnabled = true;
     public static var SpecularTextureEnabled = true;
     public static var BumpTextureEnabled = true;
+    public var diffuseFresnelParameters: FresnelParameters;
+    public var opacityFresnelParameters: FresnelParameters;
+    public var reflectionFresnelParameters: FresnelParameters;
+    public var emissiveFresnelParameters: FresnelParameters;
+
 
 
     public function new(name:String, scene:Scene) {
         super(name, scene);
 
+        this.diffuseFresnelParameters = null;
+        this.opacityFresnelParameters = null;
+        this.reflectionFresnelParameters = null;
+        this.emissiveFresnelParameters = null;
         this.ambientColor = new Color3(0, 0, 0);
         this.diffuseColor = new Color3(1, 1, 1);
         this.specularColor = new Color3(1, 1, 1);
@@ -85,7 +102,7 @@ import com.gamestudiohx.babylonhx.materials.textures.CubeTexture;
     }
 
     override public function needAlphaBlending():Bool {
-        return (this.alpha < 1.0) || (this.opacityTexture != null) || this._shouldUseAlphaFromDiffuseTexture();
+        return (this.alpha < 1.0) || (this.opacityTexture != null) || this._shouldUseAlphaFromDiffuseTexture() || this.opacityFresnelParameters != null  && this.opacityFresnelParameters.isEnabled;
     }
 
     override public function needAlphaTesting():Bool {
@@ -271,6 +288,42 @@ import com.gamestudiohx.babylonhx.materials.textures.CubeTexture;
         //trace(lightIndex);
         //trace(defines);
 
+        // Fresnel
+        if (this.diffuseFresnelParameters != null && this.diffuseFresnelParameters.isEnabled ||
+                this.opacityFresnelParameters != null && this.opacityFresnelParameters.isEnabled ||
+                this.emissiveFresnelParameters != null && this.emissiveFresnelParameters.isEnabled ||
+                this.reflectionFresnelParameters != null && this.reflectionFresnelParameters.isEnabled) {
+
+                var fresnelRank = 1;
+
+                if (this.diffuseFresnelParameters != null && this.diffuseFresnelParameters.isEnabled) {
+                    defines.push("#define DIFFUSEFRESNEL");
+                    //fallbacks.addFallback(fresnelRank, "DIFFUSEFRESNEL");
+                    fresnelRank++;
+                }
+
+                if (this.opacityFresnelParameters != null && this.opacityFresnelParameters.isEnabled) {
+                    defines.push("#define OPACITYFRESNEL");
+                    //fallbacks.addFallback(fresnelRank, "OPACITYFRESNEL");
+                    fresnelRank++;
+                }
+
+                if (this.reflectionFresnelParameters != null && this.reflectionFresnelParameters.isEnabled) {
+                    defines.push("#define REFLECTIONFRESNEL");
+                    //fallbacks.addFallback(fresnelRank, "REFLECTIONFRESNEL");
+                    fresnelRank++;
+                }
+
+                if (this.emissiveFresnelParameters != null && this.emissiveFresnelParameters.isEnabled) {
+                    defines.push("#define EMISSIVEFRESNEL");
+                    //fallbacks.addFallback(fresnelRank, "EMISSIVEFRESNEL");
+                    fresnelRank++;
+                }
+
+                defines.push("#define FRESNEL");
+                //fallbacks.addFallback(fresnelRank - 1, "FRESNEL");
+        }
+
         var attribs:Array<String> = [VertexBuffer.PositionKind, VertexBuffer.NormalKind];
         if (mesh != null) {
             if (mesh.isVerticesDataPresent(VertexBuffer.UVKind)) {
@@ -315,7 +368,23 @@ import com.gamestudiohx.babylonhx.materials.textures.CubeTexture;
                     shaderName = "legacydefault";
             }
 
-            this._effect = this._scene.getEngine().createEffect(shaderName, attribs, ["world","view","viewProjection","vEyePosition","vLightsType","vAmbientColor","vDiffuseColor","vSpecularColor","vEmissiveColor","vLightData0","vLightDiffuse0","vLightSpecular0","vLightDirection0","vLightGround0","lightMatrix0","vLightData1","vLightDiffuse1","vLightSpecular1","vLightDirection1","vLightGround1","lightMatrix1","vLightData2","vLightDiffuse2","vLightSpecular2","vLightDirection2","vLightGround2","lightMatrix2","vLightData3","vLightDiffuse3","vLightSpecular3","vLightDirection3","vLightGround3","lightMatrix3","vFogInfos","vFogColor","vDiffuseInfos","vAmbientInfos","vOpacityInfos","vReflectionInfos","vEmissiveInfos","vSpecularInfos","vBumpInfos","mBones","vClipPlane","diffuseMatrix","ambientMatrix","opacityMatrix","reflectionMatrix","emissiveMatrix","specularMatrix","bumpMatrix","darkness0","darkness1","darkness2","darkness3"],["diffuseSampler","ambientSampler","opacitySampler","reflectionCubeSampler","reflection2DSampler","emissiveSampler","specularSampler","bumpSampler","shadowSampler0","shadowSampler1","shadowSampler2","shadowSampler3"], join, optionalDefines);
+            this._effect = this._scene.getEngine().createEffect(shaderName, attribs, 
+            ["world", "view", "viewProjection", "vEyePosition", "vLightsType", "vAmbientColor", "vDiffuseColor", "vSpecularColor", "vEmissiveColor",
+                        "vLightData0", "vLightDiffuse0", "vLightSpecular0", "vLightDirection0", "vLightGround0", "lightMatrix0",
+                        "vLightData1", "vLightDiffuse1", "vLightSpecular1", "vLightDirection1", "vLightGround1", "lightMatrix1",
+                        "vLightData2", "vLightDiffuse2", "vLightSpecular2", "vLightDirection2", "vLightGround2", "lightMatrix2",
+                        "vLightData3", "vLightDiffuse3", "vLightSpecular3", "vLightDirection3", "vLightGround3", "lightMatrix3",
+                        "vFogInfos", "vFogColor", "pointSize",
+                        "vDiffuseInfos", "vAmbientInfos", "vOpacityInfos", "vReflectionInfos", "vEmissiveInfos", "vSpecularInfos", "vBumpInfos",
+                        "mBones",
+                        "vClipPlane", "diffuseMatrix", "ambientMatrix", "opacityMatrix", "reflectionMatrix", "emissiveMatrix", "specularMatrix", "bumpMatrix",
+                        "darkness0", "darkness1", "darkness2", "darkness3",
+                        "diffuseLeftColor", "diffuseRightColor", "opacityParts", "reflectionLeftColor", "reflectionRightColor", "emissiveLeftColor", "emissiveRightColor"
+            ],
+            ["diffuseSampler", "ambientSampler", "opacitySampler", "reflectionCubeSampler", "reflection2DSampler", "emissiveSampler", "specularSampler", "bumpSampler",
+                        "shadowSampler0", "shadowSampler1", "shadowSampler2", "shadowSampler3"
+            ],
+             join, optionalDefines);
         }
         if (!this._effect.isReady()) {
             return false;
@@ -352,6 +421,26 @@ import com.gamestudiohx.babylonhx.materials.textures.CubeTexture;
         // Bones
         if (mesh.skeleton != null && mesh.isVerticesDataPresent(VertexBuffer.MatricesIndicesKind) && mesh.isVerticesDataPresent(VertexBuffer.MatricesWeightsKind)) {
             this._effect.setMatrices("mBones", mesh.skeleton.getTransformMatrices());
+        }
+
+        // Fresnel
+        if (this.diffuseFresnelParameters != null && this.diffuseFresnelParameters.isEnabled) {
+            this._effect.setColor4("diffuseLeftColor", this.diffuseFresnelParameters.leftColor, this.diffuseFresnelParameters.power);
+            this._effect.setColor4("diffuseRightColor", this.diffuseFresnelParameters.rightColor, this.diffuseFresnelParameters.bias);
+        }
+
+        if (this.opacityFresnelParameters != null && this.opacityFresnelParameters.isEnabled) {
+            this._effect.setColor4("opacityParts", new Color3(this.opacityFresnelParameters.leftColor.toLuminance(), this.opacityFresnelParameters.rightColor.toLuminance(), this.opacityFresnelParameters.bias), this.opacityFresnelParameters.power);
+        }
+
+        if (this.reflectionFresnelParameters != null && this.reflectionFresnelParameters.isEnabled) {
+            this._effect.setColor4("reflectionLeftColor", this.reflectionFresnelParameters.leftColor, this.reflectionFresnelParameters.power);
+            this._effect.setColor4("reflectionRightColor", this.reflectionFresnelParameters.rightColor, this.reflectionFresnelParameters.bias);
+        }
+
+        if (this.emissiveFresnelParameters != null && this.emissiveFresnelParameters.isEnabled) {
+                this._effect.setColor4("emissiveLeftColor", this.emissiveFresnelParameters.leftColor, this.emissiveFresnelParameters.power);
+                this._effect.setColor4("emissiveRightColor", this.emissiveFresnelParameters.rightColor, this.emissiveFresnelParameters.bias);
         }
 
         // Textures        

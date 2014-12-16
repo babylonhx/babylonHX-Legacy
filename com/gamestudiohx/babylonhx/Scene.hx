@@ -1,6 +1,6 @@
 package com.gamestudiohx.babylonhx;
 
-import com.gamestudiohx.babylonhx.animations._Animatable;
+import com.gamestudiohx.babylonhx.animations.Animatable;
 import com.gamestudiohx.babylonhx.cameras.Camera;
 import com.gamestudiohx.babylonhx.collisions.Collider;
 import com.gamestudiohx.babylonhx.collisions.PickingInfo;
@@ -114,7 +114,7 @@ import openfl.gl.GL;
     public var _scaledVelocity:Vector3;
     public var _scaledPosition:Vector3;
     public var _transformMatrix:Matrix;
-    public var _activeAnimatables:Array<_Animatable>;
+    public var _activeAnimatables:Array<Animatable>;
     public var lensFlareSystems:Array<LensFlareSystem>;
     public var _renderingManager:RenderingManager;
     private var _geometries = new Array<Geometry>();
@@ -429,7 +429,7 @@ import openfl.gl.GL;
         if (target.animations != null) {
             this.stopAnimation(target);
 
-            var animatable = new _Animatable(target, from, to, loop, speedRatio, onAnimationEnd);
+            var animatable = new Animatable(target, from, to, loop, speedRatio, onAnimationEnd);
 
             this._activeAnimatables.push(animatable);
         }

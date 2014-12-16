@@ -6,7 +6,7 @@ package com.gamestudiohx.babylonhx.animations;
  * @author Krtolica Vujadin
  */
 
-class _Animatable {
+class Animatable {
 
     public var target:Dynamic;
     public var animationStarted:Bool;

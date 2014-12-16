@@ -19,6 +19,20 @@ package com.gamestudiohx.babylonhx.tools.math;
         this.b = initialB;
     }
 
+    public static function Red(): Color3 { return new Color3(1, 0, 0); }
+    public static function Green(): Color3 { return new Color3(0, 1, 0); }
+    public static function Blue(): Color3 { return new Color3(0, 0, 1); }
+    public static function Black(): Color3 { return new Color3(0, 0, 0); }
+    public static function White(): Color3 { return new Color3(1, 1, 1); }
+    public static function Purple(): Color3 { return new Color3(0.5, 0, 0.5); }
+    public static function Magenta(): Color3 { return new Color3(1, 0, 1); }
+    public static function Yellow(): Color3 { return new Color3(1, 1, 0); }
+    public static function Gray(): Color3 { return new Color3(0.5, 0.5, 0.5); }
+
+    public function toLuminance():Float {
+            return this.r * 0.3 + this.g * 0.59 + this.b * 0.11;
+    }
+
     inline public function equals(otherColor:Color3):Bool {
         return this.r == otherColor.r && this.g == otherColor.g && this.b == otherColor.b;
     }
