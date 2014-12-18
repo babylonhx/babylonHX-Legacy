@@ -2,6 +2,7 @@ package com.gamestudiohx.babylonhx.mesh;
 
 import com.gamestudiohx.babylonhx.mesh.VertexData;
 import com.gamestudiohx.babylonhx.mesh.AbstractMesh;
+import com.gamestudiohx.babylonhx.mesh.GroundMesh;
 import com.gamestudiohx.babylonhx.mesh.AbstractMesh.BabylonGLBuffer;
 import com.gamestudiohx.babylonhx.culling.BoundingInfo;
 import com.gamestudiohx.babylonhx.mesh.SubMesh;
@@ -17,8 +18,8 @@ import com.gamestudiohx.babylonhx.tools.math.Quaternion;
 import com.gamestudiohx.babylonhx.tools.math.Ray;
 import com.gamestudiohx.babylonhx.tools.math.Vector3;
 import com.gamestudiohx.babylonhx.Engine.BabylonCaps;
-
-
+import openfl.display.Bitmap;
+import openfl.display.BitmapData;
 import openfl.gl.GLBuffer;
 import openfl.utils.Float32Array;
 
@@ -945,32 +946,25 @@ import openfl.utils.Float32Array;
             return ground;
     }
 
-         /*        
-        public static function CreateGroundFromHeightMap(name:String, url:String, width:Float, height:Float, subdivisions:Float, minHeight:Float, maxHeight:Float, scene:Scene, ?updatable:Bool ) : Mesh {
-          //Todo
-          trace('todo');
-
+               
+    public static function CreateGroundFromHeightMap(name:String, url:String, width:Int, height:Int, subdivisions:Int, minHeight:Int, maxHeight:Int, scene:Scene, ?updatable:Bool ) : GroundMesh {
             var ground = new GroundMesh(name, scene);
             ground._subdivisions = subdivisions;
 
             ground._setReady(false);
 
-            var onload = img => {
-                // Getting height map data
-                // Must Be Converted to BitmapData
+            var onload = function(img:BitmapData) {
+                var canvas = img;
+                var heightMapWidth = canvas.width;
+                var heightMapHeight = canvas.height;
 
-                //var canvas = document.createElement("canvas");
-                //var context = canvas.getContext("2d");
-                var canvas = new BitmapData(options.width, options.height, false, 0xFFFFFFFF);
-                var heightMapWidth = img.width;
-                var heightMapHeight = img.height;
-                canvas.width = heightMapWidth;
-                canvas.height = heightMapHeight;
 
-                context.drawImage(img, 0, 0);
-
-                // Create VertexData from map data
-                var buffer = context.getImageData(0, 0, heightMapWidth, heightMapHeight).data;
+                #if html5
+                var buffer = canvas.getPixels(canvas.rect).byteView;
+                #else
+                var buffer = new UInt8Array(BitmapData.getRGBAPixels(canvas));
+                #end
+                //var buffer = context.getImageData(0, 0, heightMapWidth, heightMapHeight).data;
                 var vertexData = VertexData.CreateGroundFromHeightMap(width, height, subdivisions, minHeight, maxHeight, buffer, heightMapWidth, heightMapHeight);
 
                 vertexData.applyToMesh(ground, updatable);
@@ -978,16 +972,11 @@ import openfl.utils.Float32Array;
                 ground._setReady(true);
             }
 
-        }*/
-
-    //Tools.
-
-    /*public function LoadImage(url, onload, () : => { }, scene.database);
+            Tools.LoadImage(url, onload);
 
             return ground;
-        }*/
 
-    // Tools
+    }
 
     public static function MinMax(meshes:Array<AbstractMesh>):Dynamic {
         //var min : Vector3;

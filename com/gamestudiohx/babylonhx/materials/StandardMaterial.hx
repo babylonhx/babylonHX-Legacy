@@ -191,7 +191,10 @@ import com.gamestudiohx.babylonhx.materials.textures.CubeTexture;
         }
 
         // Effect
+       
+        //trace(Engine.clipPlane + '==clipPlane');
         if (Engine.clipPlane != null) {
+
             defines.push("#define CLIPPLANE");
         }
 

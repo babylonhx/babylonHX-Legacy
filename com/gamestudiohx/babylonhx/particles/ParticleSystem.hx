@@ -48,6 +48,7 @@ import openfl.utils.Float32Array;
     public var particles:Array<Particle>;
     public var _stockParticles:Array<Particle>;
     public var _newPartsExcess:Float;
+    public var forceDepthWrite:Bool = false;
 
     private var _alive:Bool;
     private var _started:Bool;
@@ -430,6 +431,7 @@ import openfl.utils.Float32Array;
 
         // Render
         this._engine.enableEffect(effect);
+        this._engine.setState(false);
 
         var viewMatrix:Matrix = this._scene.getViewMatrix();
         effect.setTexture("diffuseSampler", this.particleTexture);
@@ -453,6 +455,11 @@ import openfl.utils.Float32Array;
         } else {
             this._engine.setAlphaMode(Engine.ALPHA_COMBINE);
         }
+
+        if (this.forceDepthWrite) {
+            this._engine.setDepthWrite(true);
+        }
+
         this._engine.draw(true, 0, this.particles.length * 6);
         this._engine.setAlphaMode(Engine.ALPHA_DISABLE);
 

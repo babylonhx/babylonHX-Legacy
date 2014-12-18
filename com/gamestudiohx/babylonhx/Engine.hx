@@ -935,9 +935,6 @@ typedef BabylonCaps = {
                 this._workingCanvas = getScaled(img, Std.int(potWidth / 2), Std.int(potHeight / 2));
             }
 
-
-
-            // todo re-evaluate this for bump
             #if html5
 			var pixelData = this._workingCanvas.getPixels(this._workingCanvas.rect).byteView;
 			#else
@@ -1140,8 +1137,20 @@ typedef BabylonCaps = {
         this._activeTexturesCache = [];
 
         this._loadedTexturesCache.push(texture);
-
         return texture;
+    }
+
+    public function createEffectForParticles(fragmentName: String, uniformsNames:Array<String>, samplers:Array<String>, defines:String = "", ?fallbacks:Dynamic,
+            ?onCompiled:Effect -> Void, ?onError:Effect -> String -> Void): Effect {
+            //(baseName:Dynamic, attributesNames:Array<String>, uniformsNames:Array<String>, samplers:Array<String>, defines:String, optionalDefines:Array<String> = null)
+            return this.createEffect(
+                {
+                    vertex: "particles",
+                    fragmentElement: fragmentName
+                },
+                ["position", "color", "options"],
+                ["view", "projection"].concat(uniformsNames),
+                ["diffuseSampler"].concat(samplers), defines);
     }
 
     public function createCubeTexture(rootUrl:String, scene:Scene, extensions:Array<String> = null):BabylonTexture {

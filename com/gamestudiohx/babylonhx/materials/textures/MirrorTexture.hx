@@ -25,7 +25,7 @@ import com.gamestudiohx.babylonhx.tools.math.Plane;
         this._mirrorMatrix = Matrix.Zero();
 
         this.mirrorPlane = new Plane(0, 1, 0, 1);
-
+        Engine.clipPlane = this.mirrorPlane;
         this.onBeforeRender = function() {
             var scene:Scene = this._scene;
 
@@ -37,6 +37,7 @@ import com.gamestudiohx.babylonhx.tools.math.Plane;
             scene.setTransformMatrix(this._transformMatrix, scene.getProjectionMatrix());
 
             Engine.clipPlane = this.mirrorPlane;
+            //trace(Engine.clipPlane  + '==fail');
 
             scene.getEngine().cullBackFaces = false;
         }

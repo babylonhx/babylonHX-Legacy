@@ -23,6 +23,7 @@ import com.gamestudiohx.babylonhx.tools.SmartArray;
     public var renderParticles:Bool;
     public var renderSprites:Bool;
     public var isRenderTarget:Bool;
+    public var _size:Float = 0;
 
     public var customRenderFunction:Dynamic;
 
@@ -33,16 +34,29 @@ import com.gamestudiohx.babylonhx.tools.SmartArray;
     public var _waitingRenderList:Array<String>;
 
     public function new(name:String, size:Float, scene:Scene, generateMipMaps:Bool) {
-        this._generateMipMaps = generateMipMaps;
+        
 
         this._texture = scene.getEngine().createRenderTargetTexture(size, generateMipMaps);
+        super(name, scene, !generateMipMaps);
+        this._generateMipMaps = generateMipMaps;
+        this.isRenderTarget = true;
+        this._size = size;
 
-        super(name, scene, generateMipMaps);
+        /*
+        this._texture._size = Std.int(this._texture._width);
+        this._texture._baseHeight = Std.int(this._texture._width);
+        this._texture._baseWidth = Std.int(this._texture._width);
+        this._texture._cachedWrapU = Std.int(-this._texture._width);
+        this._texture._cachedWrapV = Std.int(-this._texture._width);
+        trace(this._texture);
+        */
 
         // Render list
         this.renderList = [];
 
         // Rendering groups
+        //todo throughly investigate??
+        //scene.customRenderTargets.push(this);
         this._renderingManager = new RenderingManager(scene);
     }
 

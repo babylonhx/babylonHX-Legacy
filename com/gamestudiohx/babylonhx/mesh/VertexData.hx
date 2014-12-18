@@ -770,32 +770,27 @@ interface IGetSetVerticesData {
         return vertexData;
     }
 
-    public function CreateGroundFromHeightMap(width:Float, height:Float, subdivisions:Float, minHeight:Float, maxHeight:Float, buffer:UInt8Array, bufferWidth:Float, bufferHeight:Float):VertexData {
+    public static function CreateGroundFromHeightMap(width:Int, height:Int, subdivisions:Int, minHeight:Int, maxHeight:Int, buffer:Dynamic, bufferWidth:Int, bufferHeight:Int):VertexData {
         var indices = new Array<Int>();
         var positions = new Array<Float>();
         var normals = new Array<Float>();
         var uvs = new Array<Float>();
         var row:Float, col:Float;
-
         // Vertices
         row = 0;
         while (row <= subdivisions) {
             col = 0;
             while (col <= subdivisions) {
                 var position = new Vector3((col * width) / subdivisions - (width / 2.0), 0, ((subdivisions - row) * height) / subdivisions - (height / 2.0));
-
                 // Compute height
 
                 var heightMapX = Std.int(((position.x + width / 2) / width) * (bufferWidth - 1)) | 0;
                 var heightMapY = Std.int(((1.0 - (position.z + height / 2) / height) * (bufferHeight - 1))) | 0;
-
                 var pos = Std.int((heightMapX + heightMapY * bufferWidth) * 4);
-                var r = Std.int(buffer[pos] / 255.0);
-                var g = Std.int(buffer[pos + 1] / 255.0);
-                var b = Std.int(buffer[pos + 2] / 255.0);
-
+                var r = buffer[pos] / 255.0;
+                var g = buffer[pos + 1] / 255.0;
+                var b = buffer[pos + 2] / 255.0;
                 var gradient = r * 0.3 + g * 0.59 + b * 0.11;
-
                 position.y = minHeight + (maxHeight - minHeight) * gradient;
 
                 // Add  vertex
