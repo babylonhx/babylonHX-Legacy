@@ -22,6 +22,7 @@ import openfl.display.Bitmap;
 import openfl.display.BitmapData;
 import openfl.gl.GLBuffer;
 import openfl.utils.Float32Array;
+import openfl.utils.UInt8Array;
 
 
 /**
