@@ -35,6 +35,7 @@ import com.gamestudiohx.babylonhx.particles.ParticleSystem;
 import com.gamestudiohx.babylonhx.rendering.RenderingManager;
 import com.gamestudiohx.babylonhx.rendering.BoundingBoxRenderer;
 import com.gamestudiohx.babylonhx.postprocess.PostProcessManager;
+import com.gamestudiohx.babylonhx.postprocess.renderpipeline.PostProcessRenderPipelineManager;
 import openfl.geom.Rectangle;
 import openfl.Lib;
 import openfl.gl.GL;
@@ -142,6 +143,7 @@ import openfl.gl.GL;
     public var postProcessesEnabled:Bool;
     public var postProcessManager:PostProcessManager;
     public var _animationStartDate:Int = -1;
+    public var postProcessRenderPipelineManager:PostProcessRenderPipelineManager;
     private var _boundingBoxRenderer:BoundingBoxRenderer;
 
 
@@ -241,6 +243,8 @@ import openfl.gl.GL;
         // Postprocesses
         this.postProcessesEnabled = true;
         this.postProcessManager = new PostProcessManager(this);
+
+        this.postProcessRenderPipelineManager = new PostProcessRenderPipelineManager();
 
         this._boundingBoxRenderer = new BoundingBoxRenderer(this);
 
@@ -762,6 +766,7 @@ import openfl.gl.GL;
     }
 
     inline public function _renderForCamera(camera:Camera = null, mustClearDepth:Bool = false) {
+        //trace('in render for camera');
         var engine:Engine = this._engine;
 
         this.activeCamera = camera;
@@ -796,6 +801,7 @@ import openfl.gl.GL;
 
         // Customs render targets registration
         for (customIndex in 0...this.customRenderTargets.length) {
+            //trace(this.customRenderTargets[customIndex] + '==? really');
             this._renderTargets.push(this.customRenderTargets[customIndex]);
         }
 
@@ -805,6 +811,7 @@ import openfl.gl.GL;
             for (renderIndex in 0...this._renderTargets.length) {
                 var renderTarget = this._renderTargets.data[renderIndex];
                 this._renderId++;
+                //trace('do I ever make it here?');
                 renderTarget.render();
             }
         }
@@ -908,6 +915,9 @@ import openfl.gl.GL;
                 this._renderTargets.push(shadowGenerator.getShadowMap());
             }
         }
+
+        // RenderPipeline
+        this.postProcessRenderPipelineManager.update();
 
         // Multi-cameras?
         if (this.activeCameras.length > 0) {

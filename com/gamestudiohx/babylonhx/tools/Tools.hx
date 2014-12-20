@@ -139,6 +139,21 @@ class Axis {
             }*/
     }
 
+    public static function MakeArray(obj:Dynamic = null, ?allowsNullUndefined: Bool): Array<Dynamic> {
+            if (allowsNullUndefined != true && (obj == null)){
+                return null;
+            }
+            if(Std.is(obj, Array)){
+                return obj;
+            }else{
+                var arr = new Array<Dynamic>(); 
+                arr.push(obj);
+                return arr;
+            }
+
+           
+    }
+
     public static function LoadImage(url:String, onload:BitmapData -> Void) {
         if (url != null) {
             if (Assets.exists(url)) {
