@@ -18,6 +18,7 @@ import com.gamestudiohx.babylonhx.tools.math.Quaternion;
 import com.gamestudiohx.babylonhx.tools.math.Ray;
 import com.gamestudiohx.babylonhx.tools.math.Vector3;
 import com.gamestudiohx.babylonhx.Engine.BabylonCaps;
+import com.gamestudiohx.babylonhx.materials.textures.Texture;
 import openfl.display.Bitmap;
 import openfl.display.BitmapData;
 import openfl.gl.GLBuffer;
@@ -44,6 +45,8 @@ import openfl.utils.UInt8Array;
     public var delayLoadState:Int = Engine.DELAYLOADSTATE_NONE;
     public var instances = new Array<InstancedMesh>();
     public var delayLoadingFile:String;
+    //private var _onBeforeRenderCallbacks:Array<Void -> Void> = new Array<Void -> Void>();
+    private var  _onAfterRenderCallbacks = new Array<Dynamic>();
 
     //
     // public var Private
@@ -321,6 +324,18 @@ import openfl.utils.UInt8Array;
         }
     }
 
+    public function registerAfterRender(func:Dynamic):Void {
+        this._onAfterRenderCallbacks.push(func);
+    }
+
+    public function unregisterAfterRender(func:Dynamic):Void {
+        var index = this._onAfterRenderCallbacks.indexOf(func);
+
+        if (index > -1) {
+            this._onAfterRenderCallbacks.splice(index, 1);
+        }
+    }
+
     public function _getInstancesRenderList():InstancesBatch {
         var scene = this.getScene();
         this._batchCache.mustReturn = false;
@@ -494,6 +509,10 @@ import openfl.utils.UInt8Array;
         }
         // Unbind
         effectiveMaterial.unbind();
+
+        for (callbackIndex in 0...this._onAfterRenderCallbacks.length) {
+            this._onAfterRenderCallbacks[callbackIndex]();
+        }
     }
 
     public function getEmittedParticleSystems():Array<ParticleSystem> {
@@ -954,7 +973,7 @@ import openfl.utils.UInt8Array;
 
             ground._setReady(false);
 
-            var onload = function(img:BitmapData) {
+            var onload = function(img:BitmapData, samplingMode:Int) {
                 var canvas = img;
                 var heightMapWidth = canvas.width;
                 var heightMapHeight = canvas.height;
@@ -973,7 +992,7 @@ import openfl.utils.UInt8Array;
                 ground._setReady(true);
             }
 
-            Tools.LoadImage(url, onload);
+            Tools.LoadImage(url, Texture.TRILINEAR_SAMPLINGMODE, onload);
 
             return ground;
 

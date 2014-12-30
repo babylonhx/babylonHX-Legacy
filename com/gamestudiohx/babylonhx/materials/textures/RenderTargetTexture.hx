@@ -6,7 +6,7 @@ import com.gamestudiohx.babylonhx.Scene;
 import com.gamestudiohx.babylonhx.mesh.AbstractMesh;
 import com.gamestudiohx.babylonhx.mesh.Mesh;
 import com.gamestudiohx.babylonhx.tools.SmartArray;
-
+import com.gamestudiohx.babylonhx.cameras.Camera;
 
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
@@ -24,6 +24,10 @@ import com.gamestudiohx.babylonhx.tools.SmartArray;
     public var renderSprites:Bool;
     public var isRenderTarget:Bool;
     public var _size:Float = 0;
+    private var _currentRefreshId:Int = -1;
+    private var refreshRate:Int = 1;
+    private var _doNotChangeAspectRatio: Bool;
+    public var activeCamera: Camera;
 
     public var customRenderFunction:Dynamic;
 
@@ -33,14 +37,31 @@ import com.gamestudiohx.babylonhx.tools.SmartArray;
 
     public var _waitingRenderList:Array<String>;
 
-    public function new(name:String, size:Float, scene:Scene, generateMipMaps:Bool) {
+    function get_refreshRate() {
+        return refreshRate;
+    }
+
+    function set_refreshRate(refreshRate:Int) {
+        return this.refreshRate = refreshRate;
+    }
+
+    public function scale(ratio:Float):Void {
+            var newSize = this._size * ratio;
+
+            this.resize(newSize, this._generateMipMaps);
+    }
+    public function new(name:String, size:Float, scene:Scene, generateMipMaps:Bool, doNotChangeAspectRatio:Bool = true) {
         
 
         this._texture = scene.getEngine().createRenderTargetTexture(size, generateMipMaps);
         super(name, scene, !generateMipMaps);
+        this.renderParticles = true;
+        this.renderSprites = false;
         this._generateMipMaps = generateMipMaps;
         this.isRenderTarget = true;
+        this.coordinatesMode = Texture.PROJECTION_MODE;
         this._size = size;
+        this._doNotChangeAspectRatio = doNotChangeAspectRatio;
 
         /*
         this._texture._size = Std.int(this._texture._width);
@@ -60,16 +81,27 @@ import com.gamestudiohx.babylonhx.tools.SmartArray;
         this._renderingManager = new RenderingManager(scene);
     }
 
+    public function _shouldRender(): Bool {
+            if (this._currentRefreshId == -1) { // At least render once
+                this._currentRefreshId = 1;
+                return true;
+            }
+
+            if (this.refreshRate == this._currentRefreshId) {
+                this._currentRefreshId = 1;
+                return true;
+            }
+
+            this._currentRefreshId++;
+            return false;
+    }
+
     public function resize(size:Float, generateMipMaps:Bool) {
         this.releaseInternalTexture();
         this._texture = this._scene.getEngine().createRenderTargetTexture(size, generateMipMaps);
     }
 
     public function render(useCameraPostProcess:Bool = false) {
-        if (this.onBeforeRender != null) {
-            this.onBeforeRender();
-        }
-
         var scene = this._scene;
         var engine = scene.getEngine();
 
@@ -84,44 +116,72 @@ import com.gamestudiohx.babylonhx.tools.SmartArray;
         }
 
         if (this.renderList == null || this.renderList.length == 0) {
-            if (this.onAfterRender != null) {
-                this.onAfterRender();
-            }
-        } else {
-            // Bind
-            /*
-			if (!useCameraPostProcess || !scene.postProcessManager._prepareFrame(this._texture)) {
-                engine.bindFramebuffer(this._texture);
-            }*/
+            return;
+        } 
+        
+		if (!useCameraPostProcess || !scene.postProcessManager._prepareFrame(this._texture)) {
             engine.bindFramebuffer(this._texture);
+        }
+        
+        //engine.bindFramebuffer(this._texture);
 
-            // Clear
-            engine.clear(scene.clearColor, true, true);
+        // Clear
+        engine.clear(scene.clearColor, true, true);
 
-            this._renderingManager.reset();
+        this._renderingManager.reset();
 
-            for (meshIndex in 0...this.renderList.length) {
-                var mesh:AbstractMesh = this.renderList[meshIndex];
+        for (meshIndex in 0...this.renderList.length) {
+            var mesh:AbstractMesh = this.renderList[meshIndex];
 
-                if (mesh != null && mesh.isEnabled() && mesh.isVisible) {
+            if(mesh != null){
+                if (!mesh.isReady() || (mesh.material && !mesh.material.isReady())) {
+                        // Reset _currentRefreshId
+                        this.resetRefreshCounter();
+                        continue;
+                }
+                if (mesh.isEnabled() && mesh.isVisible && mesh.subMeshes != null && ((mesh.layerMask & scene.activeCamera.layerMask) != 0)) {
+                    mesh._activate(scene.getRenderId());
                     for (subIndex in 0...mesh.subMeshes.length) {
                         var subMesh:SubMesh = mesh.subMeshes[subIndex];
                         scene._activeVertices += subMesh.verticesCount;
                         this._renderingManager.dispatch(subMesh);
                     }
                 }
+
             }
-
-            // Render
-            this._renderingManager.render(this.customRenderFunction, this.renderList, this.renderParticles, this.renderSprites);
-
-            // Unbind
-            engine.unBindFramebuffer(this._texture);
-
-            if (this.onAfterRender != null) {
-                this.onAfterRender();
-            }
+            
         }
+
+        if (!this._doNotChangeAspectRatio) {
+                scene.updateTransformMatrix(true);
+        }
+
+        if (this.onBeforeRender != null) {
+            this.onBeforeRender();
+        }
+
+        // Render
+        this._renderingManager.render(this.customRenderFunction, this.renderList, this.renderParticles, this.renderSprites);
+
+        if (useCameraPostProcess) {
+            scene.postProcessManager._finalizeFrame(false, this._texture);
+        }
+
+        if (this.onAfterRender != null) {
+            this.onAfterRender();
+        }
+
+        // Unbind
+        engine.unBindFramebuffer(this._texture);
+
+        if (!this._doNotChangeAspectRatio) {
+            scene.updateTransformMatrix(true);
+        }
+
+    }
+
+    public function resetRefreshCounter(): Void {
+            this._currentRefreshId = -1;
     }
 
     override public function clone():Texture {

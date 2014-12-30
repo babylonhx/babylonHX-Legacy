@@ -33,19 +33,20 @@ import com.gamestudiohx.babylonhx.Scene;
         this._indexBuffer = scene.getEngine().createIndexBuffer(indices);
     }
 
-    public function _prepareFrame() {
+    public function _prepareFrame(?sourceTexture: Dynamic):Bool {
         var postProcesses:Array<PostProcess> = this._scene.activeCamera._postProcesses;
 
         var postProcessesTakenIndices = this._scene.activeCamera._postProcessesTakenIndices;
 
         if (postProcessesTakenIndices.length == 0 || !this._scene.postProcessesEnabled) {
-            return;
+            return false;
         }
 
         postProcesses[0].activate();
+        return true;
     }
 
-    public function _finalizeFrame() {
+    public function _finalizeFrame(?doNotPresent:Bool, ?targetTexture: Dynamic) {
         var postProcesses:Array<PostProcess> = this._scene.activeCamera._postProcesses;
 
         if (postProcesses.length == 0 || !this._scene.postProcessesEnabled) {
@@ -58,7 +59,12 @@ import com.gamestudiohx.babylonhx.Scene;
             if (index < postProcesses.length - 1) {
                 postProcesses[index + 1].activate();
             } else {
-                engine.restoreDefaultFramebuffer();
+                 if (targetTexture) {
+                    engine.bindFramebuffer(targetTexture);
+                } else {
+                    engine.restoreDefaultFramebuffer();
+                }
+                //engine.restoreDefaultFramebuffer();
             }
 
             var effect:Effect = postProcesses[index].apply();

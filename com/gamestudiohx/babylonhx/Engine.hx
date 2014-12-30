@@ -66,7 +66,237 @@ typedef BabylonCaps = {
 
 }
 
+class DepthCullingState {
+        private var _isDepthTestDirty: Bool = false;
+        private var _isDepthMaskDirty: Bool = false;
+        private var _isDepthFuncDirty: Bool = false;
+        private var _isCullFaceDirty: Bool = false;
+        private var _isCullDirty: Bool = false;
 
+        private var _depthTest: Bool;
+        private var _depthMask: Bool;
+        private var _depthFunc: Int;
+        private var _cull: Bool;
+        private var _cullFace: Int;
+        private var isDirty:Bool;
+
+        public function new(){
+
+        }
+
+        public function get_isDirty(): Bool {
+            return this._isDepthFuncDirty || this._isDepthTestDirty || this._isDepthMaskDirty || this._isCullFaceDirty || this._isCullDirty;
+        }
+
+        public function get__cullFace(): Int {
+            return this._cullFace;
+        }
+
+        public function set__cullFace(value: Int) {
+            if (this._cullFace == value) {
+                return;
+            }
+
+            this._cullFace = value;
+            this._isCullFaceDirty = true;
+        }
+
+        public function get__cull():Bool {
+            return this._cull;
+        }
+
+        public function set__cull(value: Bool) {
+            if (this._cull == value) {
+                return;
+            }
+
+            this._cull = value;
+            this._isCullDirty = true;
+        }
+
+        public function get__depthFunc(): Int {
+            return this._depthFunc;
+        }
+
+        public function set__depthFunc(value: Int) {
+            if (this._depthFunc == value) {
+                return;
+            }
+
+            this._depthFunc = value;
+            this._isDepthFuncDirty = true;
+        }
+
+        public function get__depthMask(): Bool {
+            return this._depthMask;
+        }
+
+        public function set__depthMask(value: Bool) {
+            if (this._depthMask == value) {
+                return;
+            }
+
+            this._depthMask = value;
+            this._isDepthMaskDirty = true;
+        }
+
+        public function get__depthTest(): Bool {
+            return this._depthTest;
+        }
+
+        public function set__depthTest(value: Bool) {
+            if (this._depthTest == value) {
+                return;
+            }
+
+            this._depthTest = value;
+            this._isDepthTestDirty = true;
+        }
+
+        public function reset() {
+            this._depthMask = true;
+            this._depthTest = true;
+            //this._depthFunc = null;
+            //this._cull = null;
+            //this._cullFace = null;
+
+            this._isDepthTestDirty = true;
+            this._isDepthMaskDirty = true;
+            this._isDepthFuncDirty = false;
+            this._isCullFaceDirty = false;
+            this._isCullDirty = false;
+        }
+
+        public function apply() {
+
+            if (!this.get_isDirty()) {
+                return;
+            }
+
+            // Cull
+            if (this._isCullDirty) {
+                if (this._cull == true) {
+                    GL.enable(GL.CULL_FACE);
+                } else if (this._cull == false) {
+                    GL.disable(GL.CULL_FACE);
+                }
+
+                this._isCullDirty = false;
+            }
+
+            // Cull face
+            if (this._isCullFaceDirty) {
+                GL.cullFace(this._cullFace);
+                this._isCullFaceDirty = false;
+            }
+
+            // Depth mask
+            if (this._isDepthMaskDirty) {
+                GL.depthMask(this._depthMask);
+                this._isDepthMaskDirty = false;
+            }
+
+            // Depth test
+            if (this._isDepthTestDirty) {
+                if (this._depthTest == true) {
+                    GL.enable(GL.DEPTH_TEST);
+                } else if (this._depthTest == false) {
+                    GL.disable(GL.DEPTH_TEST);
+                }
+                this._isDepthTestDirty = false;
+            }
+
+            // Depth func
+            if (this._isDepthFuncDirty) {
+                GL.depthFunc(this._depthFunc);
+                this._isDepthFuncDirty = false;
+            }
+        }
+}
+
+
+class AlphaState{
+        public var isDirty:Bool;
+        private var _isAlphaBlendDirty:Bool = false;
+        private var _isBlendFunctionParametersDirty:Bool = false;
+        private var _alphaBlend:Bool = false;
+        private var _blendFunctionParameters:Array<Int> = new Array<Int>();
+
+        public function new(){
+
+        }
+
+
+        public function get_isDirty(): Bool {
+            return this._isAlphaBlendDirty || this._isBlendFunctionParametersDirty;
+        }
+
+        public function get__alphaBlend(): Bool {
+            return this._alphaBlend;
+        }
+
+        public function set__alphaBlend(value: Bool) {
+            if (this._alphaBlend == value) {
+                return;
+            }
+
+            this._alphaBlend = value;
+            this._isAlphaBlendDirty = true;
+        }
+
+        public function setAlphaBlendFunctionParameters(value0: Int, value1:  Int, value2:  Int, value3:  Int): Void {
+            if (
+                this._blendFunctionParameters[0] == value0 &&
+                this._blendFunctionParameters[1] == value1 &&
+                this._blendFunctionParameters[2] == value2 &&
+                this._blendFunctionParameters[3] == value3
+                ) {
+                return;
+            }
+
+            this._blendFunctionParameters[0] = value0;
+            this._blendFunctionParameters[1] = value1;
+            this._blendFunctionParameters[2] = value2;
+            this._blendFunctionParameters[3] = value3;
+
+            this._isBlendFunctionParametersDirty = true;
+        }
+
+        public function reset() {
+            this._alphaBlend = false;
+            /*this._blendFunctionParameters[0] = null;
+            this._blendFunctionParameters[1] = null;
+            this._blendFunctionParameters[2] = null;
+            this._blendFunctionParameters[3] = null;*/
+
+            this._isAlphaBlendDirty = true;
+            this._isBlendFunctionParametersDirty = false;
+        }
+
+        public function apply() {
+
+            if (!this.get_isDirty()) {
+                return;
+            }
+
+            // Alpha blend
+            if (this._isAlphaBlendDirty) {
+                if (this._alphaBlend == true) {
+                    GL.enable(GL.BLEND);
+                } else if (this._alphaBlend == false) {
+                    GL.disable(GL.BLEND);
+                }
+
+                this._isAlphaBlendDirty = false;
+            }
+
+            // Alpha function
+            if (this._isBlendFunctionParametersDirty) {
+                GL.blendFuncSeparate(this._blendFunctionParameters[0], this._blendFunctionParameters[1], this._blendFunctionParameters[2], this._blendFunctionParameters[3]);
+                this._isBlendFunctionParametersDirty = false;
+            }
+        }
+}
 
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
@@ -77,7 +307,7 @@ typedef BabylonCaps = {
 @:expose('BABYLON.Engine') class Engine {
 
     // GLOBAL var ...
-    public static var clipPlane:Plane = null;
+    
 
     // Statics
     public static var ShadersRepository:String = "assets/shaders/";
@@ -94,6 +324,8 @@ typedef BabylonCaps = {
     public static var epsilon:Float = 0.001;
     public static var collisionsEpsilon:Float = 0.001;
 
+    //public static var clipPlane:Plane = null;
+
     public var forceWireframe:Bool;
     public var cullBackFaces:Bool;
 
@@ -109,6 +341,7 @@ typedef BabylonCaps = {
     private var _depthMask:Bool = false;
     public var _runningLoop:Bool;
     private var _vertexAttribArrays:Array<Bool>;
+    private var _currentRenderTarget:Dynamic;
 
     public var _loadedTexturesCache:Array<BabylonTexture>;
     public var _activeTexturesCache:Array<Texture>;
@@ -128,6 +361,10 @@ typedef BabylonCaps = {
     public var _renderFunction:Rectangle -> Void;
     public var _workingCanvas:BitmapData;
     public var _workingContext:OpenGLView;
+    private var _drawCalls:Int = 0;
+    private var _alphaState:AlphaState = new AlphaState();
+    private var _depthCullingState:DepthCullingState = new DepthCullingState();
+    private var _alphaMode:Int;
     
 
 
@@ -266,19 +503,28 @@ typedef BabylonCaps = {
     // Properties
 
     public function getAspectRatio(camera:Camera):Float {
-        return this._aspectRatio;
+        var viewport = camera.viewport;
+        return (this.getRenderWidth() * viewport.width) / (this.getRenderHeight() * viewport.height);
         // TODO - what is this ??
         //var viewport = camera.viewport;
         //return (this.getRenderWidth() * viewport.width) / (this.getRenderWidth() * viewport.height);
     }
 
+    public function resetDrawCalls(): Void {
+            this._drawCalls = 0;
+    }
+
     public function getRenderWidth():Int {
-        //return this._renderingCanvas.width;
+        if (this._currentRenderTarget) {
+            return this._currentRenderTarget._width;
+        }
         return cast Lib.current.stage.stageWidth;
     }
 
     public function getRenderHeight():Int {
-        //return this._renderingCanvas.height;
+        if (this._currentRenderTarget) {
+            return this._currentRenderTarget._height;
+        }
         return cast Lib.current.stage.stageHeight;
     }
 
@@ -298,7 +544,7 @@ typedef BabylonCaps = {
     public function getLoadedTexturesCache():Array<BabylonTexture> {
         return this._loadedTexturesCache;
     }
-
+    /*
     public function setDepthFunctionToGreaterOrEqual():Void {
         GL.depthFunc(GL.GEQUAL);
     }
@@ -309,6 +555,23 @@ typedef BabylonCaps = {
 
     public function setDepthFunctionToLess():Void {
         GL.depthFunc(GL.LESS);
+    }*/
+
+    
+    public function setDepthFunctionToGreater():Void {
+        this._depthCullingState.set__depthFunc(GL.GREATER);
+    }
+
+    public function setDepthFunctionToGreaterOrEqual():Void {
+        this._depthCullingState.set__depthFunc(GL.GEQUAL);
+    }
+
+    public function setDepthFunctionToLessOrEqual():Void {
+        this._depthCullingState.set__depthFunc(GL.LEQUAL);
+    }
+
+    public function setDepthFunctionToLess():Void {
+        this._depthCullingState.set__depthFunc(GL.LESS);   
     }
 
     public function getCaps():BabylonCaps {
@@ -356,13 +619,19 @@ typedef BabylonCaps = {
     // color can be Color4 or Color3
 
     public function clear(color:Dynamic, backBuffer:Bool, depthStencil:Bool) {
-
+        this.applyStates();
         if (Std.is(color, Color4)) {
             GL.clearColor(color.r, color.g, color.b, color.a);
         } else {
             GL.clearColor(color.r, color.g, color.b, 1.0);
         }
+        /*
         if (this._depthMask) {
+            GL.clearDepth(1.0);
+        }*/
+
+        
+        if (this._depthCullingState.get__depthMask()) {
             GL.clearDepth(1.0);
         }
 
@@ -374,10 +643,10 @@ typedef BabylonCaps = {
 
         //trace(mode);
 
-        if (depthStencil && this._depthMask)
+        if (depthStencil && this._depthCullingState.get__depthMask())
             mode |= GL.DEPTH_BUFFER_BIT;
 
-        //trace(mode);
+        
         
         GL.clear(mode);
     }
@@ -417,14 +686,18 @@ typedef BabylonCaps = {
     }
 
     public function bindFramebuffer(texture:BabylonTexture) {
+        this._currentRenderTarget = texture;
         GL.bindFramebuffer(GL.FRAMEBUFFER, texture._framebuffer);
-        GL.viewport(0, 0, Std.int(texture._width), Std.int(texture._height));
+        //trace(Lib.current.stage.stageWidth);
+        //GL.viewport(0, 0, Std.int(Lib.current.stage.stageWidth), Std.int(Lib.current.stage.stageHeight));
+        //GL.viewport(0, 0, Std.int(texture._width), Std.int(texture._height));
         this._aspectRatio = texture._width / texture._height;
 
         this.wipeCaches();
     }
 
     public function unBindFramebuffer(texture:BabylonTexture) {
+        this._currentRenderTarget = null;
         if (texture.generateMipMaps) {
             GL.bindTexture(GL.TEXTURE_2D, texture.data);
             GL.generateMipmap(GL.TEXTURE_2D);
@@ -439,6 +712,7 @@ typedef BabylonCaps = {
     }
 
     public function restoreDefaultFramebuffer() {
+        this._currentRenderTarget = null;
         GL.bindFramebuffer(GL.FRAMEBUFFER, null);
         this.setViewport(this._cachedViewport);
         this.wipeCaches();
@@ -596,14 +870,18 @@ typedef BabylonCaps = {
     }
 
 
-    public function draw(useTriangles:Bool, indexStart:Int, indexCount:Int, ?instancesCount:Int) {
-        //html5 todo ?? invesitgate to see if necessary
-        /*if (instancesCount) {
-                this._caps.instancedArrays.drawElementsInstancedANGLE(useTriangles ? this._gl.TRIANGLES : this._gl.LINES, indexCount, this._gl.UNSIGNED_SHORT, indexStart * 2, instancesCount);
+    public function draw(useTriangles:Bool, indexStart:Int, indexCount:Int, ?instancesCount:Int = 0) {
+         this.applyStates();
+         //html5 todo ?? invesitgate to see if necessary
+         #if html5
+         if (instancesCount > 0) {
+                //this._caps.instancedArrays.drawElementsInstancedANGLE(useTriangles ? this._gl.TRIANGLES : this._gl.LINES, indexCount, this._gl.UNSIGNED_SHORT, indexStart * 2, instancesCount);
                 return;
-         }*/
+         }
+         #end
 
         GL.drawElements(useTriangles ? GL.TRIANGLES : GL.LINES, indexCount, GL.UNSIGNED_SHORT, indexStart * 2);
+        this._drawCalls++;
     }
 
     /*
@@ -819,7 +1097,31 @@ typedef BabylonCaps = {
 
 
     // States
+    
+    public function setState(culling:Bool, force:Bool = false) {
+        // Culling 
+        if (this._depthCullingState.get__cull() != culling || force) {
+            if (culling) {
+                this._depthCullingState.set__cullFace(this.cullBackFaces ? GL.BACK : GL.FRONT);
+                this._depthCullingState.set__cull(true);
+                //GL.cullFace(this.cullBackFaces ? GL.BACK : GL.FRONT);
+                //GL.enable(GL.CULL_FACE);
+            } else {
+                this._depthCullingState.set__cull(false);
+            }
+        }
+    }
 
+     public function setDepthBuffer(enable:Bool) {
+        this._depthCullingState.set__depthTest(enable);
+    }
+
+    public function setDepthWrite(enable:Bool) {
+        this._depthCullingState.set__depthMask(enable);
+    }
+
+ 
+    /*
     public function setState(culling:Bool) {
         // Culling 
         if (this._currentState.culling != culling) {
@@ -845,37 +1147,35 @@ typedef BabylonCaps = {
     public function setDepthWrite(enable:Bool) {
         GL.depthMask(enable);
         this._depthMask = enable;
-    }
+    }*/
 
+
+   
     public function setColorWrite(enable:Bool) {
         GL.colorMask(enable, enable, enable, enable);
     }
 
     public function setAlphaMode(mode:Int) {
         //todo investigate this througly
-        //  #if (html5 || ios )
         switch (mode) {
             case Engine.ALPHA_DISABLE:
                 this.setDepthWrite(true);
-                #if html5
-                GL.blendFuncSeparate(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA, GL.ZERO, GL.ONE);
-                GL.disable(GL.BLEND);
-                #end
-            //GL.blendFuncSeparate(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA, GL.ZERO, GL.ONE);
-            //GL.disable(GL.BLEND);
+                this._alphaState.set__alphaBlend(false);
             case Engine.ALPHA_COMBINE:
                 this.setDepthWrite(false);
-                // GL.ONE??
-                GL.blendFuncSeparate(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA, GL.ZERO, GL.ONE);
-                GL.enable(GL.BLEND);
+                //GL.blendFuncSeparate(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA, GL.ZERO, GL.ONE);
+                this._alphaState.setAlphaBlendFunctionParameters(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA, GL.ZERO, GL.ONE);
+                this._alphaState.set__alphaBlend(true);
             case Engine.ALPHA_ADD:
                 this.setDepthWrite(false);
-                GL.blendFuncSeparate(GL.ONE, GL.ONE, GL.ZERO, GL.ONE);
-                GL.enable(GL.BLEND);
-
-
+                this._alphaState.setAlphaBlendFunctionParameters(GL.ONE, GL.ONE, GL.ZERO, GL.ONE);
+                this._alphaState.set__alphaBlend(true);
         }
-        //  #end
+        this._alphaMode = mode;
+    }
+
+    public function getAlphaMode(): Int {
+            return this._alphaMode;
     }
 
     public function setAlphaTesting(enable:Bool) {
@@ -884,6 +1184,11 @@ typedef BabylonCaps = {
 
     public function getAlphaTesting():Bool {
         return this._alphaTest;
+    }
+
+    public function applyStates() {
+            this._depthCullingState.apply();
+            this._alphaState.apply();
     }
 
     // Textures
@@ -895,6 +1200,8 @@ typedef BabylonCaps = {
         culling: null
         };
 
+        this._depthCullingState.reset();
+        this._alphaState.reset();
         this._cachedVertexBuffers = null;
         this._cachedIndexBuffer = null;
         this._cachedEffectForVertexBuffers = null;
@@ -921,11 +1228,13 @@ typedef BabylonCaps = {
         return bmp;
     }
 
-    public function createTexture(url:String, ?noMipmap:Bool, ?invertY:Int, scene:Scene = null):BabylonTexture {
-
+    public function createTexture(url:String, ?noMipmap:Bool, ?invertY:Int, scene:Scene = null,  samplingMode:Int = -666):BabylonTexture {
+        if(samplingMode == -666){
+            samplingMode = Texture.TRILINEAR_SAMPLINGMODE;
+        }
         var texture:BabylonTexture = new BabylonTexture(url, GL.createTexture());
 
-        function onload(img:BitmapData) {
+        function onload(img:BitmapData, samplingMode:Int) {
             var potWidth = getExponantOfTwo(img.width, this._caps.maxTextureSize);
             var potHeight = getExponantOfTwo(img.height, this._caps.maxTextureSize);
             var isPot = (img.width == potWidth && img.height == potHeight);
@@ -953,14 +1262,15 @@ typedef BabylonCaps = {
 			#end
 
             GL.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, this._workingCanvas.width, this._workingCanvas.height, 0, GL.RGBA, GL.UNSIGNED_BYTE, pixelData);
-            GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.LINEAR);
-
-            if (noMipmap != null && noMipmap == true) {
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR);
-            } else {
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR_MIPMAP_LINEAR);
+            var filters = getSamplingParameters(samplingMode, !noMipmap);
+            GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, filters.mag);
+            GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, filters.min);
+            
+            if (noMipmap == null && noMipmap != true) {
                 GL.generateMipmap(GL.TEXTURE_2D);
             }
+
+
             GL.bindTexture(GL.TEXTURE_2D, null);
 
             this._activeTexturesCache = [];
@@ -972,7 +1282,7 @@ typedef BabylonCaps = {
             scene._removePendingData(texture);
         }
         scene._addPendingData(texture);
-        Tools.LoadImage(url, onload);
+        Tools.LoadImage(url, samplingMode, onload);
         texture.url = url;
         texture.noMipmap = noMipmap;
         texture.references = 1;
@@ -981,17 +1291,22 @@ typedef BabylonCaps = {
         return texture;
     }
 
-    public function createDynamicTexture(width:Int, height:Int, generateMipMaps:Bool):BabylonTexture {
+    public function createDynamicTexture(width:Int, height:Int, generateMipMaps:Bool, samplingMode: Int = -666):BabylonTexture {
+        if(samplingMode == -666){
+            samplingMode = Texture.TRILINEAR_SAMPLINGMODE;
+        }
         var texture:BabylonTexture = new BabylonTexture("", GL.createTexture());
 
         width = getExponantOfTwo(width, this._caps.maxTextureSize);
         height = getExponantOfTwo(height, this._caps.maxTextureSize);
 
         GL.bindTexture(GL.TEXTURE_2D, texture.data);
-        GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.LINEAR);
+        var filters = getSamplingParameters(samplingMode, generateMipMaps);
+
+        GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, filters.mag);
 
         if (!generateMipMaps) {
-            GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR);
+            GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, filters.min);
         } else {
             GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR_MIPMAP_LINEAR);
         }
@@ -1062,6 +1377,38 @@ typedef BabylonCaps = {
         texture.isReady = true;*/
     }
 
+    public function getSamplingParameters(samplingMode: Int, generateMipMaps: Bool):Dynamic{
+        var magFilter = GL.NEAREST;
+        var minFilter = GL.NEAREST;
+        if (samplingMode == Texture.BILINEAR_SAMPLINGMODE) {
+            magFilter = GL.LINEAR;
+            if (generateMipMaps) {
+                minFilter = GL.LINEAR_MIPMAP_NEAREST;
+            } else {
+                minFilter = GL.LINEAR;
+            }
+        } else if (samplingMode == Texture.TRILINEAR_SAMPLINGMODE) {
+            magFilter = GL.LINEAR;
+            if (generateMipMaps) {
+                minFilter = GL.LINEAR_MIPMAP_LINEAR;
+            } else {
+                minFilter = GL.LINEAR;
+            }
+        } else if (samplingMode == Texture.NEAREST_SAMPLINGMODE) {
+            magFilter = GL.NEAREST;
+            if (generateMipMaps) {
+                minFilter = GL.NEAREST_MIPMAP_LINEAR;
+            } else {
+                minFilter = GL.NEAREST;
+            }
+        }
+
+        return {
+            min: minFilter,
+            mag: magFilter
+        }
+    }
+
     public function createRenderTargetTexture(size:Dynamic, options:Dynamic):BabylonTexture {
         // old version had a "generateMipMaps" arg instead of options.
         // if options.generateMipMaps is undefined, consider that options itself if the generateMipmaps value
@@ -1082,25 +1429,10 @@ typedef BabylonCaps = {
 
         var width:Int = Reflect.field(size, "width") != null ? size.width : size;
         var height:Int = Reflect.field(size, "height") != null ? size.height : size;
-        var magFilter = GL.NEAREST;
-        var minFilter = GL.NEAREST;
-        if (samplingMode == Texture.BILINEAR_SAMPLINGMODE) {
-            magFilter = GL.LINEAR;
-            if (generateMipMaps) {
-                minFilter = GL.LINEAR_MIPMAP_NEAREST;
-            } else {
-                minFilter = GL.LINEAR;
-            }
-        } else if (samplingMode == Texture.TRILINEAR_SAMPLINGMODE) {
-            magFilter = GL.LINEAR;
-            if (generateMipMaps) {
-                minFilter = GL.LINEAR_MIPMAP_LINEAR;
-            } else {
-                minFilter = GL.LINEAR;
-            }
-        }
-        GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, magFilter);
-        GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, minFilter);
+        var filters = getSamplingParameters(samplingMode, generateMipMaps);
+
+        GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, filters.mag);
+        GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, filters.min);
         GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, GL.CLAMP_TO_EDGE);
         GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, GL.CLAMP_TO_EDGE);
         GL.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, width, height, 0, GL.RGBA, GL.UNSIGNED_BYTE, null);

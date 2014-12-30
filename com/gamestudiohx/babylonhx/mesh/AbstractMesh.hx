@@ -119,6 +119,7 @@ localMatrixUpdated:Null<Bool>, position:Null<Vector3>, scaling:Null<Vector3>, ro
 
     public var parentId(get, null):String;
     public var showSubMeshesBoundingBox = false;
+    public var layerMask:Int = 0xFFFFFFFF;
 
     public var _submeshesOctree:Dynamic;
 

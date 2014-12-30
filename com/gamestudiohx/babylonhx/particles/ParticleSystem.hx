@@ -336,8 +336,7 @@ import openfl.utils.Float32Array;
 
     public function _getEffect():Effect {
         var defines:Array<String> = [];
-
-        if (Engine.clipPlane != null) {
+        if (this._scene.clipPlane != null) {
             defines.push("#define CLIPPLANE");
         }
 
@@ -439,11 +438,11 @@ import openfl.utils.Float32Array;
         effect.setMatrix("projection", this._scene.getProjectionMatrix());
         effect.setFloat4("textureMask", this.textureMask.r, this.textureMask.g, this.textureMask.b, this.textureMask.a);
 
-        if (Engine.clipPlane != null) {
+        if (this._scene.clipPlane != null) {
             var invView = viewMatrix.clone();
             invView.invert();
             effect.setMatrix("invView", invView);
-            effect.setFloat4("vClipPlane", Engine.clipPlane.normal.x, Engine.clipPlane.normal.y, Engine.clipPlane.normal.z, Engine.clipPlane.d);
+            effect.setFloat4("vClipPlane", this._scene.clipPlane.normal.x, this._scene.clipPlane.normal.y, this._scene.clipPlane.normal.z, this._scene.clipPlane.d);
         }
 
         // VBOs

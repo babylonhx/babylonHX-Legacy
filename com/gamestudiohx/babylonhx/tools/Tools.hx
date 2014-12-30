@@ -10,6 +10,7 @@ import openfl.net.URLRequest;
 import openfl.utils.Timer;
 import openfl.Assets;
 import openfl.utils.Float32Array;
+import com.gamestudiohx.babylonhx.materials.textures.Texture;
 #if cpp
 import sys.FileSystem;
 import sys.io.File;
@@ -154,11 +155,14 @@ class Axis {
            
     }
 
-    public static function LoadImage(url:String, onload:BitmapData -> Void) {
+    public static function LoadImage(url:String, samplingMode:Int = -666, onload:BitmapData->Int-> Void) {
+        if(samplingMode == -666){
+            samplingMode = Texture.TRILINEAR_SAMPLINGMODE;
+        }
         if (url != null) {
             if (Assets.exists(url)) {
                 var img:BitmapData = Assets.getBitmapData(url);
-                onload(img);
+                onload(img, samplingMode);
             } else {
                 trace("Error: Image '" + url + "' doesn't exist !");
             }
@@ -215,6 +219,131 @@ class Axis {
 
         }
     }
+
+    /* todo
+
+    public static CreateScreenshot(engine: Engine, camera: Camera, size: any): void {
+            var width: number;
+            var height: number;
+
+            var scene = camera.getScene();
+            var previousCamera: BABYLON.Camera = null;
+
+            if (scene.activeCamera !== camera) {
+                previousCamera = scene.activeCamera;
+                scene.activeCamera = camera;
+            }
+
+            //If a precision value is specified
+            if (size.precision) {
+                width = Math.round(engine.getRenderWidth() * size.precision);
+                height = Math.round(width / engine.getAspectRatio(camera));
+                size = { width: width, height: height };
+            }
+            else if (size.width && size.height) {
+                width = size.width;
+                height = size.height;
+            }
+            //If passing only width, computing height to keep display canvas ratio.
+            else if (size.width && !size.height) {
+                width = size.width;
+                height = Math.round(width / engine.getAspectRatio(camera));
+                size = { width: width, height: height };
+            }
+            //If passing only height, computing width to keep display canvas ratio.
+            else if (size.height && !size.width) {
+                height = size.height;
+                width = Math.round(height * engine.getAspectRatio(camera));
+                size = { width: width, height: height };
+            }
+            //Assuming here that "size" parameter is a number
+            else if (!isNaN(size)) {
+                height = size;
+                width = size;
+            }
+            else {
+                Tools.Error("Invalid 'size' parameter !");
+                return;
+            }
+
+            //At this point size can be a number, or an object (according to engine.prototype.createRenderTargetTexture method)
+            var texture = new RenderTargetTexture("screenShot", size, engine.scenes[0], false, false);
+            texture.renderList = engine.scenes[0].meshes;
+
+            texture.onAfterRender = () => {
+                // Read the contents of the framebuffer
+                var numberOfChannelsByLine = width * 4;
+                var halfHeight = height / 2;
+
+                //Reading datas from WebGL
+                var data = engine.readPixels(0, 0, width, height);
+
+
+                //To flip image on Y axis.
+                for (var i = 0; i < halfHeight; i++) {
+                    for (var j = 0; j < numberOfChannelsByLine; j++) {
+                        var currentCell = j + i * numberOfChannelsByLine;
+                        var targetLine = height - i - 1;
+                        var targetCell = j + targetLine * numberOfChannelsByLine;
+
+                        var temp = data[currentCell];
+                        data[currentCell] = data[targetCell];
+                        data[targetCell] = temp;
+                    }
+                }
+
+                // Create a 2D canvas to store the result
+                if (!screenshotCanvas) {
+                    screenshotCanvas = document.createElement('canvas');
+                }
+                screenshotCanvas.width = width;
+                screenshotCanvas.height = height;
+                var context = screenshotCanvas.getContext('2d');
+
+                // Copy the pixels to a 2D canvas
+                var imageData = context.createImageData(width, height);
+                imageData.data.set(data);
+                context.putImageData(imageData, 0, 0);
+
+                var base64Image = screenshotCanvas.toDataURL();
+
+                //Creating a link if the browser have the download attribute on the a tag, to automatically start download generated image.
+                if (("download" in document.createElement("a"))) {
+                    var a = window.document.createElement("a");
+                    a.href = base64Image;
+                    var date = new Date();
+                    var stringDate = date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate() + "-" + date.getHours() + ":" + date.getMinutes();
+                    a.setAttribute("download", "screenshot-" + stringDate + ".png");
+
+                    window.document.body.appendChild(a);
+
+                    a.addEventListener("click", () => {
+                        a.parentElement.removeChild(a);
+                    });
+                    a.click();
+
+                    //Or opening a new tab with the image if it is not possible to automatically start download.
+                } else {
+                    var newWindow = window.open("");
+                    var img = newWindow.document.createElement("img");
+                    img.src = base64Image;
+                    newWindow.document.body.appendChild(img);
+                }
+
+            };
+
+            texture.render(true);
+            texture.dispose();
+
+            if (previousCamera) {
+                scene.activeCamera = previousCamera;
+            }
+        }
+
+
+
+    */
+
 
 
     // FPS

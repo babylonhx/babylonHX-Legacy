@@ -72,6 +72,7 @@ import com.gamestudiohx.babylonhx.materials.textures.CubeTexture;
     public var opacityFresnelParameters: FresnelParameters;
     public var reflectionFresnelParameters: FresnelParameters;
     public var emissiveFresnelParameters: FresnelParameters;
+    //public var getRenderTargetTextures:SmartArray;
 
 
 
@@ -99,6 +100,20 @@ import com.gamestudiohx.babylonhx.materials.textures.CubeTexture;
         this._baseColor = new Color3();
         this._scaledDiffuse = new Color3();
         this._scaledSpecular = new Color3();
+
+        //todo investigate this.
+        this._renderTargets = this.getRenderTargetTextures();
+        
+        /*
+        this.getRenderTargetTextures = function():SmartArray {
+                this._renderTargets.reset();
+
+                if (this.reflectionTexture != null && Reflect.field(this.reflectionTexture, "isRenderTarget") != null) {
+                    this._renderTargets.push(this.reflectionTexture);
+                }
+
+                return this._renderTargets;
+        }*/
     }
 
     override public function needAlphaBlending():Bool {
@@ -191,9 +206,7 @@ import com.gamestudiohx.babylonhx.materials.textures.CubeTexture;
         }
 
         // Effect
-       
-        //trace(Engine.clipPlane + '==clipPlane');
-        if (Engine.clipPlane != null) {
+        if (this._scene.clipPlane != null) {
 
             defines.push("#define CLIPPLANE");
         }
@@ -288,8 +301,6 @@ import com.gamestudiohx.babylonhx.materials.textures.CubeTexture;
                     break;
             }
         }
-        //trace(lightIndex);
-        //trace(defines);
 
         // Fresnel
         if (this.diffuseFresnelParameters != null && this.diffuseFresnelParameters.isEnabled ||
@@ -397,7 +408,7 @@ import com.gamestudiohx.babylonhx.materials.textures.CubeTexture;
         this._wasPreviouslyReady = true;
         return true;
     }
-
+   
     public function getRenderTargetTextures():SmartArray {
         this._renderTargets.reset();
 
@@ -407,6 +418,7 @@ import com.gamestudiohx.babylonhx.materials.textures.CubeTexture;
 
         return this._renderTargets;
     }
+    
 
     override public function unbind() {
         if (this.reflectionTexture != null && Reflect.field(this.reflectionTexture, "isRenderTarget") != null) {
@@ -475,7 +487,6 @@ import com.gamestudiohx.babylonhx.materials.textures.CubeTexture;
             } else {
                 this._effect.setTexture("reflection2DSampler", this.reflectionTexture);
             }
-
             this._effect.setMatrix("reflectionMatrix", this.reflectionTexture._computeReflectionTextureMatrix());
             this._effect.setFloat3("vReflectionInfos", this.reflectionTexture.coordinatesMode, this.reflectionTexture.level, Reflect.field(this.reflectionTexture, "isCube") != null ? 1.0 : 0.0);
         }
@@ -562,8 +573,8 @@ import com.gamestudiohx.babylonhx.materials.textures.CubeTexture;
             }
         }
 
-        if (Engine.clipPlane != null) {
-            this._effect.setFloat4("vClipPlane", Engine.clipPlane.normal.x, Engine.clipPlane.normal.y, Engine.clipPlane.normal.z, Engine.clipPlane.d);
+        if (this._scene.clipPlane != null) {
+            this._effect.setFloat4("vClipPlane", this._scene.clipPlane.normal.x, this._scene.clipPlane.normal.y, this._scene.clipPlane.normal.z, this._scene.clipPlane.d);
         }
 
         // View

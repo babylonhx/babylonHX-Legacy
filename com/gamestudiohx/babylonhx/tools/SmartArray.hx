@@ -50,6 +50,14 @@ package com.gamestudiohx.babylonhx.tools;
             for (index in 0...array.length) {
                 this.data[this.length++] = Std.is(array, Array) ? array[index] : array.data[index];// (array.data || array)[index];
             }
+        }else{
+            for (index in 0...array.data.length) {
+                if(this.data[index] != array.data[index]){
+                    this.data.push(array.data[index]);
+                }
+            }
+
+           
         }
     }
 

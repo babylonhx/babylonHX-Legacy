@@ -159,7 +159,7 @@ import openfl.gl.GLTexture;
         this.wrapU = Texture.WRAP_ADDRESSMODE;
         this.wrapV = Texture.WRAP_ADDRESSMODE;
         this.coordinatesIndex = 0;
-        this.coordinatesMode = Texture.EXPLICIT_MODE;
+        //this.coordinatesMode = Texture.EXPLICIT_MODE;
         this.anisotropicFilteringLevel = 4;
 
         // Animations
@@ -245,11 +245,12 @@ import openfl.gl.GLTexture;
         }
 
         if (this._cachedTextureMatrix == null) {
+     
             this._cachedTextureMatrix = Matrix.Zero();
             this._projectionModeMatrix = Matrix.Zero();
         }
-
         switch (this.coordinatesMode) {
+
             case Texture.SPHERICAL_MODE:
                 Matrix.IdentityToRef(this._cachedTextureMatrix);
                 this._cachedTextureMatrix.m[0] = -0.5 * this.uScale;
@@ -281,6 +282,8 @@ import openfl.gl.GLTexture;
                 Matrix.IdentityToRef(this._cachedTextureMatrix);
 
         }
+
+        
         return this._cachedTextureMatrix;
     }
 

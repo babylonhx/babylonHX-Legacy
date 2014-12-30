@@ -55,6 +55,8 @@ import openfl.gl.GL;
     public static var MinDeltaTime:Float = 1.0;
     public static var MaxDeltaTime:Float = 1000.0;
 
+    public var clipPlane:Plane = null;
+
     private var _engine:Engine;
 
     public var beforeRender:Void -> Void;
@@ -97,6 +99,7 @@ import openfl.gl.GL;
     public var forceWireframe:Bool;
     public var clearColor:Color4;
     public var ambientColor:Color3;
+    public var shadowsEnabled:Bool = true;
 
     public var fogMode:Int;
     public var fogColor:Color3;
@@ -145,6 +148,8 @@ import openfl.gl.GL;
     public var _animationStartDate:Int = -1;
     public var postProcessRenderPipelineManager:PostProcessRenderPipelineManager;
     private var _boundingBoxRenderer:BoundingBoxRenderer;
+    public var beforeCameraRender:Camera->Void;
+    public var afterCameraRender:Camera->Void;
 
 
     public function new(engine:Engine) {
@@ -165,6 +170,7 @@ import openfl.gl.GL;
 
         this._renderId = 0;
         this._executeWhenReadyTimeoutId = -1;
+        this.beforeCameraRender = null;
 
         this._toBeDisposed = new SmartArray();// (256);
 
@@ -477,6 +483,7 @@ import openfl.gl.GL;
     }
 
     public function getViewMatrix():Matrix {
+        //trace('view matrix:' + this._viewMatrix);
         return this._viewMatrix;
     }
 
@@ -645,6 +652,7 @@ import openfl.gl.GL;
                 // Render targets
                 if (Reflect.field(material, "getRenderTargetTextures") != null) {
                     if (this._processedMaterials.indexOf(material) == -1) {
+
                         this._processedMaterials.push(material);
 
                         this._renderTargets.concat(material.getRenderTargetTextures());
@@ -766,16 +774,13 @@ import openfl.gl.GL;
     }
 
     inline public function _renderForCamera(camera:Camera = null, mustClearDepth:Bool = false) {
-        //trace('in render for camera');
-        var engine:Engine = this._engine;
-
         this.activeCamera = camera;
 
         if (this.activeCamera == null)
             throw("Active camera not set");
 
         // Viewport
-        engine.setViewport(this.activeCamera.viewport);
+        this._engine.setViewport(this.activeCamera.viewport);
 
         // Clear
         /*
@@ -789,6 +794,10 @@ import openfl.gl.GL;
         this.updateTransformMatrix();
         // 
         // Meshes
+        if (this.beforeCameraRender != null) {
+                this.beforeCameraRender(this.activeCamera);
+        }
+
         var beforeEvaluateActiveMeshesDate = Lib.getTimer();
         this._evaluateActiveMeshes();
         this._evaluateActiveMeshesDuration += Lib.getTimer() - beforeEvaluateActiveMeshesDate;
@@ -799,27 +808,39 @@ import openfl.gl.GL;
             skeleton.prepare();
         }
 
-        // Customs render targets registration
+        // Customs render targets registration refactor this
+
+        
+         
+        //todo investigate 
         for (customIndex in 0...this.customRenderTargets.length) {
-            //trace(this.customRenderTargets[customIndex] + '==? really');
             this._renderTargets.push(this.customRenderTargets[customIndex]);
         }
+        
+        
+        
+      
 
         // Render targets
+        //trace(this._renderTargets);
         var beforeRenderTargetDate = Lib.getTimer();
         if (this.renderTargetsEnabled) {
-            for (renderIndex in 0...this._renderTargets.length) {
+            for (renderIndex in 0...this._renderTargets.data.length) {
                 var renderTarget = this._renderTargets.data[renderIndex];
-                this._renderId++;
-                //trace('do I ever make it here?');
-                renderTarget.render();
+                if (renderTarget._shouldRender()) {
+                    this._renderId++;
+                    renderTarget.render();
+                }
             }
+            this._renderId++;
         }
+        //todo double
+        
 
         if (this._renderTargets.length > 0) { // Restore back buffer
-            engine.restoreDefaultFramebuffer();
+            this._engine.restoreDefaultFramebuffer();
         }
-        this._renderTargetsDuration = Lib.getTimer() - beforeRenderTargetDate;
+        this._renderTargetsDuration += Lib.getTimer() - beforeRenderTargetDate;
 
         // Prepare Frame
         this.postProcessManager._prepareFrame();
@@ -827,7 +848,7 @@ import openfl.gl.GL;
         var beforeRenderDate = Lib.getTimer();
         // Backgrounds
         if (this.layers.length > 0) {
-            engine.setDepthBuffer(false);
+            this._engine.setDepthBuffer(false);
             var layer:Layer = null;
             for (layerIndex in 0...this.layers.length) {
                 layer = this.layers[layerIndex];
@@ -835,7 +856,7 @@ import openfl.gl.GL;
                     layer.render();
                 }
             }
-            engine.setDepthBuffer(true);
+            this._engine.setDepthBuffer(true);
         }
 
         // Render
@@ -852,14 +873,14 @@ import openfl.gl.GL;
 
         // Foregrounds
         if (this.layers.length > 0) {
-            engine.setDepthBuffer(false);
+            this._engine.setDepthBuffer(false);
             for (layerIndex in 0...this.layers.length) {
                 var layer = this.layers[layerIndex];
                 if (!layer.isBackground) {
                     layer.render();
                 }
             }
-            engine.setDepthBuffer(true);
+            this._engine.setDepthBuffer(true);
         }
 
         this._renderDuration += Lib.getTimer() - beforeRenderDate;
@@ -872,6 +893,28 @@ import openfl.gl.GL;
 
         // Reset some special arrays
         this._renderTargets.reset();
+
+        if (this.afterCameraRender != null) {
+                this.afterCameraRender(this.activeCamera);
+        }
+    }
+
+    private function _processSubCameras(camera: Camera): Void {
+            if (camera.subCameras.length == 0) {
+                this._renderForCamera(camera);
+                return;
+            }
+
+            // Sub-cameras
+            for (index in 0...camera.subCameras.length) {
+                this._renderForCamera(camera.subCameras[index]);
+            }
+
+            this.activeCamera = camera;
+            this.setTransformMatrix(this.activeCamera.getViewMatrix(), this.activeCamera.getProjectionMatrix());
+
+            // Update camera
+            this.activeCamera._updateFromScene();
     }
 
     inline public function render(rect:Rectangle = null) {
@@ -880,8 +923,10 @@ import openfl.gl.GL;
         this._spritesDuration = 0;
         this._activeParticles = 0;
         this._renderDuration = 0;
+        this._renderTargetsDuration = 0;
         this._evaluateActiveMeshesDuration = 0;
         this._totalVertices = 0;
+        this.getEngine().resetDrawCalls();
         this._activeVertices = 0;
 
         // Before render
@@ -902,20 +947,84 @@ import openfl.gl.GL;
         if (this._physicsEngine != null) {
             this._physicsEngine._runOneStep(deltaTime / 1000.0);
         }
+        var beforeRenderTargetDate = Lib.getTimer();
+        if (this.renderTargetsEnabled) {
+            for (customIndex in 0...this.customRenderTargets.length) {
+                if(this.activeCamera != null){
+                    var renderTarget = this.customRenderTargets[customIndex];
+                    if (renderTarget._shouldRender()) {
+
+                                this._renderId++;
+                                if(renderTarget.activeCamera != null){
+                                    this.activeCamera = renderTarget.activeCamera;
+                                }
+                                //this.activeCamera = renderTarget.activeCamera || this.activeCamera;
+
+                                if (this.activeCamera == null){
+                                    trace("Active camera not set");
+                                    //break;
+                                }
+                                // Viewport
+                                
+                                this._engine.setViewport(this.activeCamera.viewport);
+                                // Camera
+                                this.updateTransformMatrix();
+                                renderTarget.render();
+                    }
+
+                    
+                }
+            }
+        }
+
+        if (this.customRenderTargets.length > 0) { // Restore back buffer
+                this.getEngine().restoreDefaultFramebuffer();
+        }
+        this._renderTargetsDuration += Lib.getTimer() - beforeRenderTargetDate;
+
+
+        
+         /*
+        for (var customIndex = 0; customIndex < this.customRenderTargets.length; customIndex++) {
+                    var renderTarget = this.customRenderTargets[customIndex];
+                    if (renderTarget._shouldRender()) {
+                        this._renderId++;
+
+                        this.activeCamera = renderTarget.activeCamera || this.activeCamera;
+
+                        if (!this.activeCamera)
+                            throw new Error("Active camera not set");
+
+                        // Viewport
+                        engine.setViewport(this.activeCamera.viewport);
+
+                        // Camera
+                        this.updateTransformMatrix();
+
+                        renderTarget.render();
+                    }
+                }
+
+
+
+        */
+
+
 
         // Clear
         this._engine.clear(this.clearColor, this.autoClear || this.forceWireframe, true);
 
         // Shadows
-        for (lightIndex in 0...this.lights.length) {
-            var light:Light = this.lights[lightIndex];
-            var shadowGenerator = light.getShadowGenerator();
+        if (this.shadowsEnabled) {
+            for (lightIndex in 0...this.lights.length) {
+                var light:Light = this.lights[lightIndex];
+                var shadowGenerator = light.getShadowGenerator();
 
-            if (light.isEnabled() && shadowGenerator != null) {
-                this._renderTargets.push(shadowGenerator.getShadowMap());
+                if (light.isEnabled() && shadowGenerator != null) {
+                    this._renderTargets.push(shadowGenerator.getShadowMap());
+                }
             }
         }
-
         // RenderPipeline
         this.postProcessRenderPipelineManager.update();
 

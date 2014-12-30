@@ -55,6 +55,8 @@ import openfl.display.DisplayObject;
     public var maxZ:Float = 1000.0;
     public var inertia:Float = 0.9;
     public var mode:Int;
+    public var layerMask:Int = 0xFFFFFFFF;
+    public var subCameras:Array<Dynamic> = [];
 
     public var viewport:Viewport;
 

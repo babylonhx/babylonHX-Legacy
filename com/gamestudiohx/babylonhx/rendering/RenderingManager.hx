@@ -36,16 +36,17 @@ import openfl.Lib;
             // Particles
             var beforeParticlesDate = Lib.getTimer();
             for (particleIndex in 0...this._scene._activeParticleSystems.length) {
-                var particleSystem:ParticleSystem = this._scene._activeParticleSystems.data[particleIndex];
+                    var particleSystem:ParticleSystem = this._scene._activeParticleSystems.data[particleIndex];
 
-                if (particleSystem.renderingGroupId == index) {
+                    if (particleSystem.renderingGroupId != index) {
+                        continue;
+                    }
                     this._clearDepthBuffer();
 
 
                     if (particleSystem.emitter.position == null || activeMeshes == null || Lambda.indexOf(activeMeshes, particleSystem.emitter) != -1) {
                         this._scene._activeParticles += particleSystem.render();
                     }
-                }
             }
             this._scene._particlesDuration += Lib.getTimer() - beforeParticlesDate;
         }
@@ -96,8 +97,9 @@ import openfl.Lib;
                 })) {
                     this._renderingGroups.splice(index, 1);
                 }
-            } else if (renderSprites) {
-                this._renderSprites(index);
+                else if (renderSprites) {
+                    this._renderSprites(index);
+                }
             }
 
             if (renderParticles) {
