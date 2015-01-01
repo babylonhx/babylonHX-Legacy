@@ -81,6 +81,19 @@ class Axis {
         return -1.401298E-45 <= num && num <= 1.401298E-45;
     }
 
+    public static function GetExponantOfTwo(value: Dynamic, max: Dynamic = 2048): Int{
+            var count = 1;
+
+            do {
+                count *= 2;
+            } while (count < value);
+
+            if (count > max)
+                count = max;
+
+            return count;
+    }
+
     public static function LoadFile(url:String, ?callbackFn:String -> Void, ?progressCallBack:Dynamic, ?database:Dynamic, useArrayBuffer:Bool = false):Void {
         if (Tools.isDebug) {
             trace('LoadFile URL - ' + url);

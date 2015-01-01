@@ -42,22 +42,22 @@ import com.gamestudiohx.babylonhx.Scene;
             return false;
         }
 
-        postProcesses[0].activate();
+        postProcesses[this._scene.activeCamera._postProcessesTakenIndices[0]].activate(this._scene.activeCamera, sourceTexture);
         return true;
     }
 
     public function _finalizeFrame(?doNotPresent:Bool, ?targetTexture: Dynamic) {
         var postProcesses:Array<PostProcess> = this._scene.activeCamera._postProcesses;
-
+        var postProcessesTakenIndices = this._scene.activeCamera._postProcessesTakenIndices;
         if (postProcesses.length == 0 || !this._scene.postProcessesEnabled) {
             return;
         }
 
         var engine = this._scene.getEngine();
 
-        for (index in 0...postProcesses.length) {
-            if (index < postProcesses.length - 1) {
-                postProcesses[index + 1].activate();
+        for (index in 0...postProcessesTakenIndices.length) {
+            if (index < postProcessesTakenIndices.length - 1) {
+                postProcesses[postProcessesTakenIndices[index + 1]].activate();
             } else {
                  if (targetTexture) {
                     engine.bindFramebuffer(targetTexture);
@@ -66,10 +66,19 @@ import com.gamestudiohx.babylonhx.Scene;
                 }
                 //engine.restoreDefaultFramebuffer();
             }
+            
+            if (doNotPresent) {
+                    break;
+            }
 
-            var effect:Effect = postProcesses[index].apply();
+            var pp = postProcesses[postProcessesTakenIndices[index]];
+
+            var effect:Effect = pp.apply();
 
             if (effect != null) {
+                if (pp.onBeforeRender != null) {
+                        pp.onBeforeRender(effect);
+                }
                 // VBOs
                 engine.bindBuffers(this._vertexBuffer, this._indexBuffer, this._vertexDeclaration, this._vertexStrideSize, effect);
 

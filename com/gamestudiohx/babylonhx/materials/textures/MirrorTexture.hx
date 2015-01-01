@@ -19,10 +19,10 @@ import com.gamestudiohx.babylonhx.cameras.Camera;
     public var _mirrorMatrix:Matrix = Matrix.Zero();
     public var mirrorPlane:Plane = new Plane(0, 1, 0, 1);
 
-    public function new(name:String, size:Float, scene:Scene, generateMipMaps:Bool) {
+    public function new(name:String, size:Dynamic, scene:Scene, generateMipMaps:Bool) {
         super(name, size, scene, generateMipMaps, true);
         //this._scene.clipPlane = this.mirrorPlane;
-        //this._scene.customRenderTargets.push(this);
+        this._scene.customRenderTargets.push(this);
         this.onBeforeRender = function() {
             var scene:Scene = this._scene;
            

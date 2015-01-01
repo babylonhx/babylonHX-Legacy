@@ -29,7 +29,7 @@ import openfl.gl.GLTexture;
     public var _depthBuffer:GLRenderbuffer;
     public var generateMipMaps:Bool;
     public var isCube:Bool;
-    public var _size:Float;
+    public var _size:Dynamic;
 
     public var isReady:Bool;
     public var noMipmap:Bool = true;

@@ -50,7 +50,7 @@ import com.gamestudiohx.babylonhx.cameras.Camera;
 
             this.resize(newSize, this._generateMipMaps);
     }
-    public function new(name:String, size:Float, scene:Scene, generateMipMaps:Bool, doNotChangeAspectRatio:Bool = true) {
+    public function new(name:String, size:Dynamic, scene:Scene, generateMipMaps:Bool, doNotChangeAspectRatio:Bool = true) {
         
 
         this._texture = scene.getEngine().createRenderTargetTexture(size, generateMipMaps);

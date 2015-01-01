@@ -4,6 +4,8 @@ import com.gamestudiohx.babylonhx.cameras.Camera;
 import com.gamestudiohx.babylonhx.materials.Effect;
 import com.gamestudiohx.babylonhx.materials.textures.Texture;
 import com.gamestudiohx.babylonhx.tools.math.Vector2;
+import com.gamestudiohx.babylonhx.tools.Tools;
+import openfl.Lib;
 
 
 
@@ -28,6 +30,9 @@ import com.gamestudiohx.babylonhx.tools.math.Vector2;
         this.direction = direction;
         this.blurWidth = blurWidth;
         this.onApply = function(effect:Effect) {
+            //this.width = Tools.GetExponantOfTwo(Lib.current.stage.stageWidth, 8192);
+            //this.height = Tools.GetExponantOfTwo(Lib.current.stage.stageHeight, 8192);
+            trace(this.width);
             effect.setFloat2("screenSize", this.width, this.height);
             effect.setVector2("direction", this.direction);
             effect.setFloat("blurWidth", this.blurWidth);

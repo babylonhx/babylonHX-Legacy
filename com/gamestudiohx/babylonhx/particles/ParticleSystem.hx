@@ -101,6 +101,7 @@ import openfl.utils.Float32Array;
     public var maxSize:Float = 1;
     public var minAngularSpeed:Float = 0;
     public var maxAngularSpeed:Float = 0;
+    private var _customEffect: Effect;
 
     public var particleTexture:Texture;
 
@@ -111,7 +112,7 @@ import openfl.utils.Float32Array;
     private var _engine:Engine;
 
 
-    public function new(name:String, capacity:Int, scene:Scene) {
+    public function new(name:String, capacity:Int, scene:Scene, customEffect: Effect = null) {
         this.name = name;
         this.id = name;
         this._capacity = capacity;
@@ -131,7 +132,7 @@ import openfl.utils.Float32Array;
         this.color2 = new Color4(1.0, 1.0, 1.0, 1.0);
         this.colorDead = new Color4(0, 0, 0, 1.0);
         this.textureMask = new Color4(1.0, 1.0, 1.0, 1.0);
-
+        this._customEffect = customEffect;
         // Particles
         this.particles = [];
         this._stockParticles = [];
@@ -335,6 +336,9 @@ import openfl.utils.Float32Array;
     }
 
     public function _getEffect():Effect {
+        if (this._customEffect != null) {
+                return this._customEffect;
+        }
         var defines:Array<String> = [];
         if (this._scene.clipPlane != null) {
             defines.push("#define CLIPPLANE");

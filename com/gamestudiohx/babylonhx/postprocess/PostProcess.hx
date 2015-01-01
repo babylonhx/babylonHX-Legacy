@@ -6,6 +6,7 @@ import com.gamestudiohx.babylonhx.materials.textures.Texture;
 import com.gamestudiohx.babylonhx.Engine;
 import com.gamestudiohx.babylonhx.Scene;
 import com.gamestudiohx.babylonhx.tools.SmartArray;
+import com.gamestudiohx.babylonhx.tools.Tools;
 
 
 /**
@@ -21,8 +22,8 @@ import com.gamestudiohx.babylonhx.tools.SmartArray;
     public var _scene:Scene;
     public var _engine:Engine;
     public var _renderRatio:Float;
-    public var width:Float;
-    public var height:Float;
+    public var width:Float = -1;
+    public var height:Float= -1;
     public var renderTargetSamplingMode:Int;
     public var _effect:Effect;
     public var _textures:SmartArray;
@@ -32,8 +33,10 @@ import com.gamestudiohx.babylonhx.tools.SmartArray;
     public var samplers:Array<String>;
 
     public var onApply:Effect -> Void;
+    public var onBeforeRender:Effect -> Void;
     public var _onDispose:Void -> Void;
     public var onSizeChanged:Void -> Void;
+    public var onActivate:Camera -> Void;
 
     public function new(name:String, fragmentUrl:String, parameters:Array<String> = null, samplers:Array<String> = null, ratio:Float, camera:Camera = null, samplingMode:Int = 1, engine:Engine = null, reusable:Bool = false) {
         this.name = name;
@@ -46,8 +49,8 @@ import com.gamestudiohx.babylonhx.tools.SmartArray;
             this._engine = engine;
         }
         this._renderRatio = ratio;
-        this.width = -1;
-        this.height = -1;
+        //this.width = -1;
+        //this.height = -1;
         this.renderTargetSamplingMode = samplingMode;
         this._reusable = reusable;
 
@@ -60,24 +63,29 @@ import com.gamestudiohx.babylonhx.tools.SmartArray;
         this._effect = this._engine.createEffect({ vertex: "postprocess", fragment: fragmentUrl }, ["position"], parameters == null ? new Array<String>() : parameters, this.samplers, "");
     }
 
-    public function activate(?camera:Camera) {
+    public function activate(?camera:Camera, ?sourceTexture: Dynamic) {
         camera = camera != null ? camera : this._camera;
 
         var scene = camera.getScene();
 
-        var desiredWidth = this._engine.getRenderWidth() * this._renderRatio;
-        var desiredHeight = this._engine.getRenderHeight() * this._renderRatio;
+        //var desiredWidth = Tools.GetExponantOfTwo(this._engine.getRenderWidth() * this._renderRatio);
+        //var desiredHeight = Tools.GetExponantOfTwo(this._engine.getRenderHeight() * this._renderRatio);
+
+        var desiredWidth = (sourceTexture ? sourceTexture._width : this._engine.getRenderWidth()) * this._renderRatio;
+        var desiredHeight = (sourceTexture ? sourceTexture._height : this._engine.getRenderHeight()) * this._renderRatio;
 
         if (this.width != desiredWidth || this.height != desiredHeight) {
             if (this._textures.length > 0) {
                 for (i in 0...this._textures.length) {
+             
                     this._engine._releaseTexture(this._textures.data[i]);
                 }
                 this._textures.reset();
             }
             this.width = desiredWidth;
             this.height = desiredHeight;
-            this._textures.push(this._engine.createRenderTargetTexture({ width: this.width, height: this.height }, { generateMipMaps: false, generateDepthBuffer: Lambda.indexOf(camera._postProcesses, this) == 0, samplingMode: this.renderTargetSamplingMode }));
+
+            this._textures.push(this._engine.createRenderTargetTexture({ width: this.width, height: this.height }, { generateMipMaps: false, generateDepthBuffer: Lambda.indexOf(camera._postProcesses, this) == camera._postProcessesTakenIndices[0], samplingMode: this.renderTargetSamplingMode }));
 
             if (this._reusable) {
                 this._textures.push(this._engine.createRenderTargetTexture({ width: this.width, height: this.height }, { generateMipMaps: false, generateDepthBuffer: Lambda.indexOf(camera._postProcesses, this) == camera._postProcessesTakenIndices[0], samplingMode: this.renderTargetSamplingMode }));
@@ -89,6 +97,10 @@ import com.gamestudiohx.babylonhx.tools.SmartArray;
         }
 
         this._engine.bindFramebuffer(this._textures.data[this._currentRenderTextureInd]);
+        
+        if (this.onActivate != null) {
+                this.onActivate(camera);
+        }
 
         // Clear
         this._engine.clear(this._scene.clearColor, this._scene.autoClear || this._scene.forceWireframe, true);
@@ -100,6 +112,7 @@ import com.gamestudiohx.babylonhx.tools.SmartArray;
 
     public function apply():Effect {
         // Check
+
         if (!this._effect.isReady())
             return null;
 

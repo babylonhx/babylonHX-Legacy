@@ -435,9 +435,7 @@ class AlphaState{
         this._loadedTexturesCache = [];
         this._activeTexturesCache = [];
         this._currentEffect = null;
-        this._currentState = {
-        culling: null
-        };
+    
 
         this._compiledEffects = new Map();
 
@@ -515,16 +513,17 @@ class AlphaState{
     }
 
     public function getRenderWidth():Int {
-        if (this._currentRenderTarget) {
+        /*if (this._currentRenderTarget != null) {
+            //trace(this._currentRenderTarget);
             return this._currentRenderTarget._width;
-        }
+        }*/
         return cast Lib.current.stage.stageWidth;
     }
 
     public function getRenderHeight():Int {
-        if (this._currentRenderTarget) {
+        /*if (this._currentRenderTarget != null) {
             return this._currentRenderTarget._height;
-        }
+        }*/
         return cast Lib.current.stage.stageHeight;
     }
 
@@ -690,7 +689,7 @@ class AlphaState{
         GL.bindFramebuffer(GL.FRAMEBUFFER, texture._framebuffer);
         //trace(Lib.current.stage.stageWidth);
         //GL.viewport(0, 0, Std.int(Lib.current.stage.stageWidth), Std.int(Lib.current.stage.stageHeight));
-        //GL.viewport(0, 0, Std.int(texture._width), Std.int(texture._height));
+        GL.viewport(0, 0, Std.int(texture._width), Std.int(texture._height));
         this._aspectRatio = texture._width / texture._height;
 
         this.wipeCaches();
@@ -1196,9 +1195,6 @@ class AlphaState{
     public function wipeCaches() {
         this._activeTexturesCache = [];
         this._currentEffect = null;
-        this._currentState = {
-        culling: null
-        };
 
         this._depthCullingState.reset();
         this._alphaState.reset();
@@ -1478,7 +1474,7 @@ class AlphaState{
             return this.createEffect(
                 {
                     vertex: "particles",
-                    fragmentElement: fragmentName
+                    fragment: fragmentName
                 },
                 ["position", "color", "options"],
                 ["view", "projection"].concat(uniformsNames),
