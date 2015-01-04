@@ -6,6 +6,7 @@ import com.gamestudiohx.babylonhx.lights.HemisphericLight;
 import com.gamestudiohx.babylonhx.lights.DirectionalLight;
 import com.gamestudiohx.babylonhx.lights.SpotLight;
 import com.gamestudiohx.babylonhx.mesh.Mesh;
+import com.gamestudiohx.babylonhx.materials.Effect;
 import com.gamestudiohx.babylonhx.mesh.VertexBuffer;
 import com.gamestudiohx.babylonhx.Scene;
 import com.gamestudiohx.babylonhx.Engine;
@@ -144,7 +145,7 @@ import com.gamestudiohx.babylonhx.materials.textures.CubeTexture;
         return this;
     }
 
-    override public function isReady(mesh:Mesh = null, useInstances:Bool = false):Bool {
+    override function isReady(mesh:Mesh = null, useInstances:Bool = false):Bool {
         var engine:Engine = this._scene.getEngine();
         this._effect = engine.createEffect(this._shaderPath, this._options.attributes, this._options.uniforms, this._options.samplers, "", null);
         if (!this._effect.isReady()) {

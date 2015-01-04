@@ -32,7 +32,7 @@ import openfl.Lib;
         this.onApply = function(effect:Effect) {
             //this.width = Tools.GetExponantOfTwo(Lib.current.stage.stageWidth, 8192);
             //this.height = Tools.GetExponantOfTwo(Lib.current.stage.stageHeight, 8192);
-            trace(this.width);
+            //trace(this.width);
             effect.setFloat2("screenSize", this.width, this.height);
             effect.setVector2("direction", this.direction);
             effect.setFloat("blurWidth", this.blurWidth);

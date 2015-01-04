@@ -328,6 +328,30 @@ interface IGetSetVerticesData {
         return result;
     }
 
+    public static function CreateLines(points: Array<Vector3>): VertexData {
+            var indices = [];
+            var positions = [];
+
+            for (index in 0...points.length) {
+                positions.push(points[index].x);
+                positions.push(points[index].y);
+                positions.push(points[index].z);
+
+                if (index > 0) {
+                    indices.push(index - 1);
+                    indices.push(index);
+                }
+            }
+
+            // Result
+            var vertexData = new VertexData();
+
+            vertexData.indices = indices;
+            vertexData.positions = positions;
+
+            return vertexData;
+    }
+
     public static function CreateBox(size:Float = 1):VertexData {
         var normalsSource = [
         new Vector3(0, 0, 1), new Vector3(0, 0, -1), new Vector3(1, 0, 0), new Vector3(-1, 0, 0), new Vector3(0, 1, 0), new Vector3(0, -1, 0)

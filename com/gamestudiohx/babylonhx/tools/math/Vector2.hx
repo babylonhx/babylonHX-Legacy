@@ -40,6 +40,11 @@ package com.gamestudiohx.babylonhx.tools.math;
         array[index + 1] = this.y;
     }
 
+    inline public static function FromArrayToRef(array:Array<Float>, offset: Int, result: Vector2) {
+            result.x = array[offset];
+            result.y = array[offset + 1];
+    }
+
     inline public function subtract(otherVector:Vector2):Vector2 {
         return new Vector2(this.x - otherVector.x, this.y - otherVector.y);
     }

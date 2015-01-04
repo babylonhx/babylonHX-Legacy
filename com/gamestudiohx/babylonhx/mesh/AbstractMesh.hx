@@ -24,7 +24,6 @@ import com.gamestudiohx.babylonhx.mesh.VertexData;
 import com.gamestudiohx.babylonhx.culling.octrees.Octree;
 import openfl.display.BitmapData;
 import haxe.io.BufferInput;
-
 import openfl.gl.GLBuffer;
 import openfl.utils.Float32Array;
 
@@ -275,7 +274,7 @@ localMatrixUpdated:Null<Bool>, position:Null<Vector3>, scaling:Null<Vector3>, ro
         return "";
     }
 
-    override inline public function getWorldMatrix():Matrix {
+    override inline function getWorldMatrix():Matrix {
         if (this._currentRenderId != this._scene.getRenderId()) {
         	//trace('getworldmatrix');
             this.computeWorldMatrix();

@@ -26,8 +26,8 @@ import com.gamestudiohx.babylonhx.materials.MultiMaterial;
     public var verticesCount:Int;
     public var indexStart:Int;
     public var indexCount:Int;
-
-    private var _mesh:AbstractMesh;
+    public var _id: Int;
+    private var _mesh:Dynamic;
     private var _renderingMesh:Mesh;
     public var _trianglePlanes:Array<Plane>;
     private var _boundingInfo:BoundingInfo;
@@ -39,15 +39,16 @@ import com.gamestudiohx.babylonhx.materials.MultiMaterial;
     public var _renderId:Int;
 
 
-    public function new(materialIndex:Int, verticesStart:Int, verticesCount:Int, indexStart:Int, indexCount:Int, mesh:AbstractMesh, ?renderingMesh:Mesh, createBoundingBox:Bool = false) {
+    public function new(materialIndex:Int, verticesStart:Int, verticesCount:Int, indexStart:Int, indexCount:Int, mesh:Dynamic, ?renderingMesh:Mesh, createBoundingBox:Bool = false) {
         this._mesh = mesh;
         //this._renderingMesh = renderingMesh || <Mesh>mesh;
         if (renderingMesh != null) {
             this._renderingMesh = renderingMesh;
         } else {
-            this._renderingMesh = cast(mesh, Mesh);
+            this._renderingMesh = mesh;
         }
         mesh.subMeshes.push(this);
+        this._id = Std.int(mesh.subMeshes.length - 1);
         this.materialIndex = materialIndex;
         this.verticesStart = verticesStart;
         this.verticesCount = verticesCount;

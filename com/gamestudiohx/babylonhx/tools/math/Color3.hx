@@ -1,5 +1,5 @@
 package com.gamestudiohx.babylonhx.tools.math;
-
+import com.gamestudiohx.babylonhx.tools.math.Color4;
 
 /**
  * Port of BabylonJs project - http://www.babylonjs.com/
@@ -43,6 +43,10 @@ package com.gamestudiohx.babylonhx.tools.math;
 
     inline public function clone():Color3 {
         return new Color3(this.r, this.g, this.b);
+    }
+
+    inline public function toColor4(alpha:Float = 1.0): Color4{
+            return new Color4(this.r, this.g, this.b, alpha);
     }
 
     inline public function asArray():Array<Float> {

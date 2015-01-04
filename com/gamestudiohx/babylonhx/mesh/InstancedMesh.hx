@@ -50,6 +50,8 @@ import openfl.utils.Float32Array;
         this._syncSubMeshes();
     }
 
+    
+
     // Methods
     //public get
     /*

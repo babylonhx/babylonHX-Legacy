@@ -28,6 +28,9 @@ import com.gamestudiohx.babylonhx.tools.math.Matrix;
     public var _effect:Effect;
     public var _wasPreviouslyReady:Bool;
     public var onDispose:Void -> Void;
+    public static var _TriangleFillMode = 0;
+    public static var _WireFrameFillMode = 1;
+    public static var _PointFillMode = 2;
 
     public function new(name:String, scene:Scene) {
         this.name = name;

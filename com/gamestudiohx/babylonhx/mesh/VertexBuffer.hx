@@ -22,7 +22,7 @@ import openfl.utils.Float32Array;
     public static var ColorKind:String = "color";
     public static var MatricesIndicesKind:String = "matricesIndices";
     public static var MatricesWeightsKind:String = "matricesWeights";
-
+    private var postponeInternalCreation:Bool;
     public var _mesh:Mesh;
     public var _engine:Engine;
     public var _updatable:Bool;
@@ -122,12 +122,13 @@ import openfl.utils.Float32Array;
 
 
     public function update(data:Array<Float>) {
-        this._engine.updateDynamicVertexBuffer(this._buffer, data);
+       /* this._engine.updateDynamicVertexBuffer(this._buffer, data);
         this._data = data;
 
         if (this._kind == PositionKind) {
             this._mesh._resetPointsArrayCache();
-        }
+        }*/
+        this.create(data);
     }
 
     public function dispose() {

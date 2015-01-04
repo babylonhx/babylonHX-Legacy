@@ -9,6 +9,7 @@ import com.gamestudiohx.babylonhx.mesh.SubMesh;
 import com.gamestudiohx.babylonhx.mesh.Geometry;
 import com.gamestudiohx.babylonhx.mesh.InstancedMesh;
 import com.gamestudiohx.babylonhx.materials.Material;
+import com.gamestudiohx.babylonhx.mesh.LinesMesh;
 import com.gamestudiohx.babylonhx.materials.Effect;
 import com.gamestudiohx.babylonhx.particles.ParticleSystem;
 import com.gamestudiohx.babylonhx.tools.Tools;
@@ -17,6 +18,7 @@ import com.gamestudiohx.babylonhx.tools.math.Plane;
 import com.gamestudiohx.babylonhx.tools.math.Quaternion;
 import com.gamestudiohx.babylonhx.tools.math.Ray;
 import com.gamestudiohx.babylonhx.tools.math.Vector3;
+import com.gamestudiohx.babylonhx.tools.math.Vector2;
 import com.gamestudiohx.babylonhx.Engine.BabylonCaps;
 import com.gamestudiohx.babylonhx.materials.textures.Texture;
 import openfl.display.Bitmap;
@@ -285,7 +287,7 @@ import openfl.utils.UInt8Array;
         }
     }
 
-    public function _bind(subMesh:SubMesh, effect:Effect, ?wireframe:Bool):Void {
+    public function _bind(subMesh:SubMesh, effect:Effect, fillMode:Int = null, ?wireframe:Bool):Void {
 
         var engine = this.getScene().getEngine();
 
@@ -300,7 +302,7 @@ import openfl.utils.UInt8Array;
         engine.bindMultiBuffers(this._geometry.getVertexBuffers(), indexToBind, effect);
     }
 
-    public function _draw(subMesh:SubMesh, useTriangles:Bool, ?instancesCount:Int):Void {
+    public function _draw(subMesh:SubMesh, useTriangles:Bool, fillMode:Int = null, ?instancesCount:Int):Void {
         // todo double check this call breaks mac issue with this._geometry.getIndexBuffer this._geometry.getIndexBuffer() == null
         if (this._geometry == null || Lambda.count(this._geometry.getVertexBuffers()) == 0 || this._geometry.getIndexBuffer() == null) {
             return;
@@ -309,7 +311,17 @@ import openfl.utils.UInt8Array;
         var engine = this.getScene().getEngine();
 
         // Draw order
-        engine.draw(useTriangles, useTriangles ? subMesh.indexStart : 0, useTriangles ? subMesh.indexCount : subMesh.linesIndexCount, instancesCount);
+        //engine.draw(useTriangles, useTriangles ? subMesh.indexStart : 0, useTriangles ? subMesh.indexCount : subMesh.linesIndexCount, instancesCount);
+        // Draw order
+        switch (fillMode) {
+            case Material._PointFillMode:
+                //engine.drawPointClouds(subMesh.verticesStart, subMesh.verticesCount, instancesCount);
+            case Material._WireFrameFillMode:
+                engine.draw(useTriangles, 0, subMesh.linesIndexCount, instancesCount);
+
+            default:
+                engine.draw(useTriangles, useTriangles ? subMesh.indexStart : 0, useTriangles ? subMesh.indexCount : subMesh.linesIndexCount, instancesCount);
+        }
     }
 
     public function registerBeforeRender(func:Dynamic):Void {
@@ -452,6 +464,7 @@ import openfl.utils.UInt8Array;
 
 
         // todo hardwareInstancedRendering  effectiveMaterial.isReady(this, hardwareInstancedRendering)
+        //trace(effectiveMaterial.isReady(this));
         if (effectiveMaterial == null || !effectiveMaterial.isReady(this)) {
             return;
         }
@@ -466,7 +479,8 @@ import openfl.utils.UInt8Array;
         //}
         var effect = effectiveMaterial.getEffect();
         var wireFrame = engine.forceWireframe || effectiveMaterial.wireframe;
-        this._bind(subMesh, effect, wireFrame);
+        var fillMode = scene.forceWireframe ? Material._WireFrameFillMode : effectiveMaterial.fillMode;
+        this._bind(subMesh, effect, fillMode, wireFrame);
 
         if (Std.is(effectiveMaterial, Material)) {
             effectiveMaterial._preBind();
@@ -900,6 +914,17 @@ import openfl.utils.UInt8Array;
         return box;
     }
 
+    // Lines
+    public static function CreateLines(name: String, points: Array<Vector3>, scene: Scene, ?updatable: Bool): LinesMesh {
+            var lines = new LinesMesh(name, scene, updatable);
+
+            var vertexData = VertexData.CreateLines(points);
+
+            vertexData.applyToMesh(lines, updatable);
+
+            return lines;
+    }
+
     public static function CreateSphere(name:String, segments:Float, diameter:Float, scene:Scene, ?updatable:Bool):Mesh {
         var sphere = new Mesh(name, scene);
         var vertexData = VertexData.CreateSphere(segments, diameter);
@@ -996,6 +1021,73 @@ import openfl.utils.UInt8Array;
 
             return ground;
 
+    }
+
+    public function applyDisplacementMap(url: String, minHeight: Float, maxHeight: Float){
+        var scene = this.getScene();
+
+        var onload = function(img:BitmapData, samplingMode:Int) {
+                var canvas = img;
+                var heightMapWidth = canvas.width;
+                var heightMapHeight = canvas.height;
+
+
+                #if html5
+                var buffer = canvas.getPixels(canvas.rect).byteView;
+                #else
+                var buffer = new UInt8Array(BitmapData.getRGBAPixels(canvas));
+                #end
+                
+                this.applyDisplacementMapFromBuffer(buffer, heightMapWidth, heightMapHeight, minHeight, maxHeight);
+        }
+
+        Tools.LoadImage(url, Texture.TRILINEAR_SAMPLINGMODE, onload);
+    }
+
+    public function applyDisplacementMapFromBuffer(buffer: Dynamic, heightMapWidth: Int, heightMapHeight: Int, minHeight: Float, maxHeight: Float){
+            if (!this.isVerticesDataPresent(VertexBuffer.PositionKind)
+                || !this.isVerticesDataPresent(VertexBuffer.NormalKind)
+                || !this.isVerticesDataPresent(VertexBuffer.UVKind)) {
+                trace("Cannot call applyDisplacementMap: Given mesh is not complete. Position, Normal or UV are missing");
+                return;
+            }
+
+            var positions = this.getVerticesData(VertexBuffer.PositionKind);
+            var normals = this.getVerticesData(VertexBuffer.NormalKind);
+            var uvs = this.getVerticesData(VertexBuffer.UVKind);
+            var position = Vector3.Zero();
+            var normal = Vector3.Zero();
+            var uv = Vector2.Zero();
+
+            var index = 0;
+            while(positions.length > index) {
+                Vector3.FromArrayToRef(cast positions, index, cast position);
+                Vector3.FromArrayToRef(cast normals, index, cast normal);
+                Vector2.FromArrayToRef(cast uvs, Std.int((index / 3) * 2), uv);
+                
+                // Compute height
+                var u = Std.int(((Math.abs(uv.x) * heightMapWidth) % heightMapWidth));
+                var v = Std.int(((Math.abs(uv.y) * heightMapHeight) % heightMapHeight));
+                var pos = (u + v * heightMapWidth) * 4;
+                //trace(pos);
+                var r = buffer[pos] / 255.0;
+                var g = buffer[pos + 1] / 255.0;
+                var b = buffer[pos + 2] / 255.0;
+                
+
+                var gradient = r * 0.3 + g * 0.59 + b * 0.11;
+                normal.normalize();
+                normal.scaleInPlace(minHeight + (maxHeight - minHeight) * gradient);
+                position = position.add(normal);
+
+                position.toArray(positions, index);
+                index += 3;
+            }
+
+            VertexData.ComputeNormals(positions, this.getIndices(), normals);
+
+            this.updateVerticesData(VertexBuffer.PositionKind, positions);
+            this.updateVerticesData(VertexBuffer.NormalKind, normals);
     }
 
     public static function MinMax(meshes:Array<AbstractMesh>):Dynamic {

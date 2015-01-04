@@ -95,7 +95,6 @@ import openfl.gl.GLUniformLocation;
 
         var vertex:String = Reflect.field(baseName, "vertex") != null ? baseName.vertex : baseName;
         var fragment:String = Reflect.field(baseName, "fragment") != null ? baseName.fragment : baseName;
-
         var vertexShaderUrl:String = "";
         if (vertex.charAt(0) == ".") {
             vertexShaderUrl = vertex;
@@ -130,6 +129,10 @@ import openfl.gl.GLUniformLocation;
 
     public function isReady():Bool {
         return this._isReady;
+    }
+
+    public function getAttributeLocation(index: Int): Int {
+            return this._attributes[index];
     }
 
     public function getAttributeLocationByName(name:String):Int {
